@@ -1,11 +1,56 @@
+scenario_arg_words = {
+	user_gender_word: "What gender are you?",
+	partner_pokemon_species_word: "What species is your partner pokemon?",
+	partner_pokemon_gender_word: "What gender is your pokemon?",
+	first_pokemon_species_word: "What species is the first pokemon?",
+	first_pokemon_gender_word: "What gender is the first pokemon?",
+	second_pokemon_species_word: "What species is the second pokemon?",
+	second_pokemon_gender_word: "What gender is the second pokemon?",
+
+	tip_pokemon_species: " (Use underscores instead of spaces, e.g. \"galarian_zapdos\")",
+	tip_user_gender: " (Use underscores instead of spaces, e.g. \"trans_girl\")"
+}
+
 scenario_options = [
   {
     peek: "You just got your first pokemon! Time to do some bonding...",
-    prompt: "/scenario_starter ${What gender are you? (Use underscores instead of spaces, e.g. trans_girl)} ${What species is your partner pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\")} ${What gender is your pokemon?}"
+    prompt: "/scenario_starter <user_gender> <partner_pokemon> <partner_gender>",
+    args: [
+    	{
+    		key: "<user_gender>",
+    		word: scenario_arg_words.user_gender_word + scenario_arg_words.tip_user_gender
+    	},
+    	{
+    		key: "<partner_pokemon>",
+    		word: scenario_arg_words.partner_pokemon_species_word + scenario_arg_words.tip_pokemon_species
+    	},
+    	{
+    		key: "<partner_gender>",
+    		word: scenario_arg_words.partner_pokemon_gender_word
+    	},
+    ]
   },
   {
     peek: "You're clicking through pokeporn vids and you just found the perfect one...",
-    prompt: "/scenario_pornvid ${What species is the first pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\")} ${What gender is the first pokemon? (Use underscores instead of spaces, e.g. trans_girl)} ${What species is the second pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\") ${What gender is the second pokemon? (Use underscores instead of spaces, e.g. trans_girl)}",
+    prompt: "/scenario_pornvid <pornstar_1_species> <pornstar_1_gender> <pornstar_2_species> <pornstart_2_gender>",
+    args: [
+    	{
+    		key: "<pornstar_1_species>",
+    		word: scenario_arg_words.first_pokemon_species_word + scenario_arg_words.tip_pokemon_species
+    	},
+    	{
+    		key: "<pornstar_1_gender>",
+    		word: scenario_arg_words.first_pokemon_gender_word
+    	},
+    	{
+    		key: "<pornstar_2_species>",
+    		word: scenario_arg_words.second_pokemon_species_word + scenario_arg_words.tip_pokemon_species
+    	},
+    	{
+    		key: "<pornstar_2_gender>",
+    		word: scenario_arg_words.second_pokemon_gender_word
+    	},
+    ]
   }
 ]
 
@@ -47,6 +92,13 @@ function rand(min, max) {
 }
 
 function save(key, value) {
+	for (i=0; i<worldEntries.length; i++) {
+		if (worldEntries[i].keys == key) {
+			updateWorldEntry(i, key, value, false)
+			return
+		}
+	}
+
 	addWorldEntry(key, value, false)
 }
 
@@ -78,10 +130,10 @@ function replaceAllDynamic(str, a, f) {
 	return str
 }
 
-function getDickSlang(data) {
+function getDickSlang(data, plural) {
 	var dick_slang = cockSizes.get(data.cockSize).slang
 
-	if (dicks.get(data.dick).plural) {
+	if (dicks.get(data.dick).plural || plural) {
 		dick_slang = dick_slang + "_plural"
 	}
 
@@ -109,6 +161,15 @@ function dSkin(data) {
 }
 function dBody(data) {
 	return adj("bodysize_"+data.bodySize) + " " + adj(data.bodyColor) + " " + adj("body_"+data.body)
+}
+function dGender(word) {
+	var m = isMale(word)
+	var f = isFemale(word)
+	return m ? (f ? "hermaphrodite" : "male") : f ? "female" : adj("pretty")
+}
+
+function stop_ai() {
+	save("STOP_FROM_CONTEXT", "1")
 }
 
 ///////////////////
@@ -269,25 +330,141 @@ tagFunctions.set("names", {
 }
 })
 
-tagFunctions.set("scenario_menu", {
+// Short pokemon descriptor
+// /desc_short [species] [gender]
+tagFunctions.set("desc_short", {
+	args: 2,
 	call: function(args) {
-		var str = ``
-		scenario_options.forEach(function(value, index) {
-			str = str + `${index}: ${value.peek}\n`
-		})
-		return str
+		return `a ${dGender(args[1])} ${getSpecies(args[0]).name_word}`
 	}
 })
 
+// Porn video scenario
+// /scenario_pornvid [species_1] [gender_1] [species_2] [gender_2]
 tagFunctions.set("scenario_pornvid", {
-	// 0: A species, 1: A gender, 2: B species, 3: B gender
 	args: 4,
 	call: function(args) {
-		return `It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You go to pokemon_porn.com and start browsing videos. You click through a few videos and then you find it: the sexiest pokemon porn video you've ever seen.
+		var s1 = getSpecies(args[0])
+		var m1 = isMale(args[1])
+		var f1 = isFemale(args[1])
+		var s2 = getSpecies(args[2])
+		var m2 = getSpecies(args[3])
+		var f2 = getSpecies(args[3])
 
-A /desc_short ${args[0]} ${args[1]} is getting frisky with a /desc_short ${args[2]} ${args[3]}.
+		var dick_slang_1 = getDickSlang(s1)
+		var dick_slang_2 = getDickSlang(s2)
+		var dick_slang_p = getDickSlang(s1, true)
 
-The `
+		function for1(v) {
+			v = replaceAll(v, "<ds>", "<ds1>")
+			v = replaceAll(v, "<ps>", "<ps1>")
+		}
+		function for2(v) {
+			v = replaceAll(v, "<ds>", "<ds2>")
+			v = replaceAll(v, "<ps>", "<ps2>")
+		}
+		function dCock1(plural) {
+			var v = dCock(s1)
+			if (plural) {
+				v = replaceAll(v, "<ds>", "<dsp>")
+			}
+			return for1(v)
+		}
+		function dCock2() {
+			return for2(dCock(s2))
+		}
+		function dPussy1(plural) {
+			var v = dPussy(s1)
+			if (plural) {
+				v = replaceAll(v, "<ps>", "<psp>")
+			}
+			return for1(v)
+		}
+		function dPussy2() {
+			return for2(dPussy(s2))
+		}
+
+		var str = `It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You go to pokemon_porn.com and start browsing videos. You click through a few videos and then you find it: the sexiest pokemon porn video you've ever seen.\n\n`
+
+		if (s1 == s2 && m1 == m2 && f1 == f2) {
+			// same species and gender
+			if (s1.arms) {
+				// they have arms
+				if (m1) {
+					// males with arms
+					str = str + `Two male ${s1.name_word_plural} are jerking each other's ${dCock1(true)}.`
+				} else if (f1) {
+					// females with arms
+					str = str + `Two female ${s1.name_word_plural} are rubbing each other's ${dPussy1(true)}.`
+				} else {
+					// genderless with arms
+					str = str + `Two ${s1.name_word_plural} are getting frisky with each other.`
+				}
+			} else {
+				// no arms
+				if (m1) {
+					// males with no arms
+					str = str + `The camera shows two male ${s1.name_word_plural} with fully-erect ${dCock1(true)} taking turns sucking each other's ${dCock1(true)}.`
+				} else if (f1) {
+					// females with no arms
+					str = str + `The camera shows two female ${s1.name_word_plural} with soaking wet ${dPussy1(true)} taking turns licking each other's ${dPussy1(true)}.`
+				} else {
+					// genderless with no arms
+					str = str + `The camera shows two ${s1.name_word_plural} taking turns doing erotic things to one another.`
+				}
+			}
+		} else {
+			if (s1.arms) {
+				// 1:arms
+				if (s2.arms) {
+					// 1:arms 2:arms
+					if (m1) {
+						// 1:arms,male 2:arms
+						if (f2) {
+							// 1:arms,male 2:arms,female
+							str = str + `A male ${s1.name_word} with a fully-erect ${dCock1()} is finger-fucking a female ${s2.name_word}'s ${dPussy2()}.`
+						} else {
+							// 1:arms,male 2:arms,unknown
+							str = str + `A male ${s1.name_word} with a fully-erect ${dCock1()} is getting frisky with a ${s2.name_word}.`
+						}
+					} else if (f1) {
+						// 1:arms,female 2:arms
+						if (m2) {
+							// 1:arms,female 2:arms,male
+							str = str + `A female ${s1.name_word} with a soaking-wet ${dPussy1()} is jerking off a male ${s2.name_word}'s ${dCock2()}`
+						} else {
+							// 1:arms,female 2:arms,unknown
+							str = str + `A female ${s1.name_word} with a soaking-wet ${dPussy1()} is getting frisky with a ${s2.name_word}.`
+						}
+					} else {
+						// 1:arms,unknown
+						if (m1) {
+							// 1:arms,unknown 2:arms,male
+							str = str + `A ${s1.name_word} is getting frisky with a male ${s2.name_word}. The ${s2.name_word}'s ${dCock2()} is already rock hard.`
+						} else {
+							// 1:arms,unknown 2:arms,female
+							str = str + `A ${s1.name_word} is getting frisky with a female ${s2.name_word}. The ${s2.name_word}'s ${dPussy2()} is already soaking wet.`
+						}
+					}
+				} else {
+					// 1:arms 2:noarms
+				}
+			} else {
+				// 1:noarms
+				if (s2.arms) {
+					// 1:noarms 2:arms
+				} else {
+					// 1:noarms 2:noarms
+				}
+			}
+		}
+
+		str = replaceAll(str, "<ds1>", dick_slang_1)
+		str = replaceAll(str, "<ds2>", dick_slang_2)
+		str = replaceAll(str, "<dsp>", dick_slang_p)
+		str = replaceAll(str, "<ps1>", "pussy_slang")
+		str = replaceAll(str, "<ps2>", "pussy_slang")
+		str = replaceAll(str, "<psp>", "pussy_slang_plural")
 	}
 })
 
@@ -402,6 +579,7 @@ adjectives.set("dick_slang_big", ["rod", "cock", "dick", "penis"])
 adjectives.set("dick_slang_big_plural", ["rods", "cocks", "dicks", "penises"])
 // pussy slang
 adjectives.set("pussy_slang", ["pussy", "cunt"])
+adjectives.set("pussy_slang_plural", ["pussies", "cunts"])
 
 /////////////
 // SPECIES //
@@ -663,17 +841,20 @@ bodies.set("reptilian_quad", {
 bodies.set("reptilian_biped", {
 	species: ["charmander", "charmeleon"],
 	adj: ["two-legged reptile", "bipedal reptile"],
-	dex: "bipedal reptiles that walk on their hind legs."
+	dex: "bipedal reptiles that walk on their hind legs.",
+	arms: 2
 })
 bodies.set("draconic_biped", {
 	species: ["charizard"],
 	adj: ["two-legged dragon", "bipedal dragon"],
-	dex: "bipdel dragons."
+	dex: "bipdel dragons.",
+	arms: 2
 })
 bodies.set("turtle_biped", {
 	species: ["squirtle", "wartortle", "blastoise"],
 	adj: ["two-legged turtle", "bipedal turtle"],
-	dex: "bipedal turtles."
+	dex: "bipedal turtles.",
+	arms: 2
 })
 bodies.set("snake", {
 	species: ["ekans"],
@@ -690,15 +871,16 @@ bodies.set("tadpole", {
 	species: ["poliwag"],
 	dex: "tadpoles."
 })
-bodies.set("frog", {
+bodies.set("frog_bipedal", {
 	species: ["poliwhirl", "poliwrath"],
-	dex: "frogs."
+	dex: "frogs.",
+	arms: 2
 })
 
 // aquatic
 bodies.set("squid", {
 	species: ["tentacool", "tentacruel"],
-	dex: "squids."
+	dex: "squids.",
 })
 
 // insect
@@ -749,9 +931,10 @@ bodies.set("bird", {
 	adj: ["bird", "avian"],
 	dex: "birds."
 })
-bodies.set("duck", {
+bodies.set("duck_arms", {
 	species: ["psyduck", "golduck"],
-	dex: "ducks."
+	dex: "ducks.",
+	arms: 2
 })
 
 // mammal
@@ -773,11 +956,17 @@ bodies.set("rhino_quad", {
 bodies.set("rhino_biped", {
 	species: ["nidoqueen", "nidoking"],
 	adj: ["two-legged rhino", "bipedal rhino"],
-	dex: "bipedal rhinos."
+	dex: "bipedal rhinos.",
+	arms: 2
 })
 bodies.set("fox", {
-	species: ["vulpix", "ninetails", "alolan_vulpix", "alolan_ninetales", "abra", "kadabra", "alakazam"],
+	species: ["vulpix", "ninetails", "alolan_vulpix", "alolan_ninetales"],
 	dex: "foxes."
+})
+bodies.set("fox_biped" {
+	species: ["abra", "kadabra", "alakazam"],
+	dex: "bipedal foxes.",
+	arms: 2
 })
 bodies.set("bat", {
 	species: ["zubat", "golbat"],
@@ -786,7 +975,8 @@ bodies.set("bat", {
 bodies.set("cat_biped", {
 	species: ["meowth", "galarian_meowth", "alolan_meowth"],
 	adj: ["bipedal cat", "two-legged cat"],
-	dex: "bipedal cats."
+	dex: "bipedal cats.",
+	arms: 2
 })
 bodies.set("cat_quad", {
 	species: ["persian", "alolan_persian"],
@@ -795,7 +985,8 @@ bodies.set("cat_quad", {
 })
 bodies.set("monkey", {
 	species: ["mankey", "primeape"],
-	dex: "monkeys."
+	dex: "monkeys.",
+	arms: 2
 })
 bodies.set("canine", {
 	species: ["growlithe", "arcanine"],
@@ -805,7 +996,8 @@ bodies.set("canine", {
 bodies.set("humanoid", {
 	species: ["machop", "machoke", "machamp"],
 	adj: ["humanoid", "human-like"],
-	dex: "humanoids."
+	dex: "humanoids.",
+	arms: 2
 })
 bodies.set("horse", {
 	species: ["ponyta", "rapidash"],
@@ -820,19 +1012,22 @@ bodies.set("unicorn", {
 // magical
 bodies.set("fairy", {
 	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff"],
-	dex: "fairies."
+	dex: "fairies.",
+	arms: 2
 })
 
 // mineral
 bodies.set("floating_rock", {
 	species: ["geodude", "alolan_geodude"],
 	adj: ["floating rock"],
-	dex: "floating rocks."
+	dex: "floating rocks.",
+	arms: 2
 })
 bodies.set("rock_golem", {
 	species: ["graveler", "alolan_graveler", "golem", "alolan_golem"],
 	adj: ["rock golem"],
-	dex: "rock golems."
+	dex: "rock golems.",
+	arms: 2
 })
 
 // plant
@@ -848,7 +1043,7 @@ bodies.set("flower", {
 bodies.set("pitcher_plant", {
 	species: ["bellsprout", "weepinbell", "victreebel"],
 	adj: ["pitcher plant"],
-	dex: "pitcher plants."
+	dex: "pitcher plants.",
 })
 
 /*
@@ -1127,13 +1322,16 @@ dicks.forEach(function(value, name) {
 var special = new Map()
 
 special.set("bulbasaur", {
-	description: "The bulbasaur has a /a plant /a green bulb on its back."
+	description: "The bulbasaur has a /a plant /a green bulb on its back.",
+	vines: 2
 })
 special.set("ivysaur", {
-	description: "The ivysaur has a /a plant /a pink flower bud on its back, nestled in a bush of /a green leaves."
+	description: "The ivysaur has a /a plant /a pink flower bud on its back, nestled in a bush of /a green leaves.",
+	vines: 2
 })
 special.set("venusaur", {
-	description: "The venusaur has a large /a plant /a pink flower on its back. It emits an intoxicatingly arousing odor."
+	description: "The venusaur has a large /a plant /a pink flower on its back. It emits an intoxicatingly arousing odor.",
+	vines: 4
 })
 special.set("charmander", {
 	description: "The charmander has a tail with a flame at the tip."
@@ -1204,7 +1402,9 @@ special.set("", {
 
 special.forEach(function(value, name) {
 	var data = getSpecies(name)
-	data.special = value
+	value.forEach(function(v, k) {
+		data[k] = v
+	})
 })
 
 /////////////
@@ -1219,8 +1419,8 @@ species.forEach(function(data, name) {
 	str = data.name_word + " is a species of pokemon."
 
 	// subspecies
-	if (data.special && data.special.subspeciesOf) {
-		str = str + ` ${data.name_word} is a subspecies of ${getSpecies(data.special.subspeciesOf).name_word}.`
+	if (data.subspeciesOf) {
+		str = str + ` ${data.name_word} is a subspecies of ${getSpecies(data.subspeciesOf).name_word}.`
 	}
 
 	// body dex entry
