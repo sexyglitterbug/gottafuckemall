@@ -1,5 +1,26 @@
 const modifier = (text) => {
   let modifiedText = text
+
+  // scene selection
+  if (!load("SCENE_SELECTION_COMPLETE") && false) {
+    var index = parseInt(text);
+    if (index && scenario_options[index]) {
+      save("SCENE_SELECTION_COMPLETE", "1")
+      save("STOP_FROM_CONTEXT", "1")
+      modifiedText = scenario_options[index].prompt
+    } else {
+      if (text.substr(0, 1) != "/") {
+        save("STOP_FROM_CONTEXT", "1")
+
+        if (load("DID_FIRST_MESSAGE")) {
+          modifiedText = `Unrecognized input "${text}". Please input a number.`
+        } else {
+          save("DID_FIRST_MESSAGE", "1")
+        }
+      }
+    }
+  }
+
   const lowered = text.toLowerCase()
 
   state.message = ""
@@ -61,6 +82,7 @@ const modifier = (text) => {
         parsedSomething = true
         
         if (key == "help") {
+          save("STOP_FROM_CONTEXT", "1")
           break // don't re-parse the commands in the help menu
         }
       }

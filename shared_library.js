@@ -1,3 +1,14 @@
+scenario_options = [
+  {
+    peek: "You just got your first pokemon! Time to do some bonding...",
+    prompt: "/scenario_starter ${What gender are you? (Use underscores instead of spaces, e.g. trans_girl)} ${What species is your partner pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\")} ${What gender is your pokemon?}"
+  },
+  {
+    peek: "You're clicking through pokeporn vids and you just found the perfect one...",
+    prompt: "/scenario_pornvid ${What species is the first pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\")} ${What gender is the first pokemon? (Use underscores instead of spaces, e.g. trans_girl)} ${What species is the second pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\") ${What gender is the second pokemon? (Use underscores instead of spaces, e.g. trans_girl)}",
+  }
+]
+
 // memory context and author's note are constant
 state.memory.context = `In this world, everyone fucks their Pokémon. Pokémon are super sexy and attractive and they want to fuck humans.
 
@@ -67,6 +78,39 @@ function replaceAllDynamic(str, a, f) {
 	return str
 }
 
+function getDickSlang(data) {
+	var dick_slang = cockSizes.get(data.cockSize).slang
+
+	if (dicks.get(data.dick).plural) {
+		dick_slang = dick_slang + "_plural"
+	}
+
+	return dick_slang
+}
+
+function dCockType(data) {
+	return adj("dick_"+data.dick)
+}
+function dCockSize(data) {
+	return adj("dick_"+data.cockSize)
+}
+function dCock(data) {
+	if (data.cockSize != "medium") {
+		return dCockSize(data) + " " + dCockType(data)
+	} else {
+		return dCockType(data)
+	}
+}
+function dPussy(data) {
+	return adj("pussy_"+data.pussy)
+}
+function dSkin(data) {
+	return adj("pretty") + " " + adj(data.bodyColor) + " " + adj("skintype_"+data.skinType)
+}
+function dBody(data) {
+	return adj("bodysize_"+data.bodySize) + " " + adj(data.bodyColor) + " " + adj("body_"+data.body)
+}
+
 ///////////////////
 // TAG FUNCTIONS //
 ///////////////////
@@ -87,17 +131,6 @@ tagFunctions.set("a", {
 	args: 1,
 	call: function(args) {
 		return adj(args[0])
-	}
-})
-
-// Define Sex Organs
-// /definesexorgans [word]
-tagFunctions.set("definesexorgans", {
-	args: 1,
-	call: function(args) {
-		save("user_def_gender", args[0])
-		save("You", "You are an attractive 18 year old " + args[0] + ". You are also a pokemon trainer and it is your goal to collect all eight gym badges and become the pokemon champion.")
-		return args[0]
 	}
 })
 
@@ -235,6 +268,100 @@ tagFunctions.set("names", {
 */
 }
 })
+
+tagFunctions.set("scenario_menu", {
+	call: function(args) {
+		var str = ``
+		scenario_options.forEach(function(value, index) {
+			str = str + `${index}: ${value.peek}\n`
+		})
+		return str
+	}
+})
+
+tagFunctions.set("scenario_pornvid", {
+	// 0: A species, 1: A gender, 2: B species, 3: B gender
+	args: 4,
+	call: function(args) {
+		return `It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You go to pokemon_porn.com and start browsing videos. You click through a few videos and then you find it: the sexiest pokemon porn video you've ever seen.
+
+A /desc_short ${args[0]} ${args[1]} is getting frisky with a /desc_short ${args[2]} ${args[3]}.
+
+The `
+	}
+})
+
+tagFunctions.set("scenario_starter", {
+	// 0: user gender, 1: poke species, 2: poke gender
+	args: 3,
+	call: function(args) {
+		// user state
+		var user_gender = replaceAll(args[0], "_", " ")
+		var user_has_cock = isMale(user_gender)
+		var user_has_pussy = isFemale(user_gender)
+
+		save("You", `You are an attractive 18 year old ${args[0]}. You are also a pokemon trainer and it is your goal to collect all eight gym badges and become the pokemon champion.`)
+
+		// pokemon state
+		var data = getSpecies(args[1])
+		var m = isMale(args[2])
+		var f = isFemale(args[2])
+
+		// string
+		var str = `You look at the pokeball in your hand. Now that you have your very own Pokémon you're ready to start your adventure. You're going to train your Pokémon to be the best fuck fighter ever. You're going to build a team of sexy beasts who dominate the battlefield, and it all starts here.
+
+Suddenly you realize you're still standing outside of Cherry's lab where she rushed you out the door. Professor Chery was in such a hurry she forgot to even tell you what Pokémon she gave you. You decide your first time meeting your new teammate should be special. You head home and go to your bedroom.
+
+You really want to wow your new Pokémon so you go all out with the sexy decor. Moody lightning, soft music in the background, candles decorating the ambience. The smell of roses is in the air because you spread rose petals everywhere. You take your clothes off and pose in front of the mirror. You're a great-looking ${args[0]} and any pokemon would be lucky to get in bed with you.
+
+It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
+
+		// descriptors
+		var dick = dicks.get(data.dick)
+		var dick_slang = getDickSlang(data)
+		var name_lower = data.name_word.toLowerCase()
+
+		// describe
+		str = str + `a ${dBody(data)} pokemon with ${dSkin(data)}. ${m ? "He's" : f ? "She's" : "It's"} clearly ${m ? "male" : f ? "female" : "excited"}. Your new ${name_lower} looks at you with curiosity. ${m ? "He" : f ? "She" : "It"} seems /gp <g> 0 knows what you want, as`
+
+		if (m) {
+			str = str + ` his ${dCock(data)} ${dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
+
+			if (user_has_pussy) {
+				str = str + ` You lay back on the bed and spread your legs, showing him your moist pussy. You spread it a bit so your ${name_lower} can clearly see that you want his ${dCock(data)} inside you.`
+			} else if (user_has_cock) {
+				str = str + ` You grab your own cock and shake it at him in a crude display of desire. The ${name_lower} is clearly interested, his ${dCock(data)} now leaking precum onto the floor.`
+			} else {
+				str = str + ` You present yourself to him and tease him with your body. You can tell your ${name_lower} is getting excited by his ${dCock(data)} dripping precum onto the floor.`
+			}
+		} else if (f) {
+			str = str + ` her ${dPussy(data)} juices are already dripping down her leg. She must be excited for what's about to happen.`
+			
+			if (user_has_cock) {
+				str = str + ` You grab your cock and shake it at her in a crude display of primal desire. Your ${name_lower} is clearly interested, and she moves in closer.`
+			} else if (user_has_pussy) {
+				str = str + ` You spread yourself and rub your labia in a display of raw desire. Your ${name_lower} notices and moves in closer.`
+			} else {
+				str = str + ` You present yourself, dislpaying your unabashed need to the already-soaking ${name_lower}. She can't wait any more than you can at this point.`
+			}
+		} else {
+			if (user_has_cock) {
+				str = str + ` you grab your cock and shake it at it in a crude display of primal desire. Your ${name_lower} is clearly interested, and it moves in closer.`
+			} else if (user_has_pussy) {
+				str = str + ` you spread yourself and rub your labia in a display of raw desire. Your ${name_lower} notices and moves in closer.`
+			} else {
+				str = str + ` you present yourself, dislpaying your unabashed need to the already-horny ${name_lower}. It can't wait any more than you can at this point.`
+			}
+		}
+
+		str = replaceAll(str, "<g>", m ? "m" : f ? "f" : "t")
+		str = replaceAll(str, "<ds>", dick_slang)
+		str = replaceAll(str, "<ps>", "pussy_slang")
+		
+		return str
+	}
+})
+
 
 ////////////////
 // ADJECTIVES //
@@ -958,7 +1085,7 @@ dicks.set("ditto", {
 })
 dicks.set("ovipositor", {
 	species: ["beedrill"],
-	adj: ["<ds>-like ovipositor", "ovipositor", "sexual appendage"],
+	adj: ["cock-like ovipositor", "dick-like ovipositor", "ovipositor", "sexual appendage"],
 	pussy_adj: ["/a <ps>"],
 	dex: "Male <lp> use a specialized ovipositor as a penis. His ovipositor functions just like a penis. When a male <p> cums, he pumps eggs through his ovipositor into his partner. He doesn't ejaculate semen, he only releases large eggs when he cums. This makes his partner feel really good."
 })
@@ -1116,110 +1243,4 @@ species.forEach(function(data, name) {
 
 	// send to AI
 	save(name, str)
-})
-
-//////////////////////
-// INTRO DESCRIPTOR //
-//////////////////////
-tagFunctions.set("intro", {
-	// 0: species
-	// 1: gender
-	// 2: context id (0: standard, 1: partner pokemon first encounter)
-	args: 3,
-	call: function(args) {
-		var s = getSpecies(args[0])
-		var m = isMale(args[1])
-		var f = isFemale(args[1])
-		
-		// user gender
-		var userGender = load("user_def_gender")
-		var userHasCock = userGender ? isMale(userGender) : false
-		var userHasPussy = userGender ? isFemale(userGender) : false
-		
-		// start
-		var str = ""
-
-		// descriptors
-		var dick = dicks.get(s.dick)
-		var dick_slang = cockSizes.get(s.cockSize).slang
-
-		if (dick.plural) {
-			dick_slang = dick_slang + "_plural"
-		}
-console.log(s)
-		function cockType() {
-			return adj("dick_"+s.dick)
-		}
-		function cockSize() {
-			return adj("dick_"+s.cockSize)
-		}
-		function cock() {
-			if (s.cockSize != "medium") {
-				return cockSize() + " " + cockType()
-			} else {
-				return cockType()
-			}
-		}
-		function pussy() {
-			return adj("pussy_"+s.pussy)
-		}
-		function skin() {
-			return adj("pretty") + " " + adj(s.bodyColor) + " " + adj("skintype_"+s.skinType)
-		}
-		function body() {
-			return adj("bodysize_"+(s.bodySize)) + " " + adj(s.bodyColor) + " " + adj("body_"+s.body)
-		}
-
-		str = `a ${body()} pokemon with ${skin()}. ${m ? "He's" : f ? "She's" : "It's"} clearly ${m ? "male" : f ? "female" : "excited"}.`
-
-		if (s.special && s.special.description) {
-			str = str + " " + s.special.description
-		}
-		if (m && s.special && s.special.description_m) {
-			str = str + " " + s.special.description_m
-		}
-		if (f && s.special && s.special.description_f) {
-			str = str + " " + s.special.description_f
-		}
-
-		if (args[2] == 1) {
-			str = str + ` Your new ${s.name_word.toLowerCase()} looks at you with curiosity. ${m ? "He" : f ? "She" : "It"} seems /gp <g> 0 knows what you want, as`
-			
-			if (m) {
-				str = str + ` his ${cock()} ${dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
-				
-				if (userHasPussy) {
-					str = str + ` You lay back on the bed and spread your legs, showing him your moist pussy. You spread it a bit so your ${s.name_word.toLowerCase()} can clearly see that you want his ${cock()} inside you.`
-				} else if (userHasCock) {
-					str = str + ` You grab your own cock and shake it at him in a crude display of desire. The ${s.name_word.toLowerCase()} is clearly interested, his ${cock()} now leaking precum onto the floor.`
-				} else {
-					str = str + ` You present yourself to him and tease him with your body. You can tell your ${s.name_word.toLowerCase()} is getting excited by his ${cock()} dripping precum onto the floor.`
-				}
-			} else if (f) {
-				str = str + ` her ${pussy()} juices are already dripping down her leg. She must be excited for what's about to happen.`
-				
-				if (userHasCock) {
-					str = str + ` You grab your cock and shake it at her in a crude display of primal desire. Your ${s.name_word.toLowerCase()} is clearly interested, and she moves in closer.`
-				} else if (userHasPussy) {
-					str = str + ` You spread yourself and rub your labia in a display of raw desire. Your ${s.name_word.toLowerCase()} notices and moves in closer.`
-				} else {
-					str = str + ` You present yourself, dislpaying your unabashed need to the already-soaking ${s.name_word.toLowerCase()}. She can't wait any more than you can at this point.`
-				}
-			} else {
-				if (userHasCock) {
-					str = str + ` you grab your cock and shake it at it in a crude display of primal desire. Your ${s.name_word.toLowerCase()} is clearly interested, and it moves in closer.`
-				} else if (userHasPussy) {
-					str = str + ` you spread yourself and rub your labia in a display of raw desire. Your ${s.name_word.toLowerCase()} notices and moves in closer.`
-				} else {
-					str = str + ` you present yourself, dislpaying your unabashed need to the already-horny ${s.name_word.toLowerCase()}. It can't wait any more than you can at this point.`
-				}
-			}
-		}
-
-		str = replaceAll(str, "<g>", m ? "m" : f ? "f" : "t")
-		str = replaceAll(str, "<ds>", dick_slang)
-		str = replaceAll(str, "<ps>", "pussy_slang")
-		
-		return str
-	}
 })
