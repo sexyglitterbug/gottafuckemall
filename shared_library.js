@@ -453,6 +453,16 @@ tagFunctions.set("scenario_pornvid", {
 				// 1:noarms
 				if (s2.arms) {
 					// 1:noarms 2:arms
+					if (m1) {
+						// 1:noarms,male 2:arms
+						if (f2) {
+							// 1:noarms,male 2:arms,female
+						} else {
+							// 1:noarms,male 2:arms,unknown
+						}
+					} else if (f1) {
+						
+					}
 				} else {
 					// 1:noarms 2:noarms
 				}
