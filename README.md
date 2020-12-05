@@ -25,6 +25,18 @@ This respository is publicly accessible. All contributions are welcome! This is 
 
 # Roadmap
 Here's a list of some features I want to have
-- Every pokemon
-- More scenarios
-- Story mode
+* Every pokemon
+* More scenarios
+* Story mode
+* Mega evolutions
+* Scenarios:
+	* Breast/Penis milking
+	* Sex battle (you battle another trainer, determine the winner by making your pokemon fuck)
+	* Team Threesome (you bring out two pokemon and fuck them)
+	* Safari Zone (watch pokemon in their natural habitat)
+	* Legendary encounter (a talking pokemon dominates you)
+	* Mystery Dungeon (no humans, pokemon can talk)
+		* Rescue team initiation (service the team captain)
+		* Mission Reward (your partner fucks you after a successful mission)
+		* Dominated (you try a solo mission, some other pokemon dominates you)
+		* Generic incest (seduce a family member)
