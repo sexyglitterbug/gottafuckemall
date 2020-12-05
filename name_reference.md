@@ -311,3 +311,38 @@ makuhita
 hariyama
 azurill
 nosepass
+skitty
+delcatty
+sebleye
+mawile
+aron
+lairon
+aggron
+meditite
+medicham
+electrike
+manectric
+plusle
+minun
+volbeat
+illumise
+roselia
+gulpin
+swalot
+carvanha
+sharpedo | Double dick
+wailmer
+wailord
+numel
+camerupt
+torkoal
+spoink
+grumpig
+spinda
+trapinch
+vibrava
+flygon
+cacnea | Vine genitals
+cacturn | Vine genitals
+swablu
+altaria
