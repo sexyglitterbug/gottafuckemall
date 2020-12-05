@@ -259,3 +259,38 @@ tyranitar
 ho-oh
 lugia | Form: shadow_lugia
 celebi
+
+# Hoenn
+Species String | Notes
+-------------- | -----
+treecko
+grovyle
+sceptile
+torchic
+combusken
+blaziken
+mudkip
+marshtomp
+swampert
+poochyena
+mightyena
+zigzagoon | Subspecies: galarian_zigzagoon
+linoone | Subspecies: galarian_linoone
+wurmple
+silcoon
+beautifly
+cascoon
+dustox
+lotad
+lombre
+ludicolo
+seedot
+nuzleaf
+shiftry
+taillow
+swellow
+wingull
+pelipper
+ralts
+kirlia
+gardevoir
