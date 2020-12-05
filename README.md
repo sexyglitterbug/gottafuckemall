@@ -35,6 +35,8 @@ Here's a list of some features I want to have
 	* Team Threesome (you bring out two pokemon and fuck them)
 	* Safari Zone (watch pokemon in their natural habitat)
 	* Legendary encounter (a talking pokemon dominates you)
+	* First time (lose your virginity to a pokemon)
+	* Cold open (most scenarios start with everyone already horny. On this one you have to do the work to seduce the pokemon)
 	* Mystery Dungeon (no humans, pokemon can talk)
 		* Rescue team initiation (service the team captain)
 		* Mission Reward (your partner fucks you after a successful mission)
