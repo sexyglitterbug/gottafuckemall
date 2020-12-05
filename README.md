@@ -1,5 +1,5 @@
 # Welcome!
-Gotta Fuck Em All is an AI Dungeon world where you can fuck pokemon! Play it for free [here](https://play.aidungeon.io/main/adventureView?publicId=0752646a-9e5e-4c4d-a94f-fc289f9ff7ce).
+Gotta Fuck Em All is an AI Dungeon world where you can fuck pokemon! Play it for free [here](https://play.aidungeon.io/main/scenarioView?publicId=02c0bfb0-33ac-11eb-9bb0-4341dfa93603).
 
 Also join our discord! https://discord.gg/84KbGFuN
 
