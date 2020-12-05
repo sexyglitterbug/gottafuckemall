@@ -3,6 +3,9 @@ Gotta Fuck Em All is an AI Dungeon world where you can fuck pokemon! Play it for
 
 Also join our discord! https://discord.gg/84KbGFuN
 
+# Recommanded Pokemon
+Some pokemon world really well because of how similar they are to real animals. If you want a consistently good experience you should try out rapidash, arcanine, machamp, charizard, or vaporeon. This is by no means a complete list of good pokemon, just some good starting points.
+
 # Scenes
 When you start, the game will ask you for a scene name. Here are a list of scenes.
 Also check out [name_reference.md](https://github.com/sexyglitterbug/gottafuckemall/blob/main/name_reference.md), which lists all the scripted pokemon.
@@ -19,3 +22,9 @@ gangrape   | Human-on-pokemon gangbang | **[tw: rape]** A group of pokemon kidna
 
 # Contributions
 This respository is publicly accessible. All contributions are welcome! This is a massive project and it needs all the help it can get.
+
+# Roadmap
+Here's a list of some features I want to have
+- Every pokemon
+- More scenarios
+- Story mode
