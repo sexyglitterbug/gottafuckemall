@@ -2040,7 +2040,7 @@ dicks.set("porcine", {
 	dex: "Male <lp> have a long, thin, pink penis. A male <ln>'s penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
 })
 dicks.set("cervine", {
-	species: ["slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "drowzee", "hypno", "slowking", "galarian_slowking", "swinub", "poliswine"],
+	species: ["stantler"],
 	adj: ["deer /a <ds>", "cervid /a <ds>"],
 	pussy_adj: ["deer /a <ds>", "cervid /a <ds>"],
 	pussy: "generic_sheath",
@@ -2289,6 +2289,9 @@ special.set("aipom", {
 })
 special.set("unown", {
 	dex: "Unown are shaped like floating animated symbols. An unown can be shaped like any letter of the english alphabet. When there are several unown, they can use their bodies to spell words."
+})
+special.set("galarian_corsola", {
+	subspeciesOf: "corsola"
 })
 
 /*
