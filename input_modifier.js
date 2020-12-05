@@ -85,6 +85,13 @@ const modifier = (text) => {
         }
         modifiedText = str
         save("SCENE_PREPARED", "1")
+
+        if (scenario.temp_context) {
+          scenario.temp_context.forEach(context => add_temp_context(context.lifetime, context.str))
+        }
+        if (scenario.context) {
+          add_context(scenario.context)
+        }
       }
     }
   }

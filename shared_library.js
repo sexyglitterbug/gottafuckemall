@@ -54,16 +54,18 @@ If a pokemon's cock is visible I describe it. I describe all the cock skin, the 
 I'll repeat a pokemon's species name often so that you don't forget what species they are.`
 var memory_context_temp = []
 function add_context(str) {
-	state.memory.context = state.memory.context + "\n\n" + str
+	memory_context = memory_context + "\n\n" + str
+	get_context()
 }
 function add_temp_context(lifetime, str) {
 	memory_context_temp.push({
 		remaining_turns: lifetime,
 		str: str
 	})
+	get_context()
 }
 function get_context() {
-	var = str = memory_context
+	var str = memory_context
 	memory_context_temp.forEach(function(v, i) {
 		str = str + '\n\n' + v.str
 	})
@@ -342,7 +344,6 @@ tagFunctions.set("desc_short", {
 var scenes = new Map()
 
 scenes.set("gangrape", {
-	peek: "[tw:rape] One moment you're adventuring, next moment you're surrounded by pokemon. Uh oh...",
 	actors: [
 		{
 			type: "person",
@@ -359,6 +360,9 @@ scenes.set("gangrape", {
 		var p = v.p
 		var a = v.a
 
+		// context
+		add_context(`You've always secretly wanted to be gang raped by a group of ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower_p}. You're a bit of a slut and you love being taken advantage of. You love ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower_p} in particular because you'd love to ${p.m ? "be fucked by their" : "fuck their"} ${a.m ? a.dCock(true) : a.f ? a.dPussy(true) : "sexy bodies"}.`)
+
 		// string
 		var str = `You're a great-looking ${p.g}.
 
@@ -373,7 +377,6 @@ A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their 
 })
 
 scenes.set("cuck_sub", {
-	peek: "[tw:rape] You lost the battle, and now you have to watch your pokemon be violated by the other trainer...",
 	actors: [
 		{
 			type: "person",
@@ -398,18 +401,18 @@ scenes.set("cuck_sub", {
 
 		// context
 		add_you(`You are secretly a cuck but you're afraid to admit it to yourself. You're awful at sex and you can never make your ${a.name_lower} cum. The thought of your ${a.name_lower} having sex with someone better than you is a huge turn-on.`)
-		add_context(`Everyone knows you have a ${p.m ? "tiny dick" : p.f ? "ugly pussy" : "ugly body"}. Everyone thinks you're a loser. You're terrible at sex. You can never make your pokemon cum, and your pokemon hate you for it. Your pokemon are desperate for good sex. Your ${a.name_lower}, who you love more than anyone, despises you for your inability to make ${a.m ? "him" : a.f ? "her" : "it"} cum.`)
+		add_context(`Everyone knows you have a ${p.m ? "tiny dick" : p.f ? "ugly pussy" : "ugly body"}. Everyone thinks you're a loser. You're terrible at sex. You can never make your ${a.name_lower} cum, and your ${a.name_lower} hates you for it. Your ${a.name_lower} is desperate for good sex, and ${a.m ? "he" : a.f ? "she" : "it"} despises you for your inability to make ${a.m ? "him" : a.f ? "her" : "it"} cum.`)
 
 		// string
 		var str = `You're a great-looking ${p.g}.
 
-You thought you were a good pokemon trainer, but you're not so sure anymore. You fuck your pokemon as well as you can but they often seem disinterested, or even bored. It's been a while since you could make any of them cum. Maybe they just aren't attracted to you?
+You thought you were a good pokemon trainer, but you're not so sure anymore. You fuck your ${a.name_lower} as well as you can but ${a.m ? "he" : a.f ? "she" : "it"} often seems disinterested, or even bored. It's been a while since you could make ${a.m ? "him" : a.f ? "her" : "it"} cum. Maybe ${a.m ? "he" : a.f ? "she" : "it"} just isn't attracted to you?
 
 Oh, well. Maybe it can't be helped. Besides, you just lost another pokemon battle. It was humiliating but rules and rules, you have to pay the other trainer for the battle. You open your wallet and realize it's empty! You've been losing so much money recently that you're completely broke!
 
 You tell the other trainer you don't have the cash. ${t.m ? "He" : t.f ? "She" : "The trainer"} thinks for a moment and then an mischievous grin comes over ${t.m ? "his" : t.f ? "her" : "their"} face.
 
-"If you don't have the cash, I'll just have to take my payment another way!" ${t.m ? "He" : t.f ? "She" : "The trainer"} grabs your pokeball out of your hand and shoves you back. "Don't think I didn't see how pent up your pokemon is. I bet you haven't given ${p.m ? "him" : p.f ? "her" : "them"} a good fuck in a long time. I'm gonna change that."
+"If you don't have the cash, I'll just have to take my payment another way!" ${t.m ? "He" : t.f ? "She" : "The trainer"} grabs your pokeball out of your hand and shoves you back. "Don't think I didn't see how pent up your ${p.name_lower} is. I bet you haven't given ${p.m ? "him" : p.f ? "her" : "them"} a good fuck in a long time. I'm gonna change that."
 
 The trainer takes off their clothes, revealing ${t.m ? "his massive cock" : t.f ? "her perfectly plump pussy" : "their perfectly toned body"}.`
 
@@ -443,7 +446,6 @@ Your ${a.name_lower} hasn't had an orgasm in so long. ${a.m ? "He" : a.f ? "She"
 })
 
 scenes.set("battle_rape", {
-	peek: "[tw:rape] You lost the battle, and now you have to watch your pokemon be violated by the other pokemon...",
 	actors: [
 		{
 			type: "person",
@@ -454,60 +456,41 @@ scenes.set("battle_rape", {
 			type: "pokemon",
 			key: "a",
 			name: "your pokemon"
+		},
+		{
+			type: "pokemon",
+			key: "b",
+			name: "the other pokemon"
 		}
 	],
 	build: function(v) {
 		var p = v.p
 		var a = v.a
+		var b = v.b
+
+		// context
+		add_context(`You love your ${a.name_lower} more than anything, but you could never protect ${a.m ? "him" : a.f ? "her" : "it"} from another pokemon. Your ${a.name_lower} loves you, but ${a.m ? "he" : a.f ? "she" : "it"} hates the sex you have. You're terrible at sex, so anyone else having sex with your ${a.name_lower} would make ${a.m ? "him" : a.f ? "her" : "it"} orgasm nonstop.`)
 
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a ${p.g} human, and you just lost a battle against a wild ${b.m ? "male" : b.f ? "female" : "sexy"} ${b.name_lower}. Your ${a.name_lower} is exhausted and ${a.m ? "he's" : a.f ? "she's" : "it's"} too weak to fight anymore, but the wild ${b.name_lower} isn't satisfied yet.
 
-You set the mood. The lights are dim, candles are lit, curtains are closed. It's nighttime and you're all alone. You put on some soothing music and look at the pokeball you got from Professor Cherry. She was in such a hurry to get back to work she forgot to tell you what pokemon is in it.
-
-Oh, well. It's your 18th birthday, you're a pokemon trainer now. The pokemon in this ball is going to be your new best friend. Cherry did say that this pokemon is a bit unconventional for a starter, so you're excited to see what it is. It's daunting, however, because you know you've got to fuck it to befriend it. "It'll only be yours if you can make it cum", that's what Professor Cherry said.
-
-It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
-
-		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}, as evidenced by ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "heavy breathing"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
-
-		if (a.m) {
-			str = str + ` his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
-
-			if (p.f) {
-				str = str + ` You lay back on the bed and spread your legs, showing him your moist pussy. You spread it a bit so your ${a.name_lower} can clearly see that you want his ${a.dCock()} inside you.`
-			} else if (p.m) {
-				str = str + ` You grab your own cock and shake it at him in a crude display of desire. The ${a.name_lower} is clearly interested, his ${a.dCock()} now leaking precum onto the floor.`
-			} else {
-				str = str + ` You present yourself to him and tease him with your body. You can tell your ${a.name_lower} is getting excited by his ${a.dCock()} dripping precum onto the floor.`
-			}
-		} else if (a.f) {
-			str = str + ` her ${a.dPussy()} juices are already dripping down her leg. She must be excited for what's about to happen.`
+${b.m ? "He" : b.f ? "She" : "It"} goes over to you and knocks your pokeball out of your hand, breaking it. You can't call your ${a.name_lower} back anymore! The wild ${b.name_lower} heads over to your weakened ${a.name_lower}, and you notice the ${b.name_lower}'s`
 			
-			if (p.m) {
-				str = str + ` You grab your cock and shake it at her in a crude display of primal desire. Your ${a.name_lower} is clearly interested, and she moves in closer.`
-			} else if (p.f) {
-				str = str + ` You spread yourself and rub your labia in a display of raw desire. Your ${a.name_lower} notices and moves in closer.`
-			} else {
-				str = str + ` You present yourself, dislpaying your unabashed need to the already-soaking ${a.name_lower}. She can't wait any more than you can at this point.`
-			}
+		if (b.m) {
+			str = str + ` ${b.dCock()} ${b.dick.plural ? "are" : "is"} fully erect, and dripping precum.`
+		} else if (b.f) {
+			str = str + ` ${b.dPussy()} ${b.pussy.plural ? "are" : "is"} leaking juices all down her body.`
 		} else {
-			if (p.m) {
-				str = str + ` you grab your cock and shake it at it in a crude display of primal desire. Your ${a.name_lower} is clearly interested, and it moves in closer.`
-			} else if (p.f) {
-				str = str + ` you spread yourself and rub your labia in a display of raw desire. Your ${a.name_lower} notices and moves in closer.`
-			} else {
-				str = str + ` you present yourself, dislpaying your unabashed need to the already-horny ${a.name_lower}. It can't wait any more than you can at this point.`
-			}
+			str = str + ` body is aroused as hell.`
 		}
-		
+
+		str = str + `\n\nYour ${a.name_lower} makes an attempt to escape, but ${a.m ? "he's" : a.f ? "she's" : "it's"} so weak ${a.m ? "he" : a.f ? "she" : "it"} can barely move. The ${b.name_lower} stops for a moment and looks back at you, making sure to display ${b.m ? "his" : b.f ? "her" : "its"} ${b.m ? b.dCock() : b.f ? b.dPussy() : "sexy body"}. ${b.m ? "He" : b.f ? "She" : "It"} must think it's amusing how helpless you are to stop your ${a.name_lower}'s ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} from being violated by ${b.m ? "his" : b.f ? "her" : "its"} ${b.m ? b.dCock() : b.f ? b.dPussy() : "body"}. The ${b.name_lower} turns to your ${a.name_lower} and puts ${b.m ? "his" : b.f ? "her" : "its"}`
+
 		return str
 	}
 })
 
 scenes.set("cuck_dom", {
-	peek: "[tw:rape] You won the battle, and now you get to take your reward...",
 	actors: [
 		{
 			type: "person",
@@ -518,60 +501,36 @@ scenes.set("cuck_dom", {
 			type: "pokemon",
 			key: "a",
 			name: "your target"
+		},
+		{
+			type: "person",
+			key: "t"
 		}
 	],
 	build: function(v) {
 		var p = v.p
 		var a = v.a
+		var t = v.t
+
+		// context
+		add_context(`You have a ${p.m ? "huge cock" : p.f ? "perfect pussy" : "sexy body"} and you know it. You have no problems making pokemon cum. Pokemon practically beg you to fuck them. Other trainers wish they were as good at sex as you are.`)
 
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a great-looking ${p.g}. You just won a battle, but the loser doesn't have the cash to pay up! You think for a moment, and then you realize that loser trainer had a pretty sexy ${a.name_lower}, and ${a.m ? "he" : a.f ? "she" : "it"} looks like ${a.m ? "he" : a.f ? "she" : "it"} hasn't had an orgasm in forever.
 
-You set the mood. The lights are dim, candles are lit, curtains are closed. It's nighttime and you're all alone. You put on some soothing music and look at the pokeball you got from Professor Cherry. She was in such a hurry to get back to work she forgot to tell you what pokemon is in it.
+You walk over to the loser and take ${t.m ? "his" : t.f ? "her" : "their"} pokeball. You know ${t.m ? "he has a tiny dick" : t.f ? "she has an ugly pussy" : "they have an ugly body"} and you're gonna show ${t.m ? "his" : t.f ? "her" : "their"} ${a.name_lower} what ${a.m ? "he's" : a.f ? "she's" : "it's"} missing out on. You take off your pants, revealing your ${p.m ? "massive cock" : p.f ? "perfect pussy" : "sexy body"}, and release the ${a.name_lower} from ${a.m ? "his" : a.f ? "her" : "its"} pokeball.
 
-Oh, well. It's your 18th birthday, you're a pokemon trainer now. The pokemon in this ball is going to be your new best friend. Cherry did say that this pokemon is a bit unconventional for a starter, so you're excited to see what it is. It's daunting, however, because you know you've got to fuck it to befriend it. "It'll only be yours if you can make it cum", that's what Professor Cherry said.
+The ${a.name_lower} notices you right away, and ${a.m ? "his" : a.f ? "her" : "its"} eyes dart straight to your ${p.m ? "huge cock" : p.f ? "tight pussy" : "toned body"}. ${a.m ? "He" : a.f ? "She" : "It"} knows what you want, and ${a.m ? "he" : a.f ? "she" : "it"}'s desperate for an orgasm. You're suspicions are correct: that loser trainer hasn't made ${a.name_lower} cum in a long time.
 
-It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
+You look over the ${a.name_lower}, paying attention to ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"}. ${a.m ? "He's" : a.f ? "She's" : "It's"} sexy as hell, and you're going to show ${a.m ? "him" : a.f ? "her" : "it"} what a real ${p.m ? "man" : p.f ? "woman" : "trainer"} can do.
 
-		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
-
-		if (a.m) {
-			str = str + ` his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
-
-			if (p.f) {
-				str = str + ` You lay back on the bed and spread your legs, showing him your moist pussy. You spread it a bit so your ${a.name_lower} can clearly see that you want his ${a.dCock()} inside you.`
-			} else if (p.m) {
-				str = str + ` You grab your own cock and shake it at him in a crude display of desire. The ${a.name_lower} is clearly interested, his ${a.dCock()} now leaking precum onto the floor.`
-			} else {
-				str = str + ` You present yourself to him and tease him with your body. You can tell your ${a.name_lower} is getting excited by his ${a.dCock()} dripping precum onto the floor.`
-			}
-		} else if (a.f) {
-			str = str + ` her ${a.dPussy()} juices are already dripping down her leg. She must be excited for what's about to happen.`
-			
-			if (p.m) {
-				str = str + ` You grab your cock and shake it at her in a crude display of primal desire. Your ${a.name_lower} is clearly interested, and she moves in closer.`
-			} else if (p.f) {
-				str = str + ` You spread yourself and rub your labia in a display of raw desire. Your ${a.name_lower} notices and moves in closer.`
-			} else {
-				str = str + ` You present yourself, dislpaying your unabashed need to the already-soaking ${a.name_lower}. She can't wait any more than you can at this point.`
-			}
-		} else {
-			if (p.m) {
-				str = str + ` you grab your cock and shake it at it in a crude display of primal desire. Your ${a.name_lower} is clearly interested, and it moves in closer.`
-			} else if (p.f) {
-				str = str + ` you spread yourself and rub your labia in a display of raw desire. Your ${a.name_lower} notices and moves in closer.`
-			} else {
-				str = str + ` you present yourself, dislpaying your unabashed need to the already-horny ${a.name_lower}. It can't wait any more than you can at this point.`
-			}
-		}
+The ${a.name_lower}`
 		
 		return str
 	}
 })
 
 scenes.set("starter", {
-	peek: "You just got your first pokemon! Time to do some bonding...",
 	actors: [
 		{
 			type: "person",
@@ -587,6 +546,9 @@ scenes.set("starter", {
 	build: function(v) {
 		var p = v.p
 		var a = v.a
+
+		// context
+		add_context(`It's your 18th birthday. When a pokemon trainer turns 18, they receive their first pokemon from Professor Cherry. Cherry gave you a ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower}, but you have to tame it first. To tame a ${a.name_lower} you have to make ${a.m ? "him" : a.f ? "her" : "it"} cum. Once you make ${a.m ? "him" : a.f ? "her" : "it"} cum ${a.m ? "he" : a.f ? "her" : "it"} will be yours forever. You really want to make your new ${a.name_lower} cum, and you really want to explore every inch of ${a.m ? "his" : a.f ? "her" : "its"} body.`)
 
 		// string
 		var str = `You're a great-looking ${p.g}.
@@ -637,7 +599,6 @@ It's time. You sit on your bed with your pokeball and release the Pokémon conta
 })
 
 scenes.set("porn_vid", {
-	peek: "You're clicking through pokeporn vids and you just found the perfect one...",
 	actors: [
 		{
 			type: "pokemon",
@@ -793,7 +754,6 @@ scenes.set("porn_vid", {
 })
 
 scenes.set("sex_ed", {
-	peek: "Professor Cherry is teaching a hands-on class on pokemon sex...",
 	temp_context: [
 		{
 			lifetime: 5,
@@ -849,7 +809,6 @@ Cherry licks her lips and begins instructing you. "Now, first things first, I wa
 })
 
 scenes.set("starter_rr", {
-	peek: "You're the pokemon! And some noob trainer just got you as their starter...",
 	actors: [
 		{
 			type: "pokemon",
@@ -936,7 +895,6 @@ scenes.forEach(function(desc, name) {
 	})
 
 	scenario_options[name] = {
-		peek: desc.peek,
 		prompt: command_template,
 		args: scene_args
 	}
@@ -1106,15 +1064,15 @@ function getSpecies(name) {
 var bodySizes = new Map()
 
 bodySizes.set("tiny", {
-	species: ["caterpie", "metapod", "weedle", "kakuna", "pidgey", "rattata", "alolan_rattata", "nidoran_f", "nidoran_m", "oddish", "paras", "parasect", "venonat", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "sunkern", "yanma"],
+	species: ["caterpie", "metapod", "weedle", "kakuna", "pidgey", "rattata", "alolan_rattata", "nidoran_f", "nidoran_m", "oddish", "paras", "parasect", "venonat", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "sunkern", "yanma", "phanpy", "smoochum", "elekid", "magby"],
 	adj: ["tiny"]
 })
 bodySizes.set("small", {
-	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown"],
+	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown", "pineco", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "corsola", "galarian_corsola", "remoraid", "donphan", "porygon2", "smeargle", "tyrogue", "celebi"],
 	adj: ["small"]
 })
 bodySizes.set("large", {
-	species: ["venusaur", "charizard", "blastoise", "pidgeot", "fearow", "nidoking", "nidoqueen", "ninetales", "alolan_ninetales", "venomoth", "persian", "alolan_persian", "arcanine", "poliwrath", "tentacruel", "dodrio", "muk", "alolan_muk", "cloyster", "galarian_weezing", "kangaskhan", "lapras", "aerodactyl", "dragonite", "mewtwo", "ampharos", "sudowoodo", "quagsire"],
+	species: ["venusaur", "charizard", "blastoise", "pidgeot", "fearow", "nidoking", "nidoqueen", "ninetales", "alolan_ninetales", "venomoth", "persian", "alolan_persian", "arcanine", "poliwrath", "tentacruel", "dodrio", "muk", "alolan_muk", "cloyster", "galarian_weezing", "kangaskhan", "lapras", "aerodactyl", "dragonite", "mewtwo", "ampharos", "sudowoodo", "quagsire", "scizor", "heracross", "octillery", "mantine", "skarmory", "houndoom", "kingdra", "raikou", "entei", "suicune", "tyranitar"],
 	adj: ["large"]
 })
 bodySizes.set("huge", {
@@ -1122,7 +1080,7 @@ bodySizes.set("huge", {
 	adj: ["huge"]
 })
 bodySizes.set("gigantic", {
-	species: ["onix"],
+	species: ["onix", "steelix", "ho-oh", "lugia", "shadow_lugia"],
 	adj: ["gigantic"]
 })
 bodySizes.set("medium", {
@@ -1154,46 +1112,46 @@ bodyColors.set("nondescript", {
 	species: []
 })
 bodyColors.set("red", {
-	species: ["voltorb", "magmar", "magikarp", "flareon", "ledyba", "ledian", "ariados", "yanma"]
+	species: ["voltorb", "magmar", "magikarp", "flareon", "ledyba", "ledian", "ariados", "yanma", "scizor", "slugma", "magcargo", "octillery", "delibird", "magby", "entei", "ho-oh"]
 })
 bodyColors.set("purple", {
-	species: ["butterfree", "rattata", "ekans", "arbok", "nidoran_m", "nidorino", "nidoking", "venonat", "venomoth", "grimer", "muk", "shellder", "cloyster", "gastly", "haunter", "gengar", "koffing", "weezing", "starmie", "jynx", "ditto", "aerodactyl", "galarian_articuno", "mewtwo", "crobat", "aipom", "espeon", "galarian_slowking", "misdreavus"]
+	species: ["butterfree", "rattata", "ekans", "arbok", "nidoran_m", "nidorino", "nidoking", "venonat", "venomoth", "grimer", "muk", "shellder", "cloyster", "gastly", "haunter", "gengar", "koffing", "weezing", "starmie", "jynx", "ditto", "aerodactyl", "galarian_articuno", "mewtwo", "crobat", "aipom", "espeon", "galarian_slowking", "misdreavus", "forretress", "gligar", "granbull", "tyrogue", "shadow_lugia"]
 })
 bodyColors.set("blue", {
-	species: ["squirtle", "wartortle", "blastoise", "nidoran_f", "zubat", "golbat", "oddish", "gloom", "vileplume", "golduck", "poliwag", "poliwhirl", "poliwrath", "machop", "machoke", "machamp", "tentacool", "tentacruel", "tangela", "horsea", "seadra", "gyarados", "lapras", "vaporeon", "omanyte", "omastar", "articuno", "dratini", "dragonair", "totodile", "croconaw", "feraligatr", "chinchou", "lanturn", "marill", "azumarill", "skiploom", "wooper", "quagsire", "wobbuffet"]
+	species: ["squirtle", "wartortle", "blastoise", "nidoran_f", "zubat", "golbat", "oddish", "gloom", "vileplume", "golduck", "poliwag", "poliwhirl", "poliwrath", "machop", "machoke", "machamp", "tentacool", "tentacruel", "tangela", "horsea", "seadra", "gyarados", "lapras", "vaporeon", "omanyte", "omastar", "articuno", "dratini", "dragonair", "totodile", "croconaw", "feraligatr", "chinchou", "lanturn", "marill", "azumarill", "skiploom", "wooper", "quagsire", "wobbuffet", "mantine", "kingdra", "phanpy", "suicune"]
 })
 bodyColors.set("bluegreen", {
-	species: ["nidorina", "nidoqueen", "snorlax"]
+	species: ["nidorina", "nidoqueen", "snorlax", "pineco", "qwilfish", "heracross", "pupitar"]
 })
 bodyColors.set("green", {
-	species: ["bulbasaur", "ivysaur", "venusaur", "caterpie", "metapod", "alolan_grimer", "alolan_muk", "scyther", "chikorita", "bayleef", "meganium", "spinarak", "natu", "xatu", "bellossom", "politoed", "jumpluff", "sunflora"]
+	species: ["bulbasaur", "ivysaur", "venusaur", "caterpie", "metapod", "alolan_grimer", "alolan_muk", "scyther", "chikorita", "bayleef", "meganium", "spinarak", "natu", "xatu", "bellossom", "politoed", "jumpluff", "sunflora", "larvitar", "tyranitar", "celebi"]
 })
 bodyColors.set("yellow", {
-	species: ["weedle", "kakuna", "beedrill", "pikachu", "sandshrew", "sandslash", "ninetales'", "psyduck", "abra", "kadabra", "alakazam", "bellsprout", "weepinbell", "victreebel", "drowzee", "hypno", "electabuzz", "jolteon", "zapdos", "pichu", "mareep", "ampharos", "sunkern"]
+	species: ["weedle", "kakuna", "beedrill", "pikachu", "sandshrew", "sandslash", "ninetales'", "psyduck", "abra", "kadabra", "alakazam", "bellsprout", "weepinbell", "victreebel", "drowzee", "hypno", "electabuzz", "jolteon", "zapdos", "pichu", "mareep", "ampharos", "sunkern", "girafarig", "dunsparce", "shuckle", "elekid", "raikou"]
 })
 bodyColors.set("orange", {
 	species: ["charmander", "charmeleon", "charizard", "paras", "parasect", "raichu", "alolan_raichu", "vulpix", "growlithe", "arcanine", "krabby", "kingler", "goldeen", "seaking", "galarian_zapdos", "moltres", "dragonite"]
 })
 bodyColors.set("tan", {
-	species: ["pidgey", "pidgeotto", "pidgeot", "raticate", "meowth", "galarian_meowth", "persian", "mankey", "primeape", "geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "ponyta", "rapidash", "doduo", "dodrio", "staryu", "taurus", "eevee", "cyndaquil", "quilava", "typhlosion", "togepi"]
+	species: ["pidgey", "pidgeotto", "pidgeot", "raticate", "meowth", "galarian_meowth", "persian", "mankey", "primeape", "geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "ponyta", "rapidash", "doduo", "dodrio", "staryu", "taurus", "eevee", "cyndaquil", "quilava", "typhlosion", "togepi", "stantler", "smeargle"]
 })
 bodyColors.set("brown", {
-	species: ["spearow", "fearow", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "farfetch'd", "galarian_farfetch'd", "exeggutor", "alolan_exeggutor", "cubone", "marowak", "alolan_marowak", "hitmonlee", "hitmonchan", "kangaskhan", "pinsir", "kabuto", "kabutops", "sentret", "furret", "hoothoot", "noctowl", "sudowoodo"]
+	species: ["spearow", "fearow", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "farfetch'd", "galarian_farfetch'd", "exeggutor", "alolan_exeggutor", "cubone", "marowak", "alolan_marowak", "hitmonlee", "hitmonchan", "kangaskhan", "pinsir", "kabuto", "kabutops", "sentret", "furret", "hoothoot", "noctowl", "sudowoodo", "teddiursa", "ursaring", "swinub", "piloswine", "hitmontop"]
 })
 bodyColors.set("black", {
-	species: ["alolan_rattata", "alolan_raticate", "alolan_meowth", "alolan_persian", "galarian_weezing", "galarian_moltres", "umbreon", "murkrow", "unown"]
+	species: ["alolan_rattata", "alolan_raticate", "alolan_meowth", "alolan_persian", "galarian_weezing", "galarian_moltres", "umbreon", "murkrow", "unown", "sneasel", "houndour", "houndoom"]
 })
 bodyColors.set("grey", {
-	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon"]
+	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon", "steelix", "skarmory", "donphan"]
 })
 bodyColors.set("white", {
-	species: ["galarian_ponyta", "galarian_rapidash", "seel", "dewgong", "electrode", "togetic"]
+	species: ["galarian_ponyta", "galarian_rapidash", "seel", "dewgong", "electrode", "togetic", "galarian_corsola", "lugia"]
 })
 bodyColors.set("pink", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "exeggcute", "lickitung", "chansey", "mr._mime", "galarian_mr._mime", "porygon", "mew", "cleffa", "igglybuff", "flaaffy", "hoppip", "slowking"]
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "exeggcute", "lickitung", "chansey", "mr._mime", "galarian_mr._mime", "porygon", "mew", "cleffa", "igglybuff", "flaaffy", "hoppip", "slowking", "snubbull", "corsola", "porygon2", "smoochum", "miltank", "blissey"]
 })
 bodyColors.set("lightblue", {
-	species: ["alolan_sandshrew", "alolan_sandslash", "nidoran_f", "alolan_vulpix", "alolan_ninetales"]
+	species: ["alolan_sandshrew", "alolan_sandslash", "nidoran_f", "alolan_vulpix", "alolan_ninetales", "remoraid"]
 })
 
 bodyColors.forEach(function(value, name) {
@@ -1218,19 +1176,19 @@ skinTypes.set("skin", {
 	adj: ["skin"]
 })
 skinTypes.set("scales", {
-	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise", "ekans", "arbok", "horsea", "seadra", "goldeen", "seaking", "magikarp", "gyarados", "dratini", "dragonair", "dragonite", "totodile", "croconaw", "feraligatr"],
+	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise", "ekans", "arbok", "horsea", "seadra", "goldeen", "seaking", "magikarp", "gyarados", "dratini", "dragonair", "dragonite", "totodile", "croconaw", "feraligatr", "remoraid"],
 	adj: ["scales"]
 })
 skinTypes.set("chitin", {
-	species: ["metapod", "kakuna", "beedrill", "paras", "parasect", "scyther", "pinsir", "ledyba", "ledian", "spinarak", "ariados", "yanma"],
+	species: ["metapod", "kakuna", "beedrill", "paras", "parasect", "scyther", "pinsir", "ledyba", "ledian", "spinarak", "ariados", "yanma", "scizor", "heracross"],
 	adj: ["chitin", "chitinous armor"]
 })
 skinTypes.set("feathers", {
-	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "psyduck", "golduck", "farfetch'd", "galarian_farfetch'd", "doduo", "dodrio", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "hoothoot", "noctowl", "natu", "xatu", "murkrow"],
+	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "psyduck", "golduck", "farfetch'd", "galarian_farfetch'd", "doduo", "dodrio", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "hoothoot", "noctowl", "natu", "xatu", "murkrow", "delibird", "ho-oh", "lugia", "shadow_lugia"],
 	adj: ["feathers"]
 })
 skinTypes.set("fur", {
-	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "venonat", "venomoth", "meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mankey", "primeape", "growlithe", "arcanine", "abra", "kadabra", "alakazam", "ponyta", "galarian_ponyta", "rapidash", "galarian_rapidash", "cubone", "marowak", "alolan_marowak", "electabuzz", "tauros", "eevee", "vaporeon", "jolteon", "flareon", "snorlax", "mewtwo", "mew", "cyndaquil", "quilava", "typhlosion", "sentret", "furret", "pichu", "aipom", "espeon", "umbreon"],
+	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "venonat", "venomoth", "meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mankey", "primeape", "growlithe", "arcanine", "abra", "kadabra", "alakazam", "ponyta", "galarian_ponyta", "rapidash", "galarian_rapidash", "cubone", "marowak", "alolan_marowak", "electabuzz", "tauros", "eevee", "vaporeon", "jolteon", "flareon", "snorlax", "mewtwo", "mew", "cyndaquil", "quilava", "typhlosion", "sentret", "furret", "pichu", "aipom", "espeon", "umbreon", "girafarig", "snubbull", "granbull", "sneasel", "teddiursa", "ursaring", "swinub", "piloswine", "houndour", "houndoom", "stantler", "smeargle", "elekid", "magby", "miltank", "raikou", "entei", "suicune"],
 	adj: ["fur", "fluff", "fuzz"]
 })
 skinTypes.set("wool", {
@@ -1238,31 +1196,31 @@ skinTypes.set("wool", {
 	adj: ["wool"]
 })
 skinTypes.set("leathery", {
-	species: ["sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "nidoran_f", "nidorina", "nidoqueen", "nidoran_m", "nidorino", "nidoking", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "rhyhorn", "rhydon", "koffing", "weezing", "galarian_weezing", "kangaskhan", "staryu", "starmie", "aerodactyl"],
+	species: ["sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "nidoran_f", "nidorina", "nidoqueen", "nidoran_m", "nidorino", "nidoking", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "rhyhorn", "rhydon", "koffing", "weezing", "galarian_weezing", "kangaskhan", "staryu", "starmie", "aerodactyl", "phanpy", "donphan", "larvitar", "pupitar", "tyranitar"],
 	adj: ["leathery skin"]
 })
 skinTypes.set("moist", {
-	species: ["poliwag", "poliwhirl", "poliwrath", "tentacruel", "tentacool", "lapras", "omanyte", "omastar", "chinchou", "lanturn", "marill", "azumarill", "politoed", "wooper", "quagsire"],
+	species: ["poliwag", "poliwhirl", "poliwrath", "tentacruel", "tentacool", "lapras", "omanyte", "omastar", "chinchou", "lanturn", "marill", "azumarill", "politoed", "wooper", "quagsire", "qwilfish", "shuckle", "octillery", "mantine", "kingdra"],
 	adj: ["moist skin"]
 })
 skinTypes.set("plant", {
-	species: ["bellsprout", "victreebel", "weepinbell", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora"],
+	species: ["bellsprout", "victreebel", "weepinbell", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "celebi"],
 	adj: ["plant-like skin"]
 })
 skinTypes.set("bark", {
-	species: ["exeggutor", "alolan_exeggutor", "sudowoodo"],
+	species: ["exeggutor", "alolan_exeggutor", "sudowoodo", "pineco"],
 	adj: ["bark"]
 })
 skinTypes.set("rock", {
-	species: ["geodude", "alolan_geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "onix"],
+	species: ["geodude", "alolan_geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "onix", "forretress", "corsola", "galarian_corsola"],
 	adj: ["rocks", "stone"]
 })
 skinTypes.set("metal", {
-	species: ["magnemite", "magneton", "voltorb", "electrode"],
+	species: ["magnemite", "magneton", "voltorb", "electrode", "steelix", "skarmory"],
 	adj: ["metal"]
 })
 skinTypes.set("slime", {
-	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "ditto"],
+	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "ditto", "slugma", "magcargo"],
 	adj: ["slime"]
 })
 skinTypes.set("shell", {
@@ -1274,7 +1232,7 @@ skinTypes.set("ghost", {
 	adj: ["ghostly essence"]
 })
 skinTypes.set("plastic", {
-	species: ["porygon"],
+	species: ["porygon", "porygon2"],
 	adj: ["plastic"]
 })
 
@@ -1299,23 +1257,23 @@ skinTypes.forEach(function(value, name) {
 var cockSizes = new Map()
 
 cockSizes.set("tiny", {
-	species: ["pidgey", "rattata", "alolan_rattata", "oddish", "paras", "exeggcute", "horsea", "kabuto", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "hoppip", "sunkern", "yanma"],
+	species: ["pidgey", "rattata", "alolan_rattata", "oddish", "paras", "exeggcute", "horsea", "kabuto", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "hoppip", "sunkern", "yanma", "smoochum", "elekid", "magby"],
 	slang: "dick_slang_tiny",
 })
 cockSizes.set("small", {
-	species: ["bulbasaur", "charmander", "raticate", "alolan_raticate", "spearow", "ekans", "pikachu", "nidoran_f", "nidoran_m", "clefairy", "clefable", "vulpix", "alolan_vulpix", "jigglypuff", "wigglytuff", "zubat", "gloom", "parasect", "venonat", "psyduck", "abra", "machop", "bellsprout", "magnemite", "farfetch'd", "galarian_farfetch'd", "gastly", "krabby", "cubone", "chansey", "goldeen", "staryu", "magikarp", "eevee", "omanyte", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "furret", "hoothoot", "ledian", "ariados", "togetic", "natu", "skiploom", "aipom", "wooper", "unown"],
+	species: ["bulbasaur", "charmander", "raticate", "alolan_raticate", "spearow", "ekans", "pikachu", "nidoran_f", "nidoran_m", "clefairy", "clefable", "vulpix", "alolan_vulpix", "jigglypuff", "wigglytuff", "zubat", "gloom", "parasect", "venonat", "psyduck", "abra", "machop", "bellsprout", "magnemite", "farfetch'd", "galarian_farfetch'd", "gastly", "krabby", "cubone", "chansey", "goldeen", "staryu", "magikarp", "eevee", "omanyte", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "furret", "hoothoot", "ledian", "ariados", "togetic", "natu", "skiploom", "aipom", "wooper", "unown", "pineco", "forretress", "dunsparce", "gligar", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "galarian_corsola", "remoraid", "tyrogue", "larvitar", "celebi"],
 	slang: "dick_slang_small",
 })
 cockSizes.set("large", {
-	species: ["venusaur", "charizard", "wartortle", "pidgeot", "arbok", "ninetales", "alolan_ninetales", "vileplume", "venomoth", "persian", "alolan_persian", "poliwrath", "mankey", "tentacruel", "ponyta", "galarian_ponyta", "slowpoke", "galarian_slowpoke", "dodrio", "dewgong", "muk", "alolan_muk", "shellder", "gengar", "drowzee", "hypno", "exeggutor", "alolan_exeggutor", "alolan_marowak", "hitmonlee", "hitmonchan", "weezing", "galarian_weezing", "rhyhorn", "rhydon", "scyther", "tauros", "vaporeon", "jolteon", "flareon", "aerodactyl", "snorlax", "mewtwo", "meganium", "typhlosion", "feraligatr", "crobat", "lanturn", "flaaffy", "azumarill", "sudowoodo", "politoed", "espeon", "umbreon", "slowking", "galarian_slowking", "wobbuffet"],
+	species: ["venusaur", "charizard", "wartortle", "pidgeot", "arbok", "ninetales", "alolan_ninetales", "vileplume", "venomoth", "persian", "alolan_persian", "poliwrath", "mankey", "tentacruel", "ponyta", "galarian_ponyta", "slowpoke", "galarian_slowpoke", "dodrio", "dewgong", "muk", "alolan_muk", "shellder", "gengar", "drowzee", "hypno", "exeggutor", "alolan_exeggutor", "alolan_marowak", "hitmonlee", "hitmonchan", "weezing", "galarian_weezing", "rhyhorn", "rhydon", "scyther", "tauros", "vaporeon", "jolteon", "flareon", "aerodactyl", "snorlax", "mewtwo", "meganium", "typhlosion", "feraligatr", "crobat", "lanturn", "flaaffy", "azumarill", "sudowoodo", "politoed", "espeon", "umbreon", "slowking", "galarian_slowking", "wobbuffet", "granbull", "scizor", "heracross", "shuckle", "ursaring", "piloswine", "mantine", "skarmory", "houndoom", "kingdra", "donphan", "blissey", "raikou", "suicune", "entei"],
 	slang: "dick_slang_big",
 })
 cockSizes.set("huge", {
-	species: ["blastoise", "nidoking", "nidoqueen", "arcanine", "primeape", "rapidash", "galarian_rapidash", "slowbro", "galarian_slowbro", "cloyster", "lickitung", "kangaskhan", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "dragonite", "ampharos", "quagsire"],
+	species: ["blastoise", "nidoking", "nidoqueen", "arcanine", "primeape", "rapidash", "galarian_rapidash", "slowbro", "galarian_slowbro", "cloyster", "lickitung", "kangaskhan", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "dragonite", "ampharos", "quagsire", "girafarig"],
 	slang: "dick_slang_huge",
 })
 cockSizes.set("colossal", {
-	species: ["onix", "gyarados", "lapras"],
+	species: ["onix", "gyarados", "lapras", "steelix", "tyranitar", "ho-oh", "lugia", "shadow_lugia"],
 	slang: "dick_slang_colossal",
 })
 cockSizes.set("medium", {
@@ -1348,435 +1306,525 @@ var bodies = new Map()
 bodies.set("nondescript", {
 	species: [],
 	adj: ["interesting-looking"],
-	dex: ["nothing you've ever seen before."]
+	plural: "nothing you've ever seen before"
 })
 
 // reptilian
 bodies.set("reptilian_quad", {
 	species: ["bulbasaur", "ivysaur", "venusaur"],
 	adj: ["four-legged reptile", "quadrupedal reptile"],
-	dex: "quadrupedal reptiles that walk on all fours."
+	plural: "quadrupedal reptiles that walk on all fours"
 })
 bodies.set("reptilian_biped", {
-	species: ["charmander", "charmeleon", "kangaskhan"],
+	species: ["charmander", "charmeleon", "kangaskhan", "larvitar", "tyranitar"],
 	adj: ["two-legged reptile", "bipedal reptile"],
-	dex: "bipedal reptiles that walk on their hind legs.",
+	plural: "bipedal reptiles that walk on their hind legs",
 	arms: 2
 })
 bodies.set("draconic_biped", {
 	species: ["charizard", "dragonite"],
 	adj: ["two-legged dragon", "bipedal dragon"],
-	dex: "bipdel dragons.",
+	plural: "bipdel dragons",
 	arms: 2
 })
 bodies.set("turtle_biped", {
 	species: ["squirtle", "wartortle", "blastoise"],
 	adj: ["two-legged turtle", "bipedal turtle"],
-	dex: "bipedal turtles.",
+	plural: "bipedal turtles",
 	arms: 2
 })
+bodies.set("tortoise", {
+	species: ["shuckle"],
+	plural: "tortoises"
+})
 bodies.set("snake", {
-	species: ["ekans", "onix"],
+	species: ["ekans", "onix", "steelix"],
 	adj: ["snake", "serpent"],
-	dex: "snakes."
+	plural: "snakes"
 })
 bodies.set("cobra", {
 	species: ["arbok"],
-	dex: "cobras."
+	plural: "cobras"
 })
 bodies.set("brontosaur", {
 	species: ["chikorita", "bayleef", "meganium"],
-	dex: "brontosaurs."
+	plural: "brontosaurs"
 })
 bodies.set("crocodile_biped", {
 	species: ["totodile", "croconaw", "feraligatr"],
 	adj: ["bipedal crocodile", "two-legged crocodile"],
-	dex: "bipedal crocodiles."
+	plural: "bipedal crocodiles"
 })
 
 // amphibian
 bodies.set("tadpole", {
 	species: ["poliwag"],
-	dex: "tadpoles."
+	plural: "tadpoles"
 })
 bodies.set("frog_bipedal", {
 	species: ["poliwhirl", "poliwrath", "politoed"],
 	adj: ["bipedal frog", "two-legged frog"],
-	dex: "frogs.",
+	plural: "frogs",
 	arms: 2
 })
 bodies.set("axolotl", {
 	species: ["wooper", "quagsire"],
-	dex: "axolotls."
+	plural: "axolotls"
 })
 
 // aquatic
 bodies.set("squid", {
 	species: ["tentacool", "tentacruel"],
-	dex: "squids.",
+	plural: "squids",
 })
 bodies.set("seal", {
 	species: ["seel", "dewgong"],
-	dex: "seals."
+	plural: "seals"
 })
 bodies.set("clam", {
 	species: ["shellder", "cloyster"],
-	dex: "clams."
+	plural: "clams"
 })
 bodies.set("crab", {
 	species: ["krabby", "kingler"],
-	dex: "crabs."
+	plural: "crabs"
 })
 bodies.set("seahorse", {
-	species: ["horsea", "seadra"],
-	dex: "seahorses."
+	species: ["horsea", "seadra", "kingdra"],
+	plural: "seahorses"
 })
 bodies.set("fish", {
-	species: ["goldeen", "seaking", "magikarp"],
-	dex: "fish."
+	species: ["goldeen", "seaking", "magikarp", "remoraid"],
+	plural: "fish"
 })
 bodies.set("starfish", {
 	species: ["staryu", "starmie"],
-	dex: "starfish."
+	plural: "starfish"
 })
 bodies.set("sea_serpent", {
 	species: ["gyarados", "dratini", "dragonair"],
 	adj: ["sea serpent"],
-	dex: "sea serpents."
+	plural: "sea serpents"
 })
 bodies.set("plesiosaur", {
 	species: ["lapras"],
-	dex: "plesiosaurs."
+	plural: "plesiosaurs"
 })
 bodies.set("nautilus", {
 	species: ["omanyte", "omastar"],
-	dex: "nautiluses."
+	plural: "nautiluses"
 })
 bodies.set("trilobite", {
 	species: ["kabuto"],
-	dex: "trilobites."
+	plural: "trilobites"
 })
 bodies.set("trilobite_biped", {
 	species: ["kabutops"],
 	adj: ["bipedal trilobite", "two-legged trilobite"],
-	dex: "bipedal trilobites."
+	plural: "bipedal trilobites"
 })
 bodies.set("anglerfish", {
 	species: ["chinchou", "lanturn"],
 	adj: ["angler fish"],
-	dex: "angler fish.",
+	plural: "angler fish",
+})
+bodies.set("pufferfish", {
+	species: ["qwilfish"],
+	adj: ["puffer fish"],
+	plural: "puffer fish"
+})
+bodies.set("octopus", {
+	species: ["octillery"],
+	plural: "octopuses"
+})
+bodies.set("mantaray", {
+	species: ["mantine"],
+	adj: ["manta ray"],
+	plural: "manta rays"
 })
 
 // insect
 bodies.set("caterpillar", {
 	species: ["caterpie"],
-	dex: "caterpillars."
+	plural: "caterpillars"
 })
 bodies.set("grub", {
 	species: ["weedle"],
-	dex: "grubs."
+	plural: "grubs"
 })
 bodies.set("cocoon", {
-	species: ["metapod", "kakuna"],
-	dex: "cocoons with eyes."
+	species: ["metapod", "kakuna", "pupitar"],
+	plural: "cocoons with eyes"
 })
 bodies.set("butterfly", {
 	species: ["butterfree"],
 	adj: ["butterfly"],
-	dex: "butterflies."
+	plural: "butterflies"
 })
 bodies.set("wasp", {
 	species: ["beedrill"],
 	adj: ["wasp", "hornet"],
-	dex: "wasps."
+	plural: "wasps"
 })
 bodies.set("bug_generic", {
 	species: ["paras", "parasect"],
 	adj: ["insect"],
-	dex: "bugs."
+	plural: "bugs"
 })
 bodies.set("gnat", {
 	species: ["venonat"],
 	adj: ["insect"],
-	dex: "bugs."
+	plural: "bugs"
 })
 bodies.set("moth", {
 	species: ["venomoth"],
-	dex: "moths."
+	plural: "moths"
 })
 bodies.set("worm", {
 	species: ["diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio"],
-	dex: "worms."
+	plural: "worms"
 })
 bodies.set("praying_mantis", {
-	species: ["scyther"],
+	species: ["scyther", "scizor"],
 	adj: ["praying mantis"],
-	dex: "praying mantises."
+	plural: "praying mantises"
 })
 bodies.set("beetle_biped", {
 	species: ["pinsir"],
 	adj: ["bipedal beetle", "two-legged beetle"],
-	dex: "bipedal beetles."
+	plural: "bipedal beetles"
 })
 bodies.set("ladybug_with_arms", {
 	species: ["ledyba", "ledian"],
 	adj: ["ladybug with arms"],
-	dex: "ladybugs with arms.",
+	plural: "ladybugs with arms",
 	arms: 4
 })
 bodies.set("spider", {
 	species: ["spinarak", "ariados"],
-	dex: "spiders."
+	plural: "spiders"
 })
 bodies.set("dragonfly", {
 	species: ["yanma"],
-	dex: "dragonflies."
+	plural: "dragonflies"
+})
+bodies.set("flying_scorpion", {
+	species: ["gligar"],
+	adj: ["flying scorpion", "winged scorpion"],
+	plural: "flying scorpions"
+})
+bodies.set("stag_beetle", {
+	species: ["heracross"],
+	adj: ["stag beetle"],
+	plural: "stag beetles"
 })
 
 // avian
 bodies.set("bird", {
-	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "natu", "xatu"],
+	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "natu", "xatu", "skarmory", "ho-oh", "lugia", "shadow_lugia"],
 	adj: ["bird", "avian"],
-	dex: "birds."
+	plural: "birds"
+})
+bodies.set("bird_bipedal", {
+	species: ["delibird"],
+	adj: ["bipedal bird", "two-legged bird", "bipedal avian", "two-legged avian"],
+	plural: "bipedal birds",
+	arms: 2
 })
 bodies.set("duck_bipedal", {
 	species: ["psyduck", "golduck", "farfetch'd", "galarian_farfetch'd"],
 	adj: ["bipedal duck"],
-	dex: "bipedal ducks.",
+	plural: "bipedal ducks",
 	arms: 2
 })
 bodies.set("two_headed_ostrich", {
 	species: ["doduo"],
 	adj: ["two-headed ostrich"],
-	dex: "two-headed ostriches.",
+	plural: "two-headed ostriches",
 })
 bodies.set("three_headed_ostrich", {
 	species: ["dodrio"],
 	adj: ["three-headed ostrich"],
-	dex: "three-headed ostriches."
+	plural: "three-headed ostriches"
 })
 bodies.set("pterodactyl", {
 	species: ["aerodactyl"],
-	dex: "pterodactyls."
+	plural: "pterodactyls"
 })
 bodies.set("owl", {
 	species: ["hoothoot", "noctowl"],
-	dex: "owls."
+	plural: "owls"
 })
 bodies.set("crow", {
 	species: ["murkrow"],
-	dex: "crows."
+	plural: "crows"
 })
 
 // mammal
 bodies.set("mouse", {
 	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "pichu", "marill"],
 	adj: ["mouse", "rodent"],
-	dex: "mice.",
+	plural: "mice",
 	arms: 2
 })
 bodies.set("shrew", {
 	species: ["sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash"],
 	adj: ["shrew-like"],
-	dex: "shrews."
+	plural: "shrews"
 })
 bodies.set("rhino_quad", {
 	species: ["nidoran_f", "nidorina", "nidoran_m", "nidorino", "rhydon"],
 	adj: ["four-legged rhino", "rhino", "quadrupedal rhino"],
-	dex: "quadrupedal rhinos."
+	plural: "quadrupedal rhinos"
 })
 bodies.set("rhino_biped", {
 	species: ["nidoqueen", "nidoking", "rhyhorn"],
 	adj: ["two-legged rhino", "bipedal rhino"],
-	dex: "bipedal rhinos.",
+	plural: "bipedal rhinos",
 	arms: 2
 })
 bodies.set("fox", {
 	species: ["vulpix", "ninetails", "alolan_vulpix", "alolan_ninetales", "eevee", "vaporeon", "jolteon", "flareon", "espeon", "umbreon"],
-	dex: "foxes."
+	plural: "foxes"
 })
 bodies.set("fox_biped", {
-	species: ["abra", "kadabra", "alakazam", "cubone", "marowak", "alolan_marowak"],
-	dex: "bipedal foxes.",
+	species: ["abra", "kadabra", "alakazam", "cubone", "marowak", "alolan_marowak", "sneasel"],
+	plural: "bipedal foxes",
+	arms: 2
+})
+bodies.set("bear", {
+	species: ["teddiursa", "ursaring"],
+	plural: "bears",
 	arms: 2
 })
 bodies.set("bat", {
 	species: ["zubat", "golbat", "crobat"],
-	dex: "bats."
+	plural: "bats"
 })
 bodies.set("cat_biped", {
 	species: ["meowth", "galarian_meowth", "alolan_meowth", "snorlax", "mewtwo", "mew"],
 	adj: ["bipedal cat", "two-legged cat"],
-	dex: "bipedal cats.",
+	plural: "bipedal cats",
 	arms: 2
 })
 bodies.set("cat_quad", {
 	species: ["persian", "alolan_persian"],
 	adj: ["cat", "feline"],
-	dex: "cats."
+	plural: "cats"
+})
+bodies.set("saber_tooth_cat", {
+	species: ["raikou"],
+	adj: ["saber-toothed cat"],
+	plural: "saber-toother cats"
 })
 bodies.set("monkey", {
 	species: ["mankey", "primeape"],
-	dex: "monkeys.",
+	plural: "monkeys",
 	arms: 2
 })
 bodies.set("canine", {
-	species: ["growlithe", "arcanine"],
+	species: ["growlithe", "arcanine", "houndour", "houndoom", "entei", "suicune"],
 	adj: ["canine", "dog"],
-	dex: "dogs."
+	plural: "dogs"
 })
 bodies.set("humanoid", {
-	species: ["machop", "machoke", "machamp", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "electabuzz", "magmar"],
+	species: ["machop", "machoke", "machamp", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "electabuzz", "magmar", "tyrogue", "hitmontop", "smoochum", "elekid", "magby"],
 	adj: ["humanoid", "human-like"],
-	dex: "humanoids.",
+	plural: "humanoids",
 	arms: 2
 })
 bodies.set("horse", {
 	species: ["ponyta", "rapidash"],
 	adj: ["equine", "horse"],
-	dex: "horses."
+	plural: "horses"
 })
 bodies.set("unicorn", {
 	species: ["galarian_ponyta", "galarian_rapidash"],
-	dex: "unicorns."
+	plural: "unicorns"
 })
 bodies.set("pig", {
-	species: ["slowpoke", "galarian_slowpoke", "lickitung"],
-	dex: "pigs."
+	species: ["slowpoke", "galarian_slowpoke", "lickitung", "swinub", "piloswine"],
+	plural: "pigs"
 })
 bodies.set("pig_bipedal", {
 	species: ["slowbro", "galarian_slowbro", "slowking", "galarian_slowking"],
 	adj: ["bipedal pig"],
-	dex: "bipedal pigs.",
+	plural: "bipedal pigs",
 	arms: 2
 })
 bodies.set("tapir_bipedal", {
 	species: ["drowzee", "hypno"],
 	adj: ["bipedal tapir"],
-	dex: "bipedal tapirs.",
+	plural: "bipedal tapirs",
 	arms: 2
 })
 bodies.set("bull", {
 	species: ["tauros"],
-	dex: "bulls."
+	plural: "bulls"
+})
+bodies.set("cow", {
+	species: ["miltank"],
+	plural: "cows"
 })
 bodies.set("echidna", {
 	species: ["cyndaquil"],
-	dex: "echidnas."
+	plural: "echidnas"
 })
 bodies.set("ferret", {
 	species: ["quilava", "typhlosion", "furret"],
-	dex: "ferrets",
+	plural: "ferrets",
 	arms: 2
 })
 bodies.set("raccoon", {
-	species: ["sentret"],
-	dex: "raccoons",
+	species: ["sentret", "smeargle"],
+	plural: "raccoons",
 	arms: 2
 })
 bodies.set("sheep", {
 	species: ["mareep"],
-	dex: "sheep."
+	plural: "sheep"
 })
 bodies.set("sheep_biped", {
 	species: ["flaaffy", "ampharos"],
 	adj: ["bipedal sheep", "two-legged sheep"],
-	dex: "bipedal sheep."
+	plural: "bipedal sheep"
 })
 bodies.set("rabbit_biped", {
 	species: ["azumarill"],
 	adj: ["bipedal rabbit", "two-legged rabbit"],
-	dex: "bipedal rabbits."
+	plural: "bipedal rabbits"
+})
+bodies.set("giraffe", {
+	species: ["girafarig"],
+	plural: "giraffes"
+})
+bodies.set("bulldog_biped", {
+	species: ["snubbull", "granbull"],
+	adj: ["bipedal bulldog", "two-legged bulldog"],
+	plural: "bipedal bulldogs"
+})
+bodies.set("elephant", {
+	species: ["phanpy", "donphan"],
+	plural: "elephants"
+})
+bodies.set("deer", {
+	species: ["stantler"],
+	adj: ["deer", "cervid"],
+	plural: "deer"
+})
+
+// invertabrates
+bodies.set("slug", {
+	species: ["slugma"],
+	plural: "slugs"
+})
+bodies.set("snail", {
+	species: ["magcargo"],
+	plural: "snails"
 })
 
 // magical
 bodies.set("fairy", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "chansey", "cleffa", "igglybuff", "togepi", "togetic", "wobbuffet"],
-	dex: "fairies.",
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "chansey", "cleffa", "igglybuff", "togepi", "togetic", "wobbuffet", "blissey", "celebi"],
+	plural: "fairies",
 	arms: 2
+})
+bodies.set("fairy_limbless", {
+	species: ["dunsparce"],
+	adj: ["limbless fairy"],
+	plural: "limbless fairies"
 })
 
 // mineral
 bodies.set("floating_rock", {
-	species: ["geodude", "alolan_geodude", "koffing", "weezing", "galarian_weezing"],
+	species: ["geodude", "alolan_geodude", "koffing", "weezing", "galarian_weezing", "forretress"],
 	adj: ["floating rock"],
-	dex: "floating rocks.",
+	plural: "floating rocks",
 	arms: 2
 })
 bodies.set("rock_golem", {
 	species: ["graveler", "alolan_graveler", "golem", "alolan_golem"],
 	adj: ["rock golem"],
-	dex: "rock golems.",
+	plural: "rock golems",
 	arms: 2
 })
 
 // robots
 bodies.set("robot", {
-	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon"],
-	dex: "robots."
+	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon", "porygon2"],
+	plural: "robots"
 })
 
 // plant
 bodies.set("weed", {
 	species: ["oddish"],
 	adj: ["weed-like"],
-	dex: "weeds."
+	plural: "weeds"
 })
 bodies.set("flower", {
 	species: ["gloom", "vileplume", "bellossom", "sunflora"],
-	dex: "flowers."
+	plural: "flowers"
 })
 bodies.set("pitcher_plant", {
 	species: ["bellsprout", "weepinbell", "victreebel"],
 	adj: ["pitcher plant"],
-	dex: "pitcher plants.",
+	plural: "pitcher plants",
 })
 bodies.set("tree", {
 	species: ["exeggutor", "alolan_exeggutor", "sudowoodo"],
-	dex: "trees."
+	plural: "trees"
 })
 bodies.set("vine_golem", {
 	species: ["tangela"],
 	adj: ["cluter of vines"],
-	dex: "cluters of vines."
+	plural: "cluters of vines"
 })
 bodies.set("plant_fairy", {
 	species: ["hoppip", "skiploom", "jumpluff"],
 	adj: ["plant fairy"],
-	dex: "plant faries."
+	plural: "plant faries"
 })
 bodies.set("seed", {
 	species: ["sunkern"],
-	dex: "seeds."
+	plural: "seeds"
+})
+bodies.set("pinecone", {
+	species: ["pineco"],
+	adj: ["pine cone"],
+	plural: "pine cones"
+})
+bodies.set("coral", {
+	species: ["corsola", "galarian_corsola"],
+	plural: "corals"
 })
 
 // inanimate
 bodies.set("eggs", {
 	species: ["exeggcute"],
 	adj: ["cluster of eggs"],
-	dex: "clusters of eggs."
+	plural: "clusters of eggs"
 })
 bodies.set("symbol", {
 	species: ["unown"],
 	adj: ["magical floating symbol"],
-	dex: "magical floating symbols."
+	plural: "magical floating symbols"
 })
 
 // slime
 bodies.set("ooze", {
 	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "ditto"],
 	adj: ["ooze creature"],
-	dex: "ooze creatures."
+	plural: "ooze creatures"
 })
 
 // ghosts
 bodies.set("ghost", {
 	species: ["gastly", "misdreavus"],
-	dex: "ghosts."
+	plural: "ghosts"
 })
 bodies.set("ghost_arms", {
 	species: ["haunter", "gengar"],
-	dex: "ghosts.",
+	plural: "ghosts",
 	arms: 2
 })
 
@@ -1784,7 +1832,7 @@ bodies.set("ghost_arms", {
 bodies.set("", {
 	species: [],
 	adj: [],
-	dex: ""
+	plural: ""
 })
 */
 
@@ -1795,7 +1843,7 @@ bodies.forEach(function(value, name) {
 	adjectives.set(uuid, value.adj || [name])
 
 	// add species tags
-	var dex_entry = value.dex_literal ? value.dex_literal : "<p> look like <size> <color> " + value.dex
+	var dex_entry = value.dex_literal ? value.dex_literal : "<p> look like <size> <color> " + value.plural + "."
 	value.species.forEach(function(speciesName) {
 		var data = getSpecies(speciesName)
 		data[uuid] = true
@@ -1821,7 +1869,7 @@ dicks.set("nondescript", {
 })
 
 dicks.set("reptilian", {
-	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "aerodactyl", "chikorita", "bayleef", "meganium"],
+	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "aerodactyl", "chikorita", "bayleef", "meganium", "larvitar", "pupitar", "tyranitar"],
 	adj: ["lizard /a <ds>", "reptile /a <ds>"],
 	pussy_adj: ["lizard /a <ps>", "reptile /a <ps>"],
 	dex: "Male <lp> have a reptilian cock that slides out of a sheath when aroused. Their testicles are internal. <n> penises are pink and slick. The male <lp>'s penis is also highly muscular."
@@ -1841,19 +1889,19 @@ dicks.set("draconic_double", {
 	pussy_plural: true
 })
 dicks.set("turtle", {
-	species: ["squirtle", "wartortle", "blastoise"],
+	species: ["squirtle", "wartortle", "blastoise", "shuckle"],
 	adj: ["turtle /a <ds>", "prehensile /a <ds>", "muscular /a <ds>"],
 	pussy: "reptilian",
 	dex: "Male <lp> have a long, pink, slick cock that hides inside their body when not in use. Their penises are prehensile and they can move them freely. <p> have internal testicles."
 })
 dicks.set("insect", {
-	species: ["caterpie", "metapod", "butterfree", "weedle", "metapod", "paras", "parasect", "venonat", "venomoth", "scyther", "pinsir", "kabuto", "kabutops", "ledyba", "ledian", "yanma"],
+	species: ["caterpie", "metapod", "butterfree", "weedle", "metapod", "paras", "parasect", "venonat", "venomoth", "pinsir", "kabuto", "kabutops", "ledyba", "ledian", "yanma"],
 	adj: ["/a <ds>"],
 	pussy_adj: ["/a <ps>"],
 	dex: "Male <lp> have a cock that comes out of their chitinous exoskeleton when aroused. Their testicles are internal. When a male <ln> is aroused his penis leaks a sticky, sweet-smelling precum."
 })
 dicks.set("avian", {
-	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "psyduck", "golduck", "farfetch'd", "galarian_farfetch'd", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "hoothoot", "noctowl", "natu", "xatu", "murkrow"],
+	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "psyduck", "golduck", "farfetch'd", "galarian_farfetch'd", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "hoothoot", "noctowl", "natu", "xatu", "murkrow", "delibird", "skarmory", "ho-oh"],
 	adj: ["bird /a <ds>", "avian /a <ds>", "muscular /a <ds>", "curved /a <ds>"],
 	pussy_adj: ["avian /a <ps>", "bird /a <ps>", "feathered /a <ps>", "muscular /a <ps>"],
 	dex: "Male <lp> have a slick, pink, curved cock. Male <lp> have internal testicles. The s-shaped curve of a male <lp>'s muscular penis is highly pleasurable."
@@ -1881,7 +1929,7 @@ dicks.set("rodent", {
 	dex: "Male <lp> have a pink penis that lies inside a protective fleshy sheath. When aroused, the penis comes out of its sheath. Once a male <ln> is aroused he will want to orgasm."
 })
 dicks.set("snake", {
-	species: ["ekans", "arbok", "onix", "dratini", "dragonair"],
+	species: ["ekans", "arbok", "onix", "dratini", "dragonair", "steelix"],
 	adj: ["snake /a <ds>", "twin /a <ds>", "double /a <ds>", "dual /a <ds>"],
 	pussy: "reptilian",
 	dex: "Male <lp> have two reptilian penises right beside each other. Their dual penises are slick and pink, and they retract inside the body when not in use. Male <lp> have internal testicles. Male <lp> are known for using both of their penises at once on a partner. They love fucking their partner with both of their dicks.",
@@ -1895,7 +1943,7 @@ dicks.set("rhino", {
 	dex: "Male <lp> have a long pink penis with a dramatically flared tip. When they're about to cum, the tip of their penis flares up and expands. A <ln>'s penis is also prehensile and can be fully controlled. When not in use, the penis is hidden inside a protective fleshy sheath."
 })
 dicks.set("generic_sheath", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill"],
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy_adj: ["animal /a <ps>", "animalistic /a <ps>", "beast /a <ps>", "beastial /a <ps>"],
 	dex: dicks.get("rodent").dex
@@ -1913,7 +1961,7 @@ dicks.set("fox", {
 	dex: dicks.get("generic_sheath").dex + " At the base of a <ln>'s penis is a thick fleshy knot, which expands when he's getting close to orgasm."
 })
 dicks.set("vine", {
-	species: ["oddish", "gloom", "vileplume", "bellsprout", "weepinbell", "victreebel", "exeggutor", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora"],
+	species: ["oddish", "gloom", "vileplume", "bellsprout", "weepinbell", "victreebel", "exeggutor", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "pineco", "forretress", "celebi"],
 	adj: ["several slimey vine /a <ds>", "many slimey vine /a <ds>", "several slimey tentacle /a <ds>", "many slimey tentacle /a <ds>", "slimey vine /a <ds>", "slimey tentacle /a <ds>"],
 	pussy_adj: ["several slimey vine /a <ps>", "many slimey vine /a <ps>", "several slimey tentacle /a <ps>", "many slimey tentacle /a <ps>", "slimey vine /a <ps>", "slimey tentacle /a <ps>"],
 	dex: `Male <lp> have several vines which function as penises. These penis vines are long and fully prehensile. Vine cocks have a head like a human's penis, and a retractable foreskin. Vine penises are very slick and slimy, and male <lp> love to use multiple at a time to fuck their partners. Cock vines can cum just like any other penis.
@@ -1928,13 +1976,13 @@ dicks.set("self", {
 	dex: "No one knows how <lp> reproduce, but that doesn't stop people from having sex with them. They love to be shoved into people's various holes, and it seems they can have some type of orgasm from it."
 })
 dicks.set("feline", {
-	species: ["meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mewtwo", "mew"],
+	species: ["meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mewtwo", "mew", "raikou"],
 	adj: ["feline /a <ds>", "barbed /a <ds>", "cat /a <ds>"],
 	pussy: ["feline /a <ps>", "cat /a <ps>"],
 	dex: "Male <lp> have a pink penis with soft barbs on the end. The barbs don't hurt, they feel pleasant. When not aroused, a <ln>'s penis is hidden in a protective fleshy sheath."
 })
 dicks.set("human", {
-	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom"],
+	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom", "tyrogue", "hitmontop", "smoochum"],
 	adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ds>"],
 	pussy_adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ps>"],
 	dex: "Male <lp> have a human-like penis complete with a foreskin and a scrotum with two testicles."
@@ -1948,13 +1996,13 @@ dicks.set("human_double", {
 	pussy_plural: true
 })
 dicks.set("canine", {
-	species: ["growlithe", "arcanine"],
+	species: ["growlithe", "arcanine", "snubbull", "granbull", "houndour", "houndoom", "suicune", "entei"],
 	adj: ["knotted dog /a <ds>", "knotted canine /a <ds>", "knotted doggy /a <ds>", "knotted puppy /a <ds>", "knotted /a <ds>"],
 	pussy_adj: ["dog /a <ps>", "canine /a <ps>", "puppy /a <ps>"],
 	dex: "Male <lp> have a pink dog penis. A male <p>'s penis has a thick fleshy knot at the base, which expands and lodges him inside his partner when he orgasms. Once a male <ln> has knotted his partner, they'll be stuck together until his penis goes soft again. When his penis isn't in use, it's hidden in a protective fleshy sheath."
 })
 dicks.set("tentacle", {
-	species: ["tentacool", "tentacruel", "omanyte", "omastar"],
+	species: ["tentacool", "tentacruel", "omanyte", "omastar", "octillery"],
 	adj: ["several slimey tentacle /a <ds>", "several writhing tentacle /a <ds>", "many slimey tentacle /a <ds>", "many writhing tentacle /a <ds>", "slimey tentacle /a <ds>", "writhing tentacle /a <ds>", "tentacle /a <ds>"],
 	pussy_adj: ["several slimey tentacle /a <ps>", "several writhing tentacle /a <ps>", "many slimey tentacle /a <ps>", "many writhing tentacle /a <ps>", "slimey tentacle /a <ps>", "writhing tentacle /a <ps>", "tentacle /a <ps>"],
 	dex: "Male <lp> have several tentacles. One of their tentacles is actually their penis. A male <ln>'s penis tentacle looks like any other tentacle, but it releases cum when he orgasms. When a male <ln> has sex, he uses all his tentacles to pleasure his partner.\n\nFemale <lp> have several tentacles. One of the female <lp>'s tentacles is actually its vagina. A female <ln>'s pussy tentacle looks like any other tentacle, but the tip can open to reveal a soft moist vagina. When female <lp> have sex, they use their tentacle cunt to suck the cum out of the male's penis.",
@@ -1973,11 +2021,36 @@ dicks.set("equine", {
 	pussy_adj: ["horse /a <ps>", "equine /a <ps>"],
 	dex: "Male <lp> have a long horse cock. Their equine penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s horsecock has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.\n\nWhen female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
 })
+dicks.set("giraffe", {
+	species: ["girafarig"],
+	adj: ["giraffe /a <ds>", "giraffid /a <ds>"],
+	pussy_adj: ["giraffe /a <ps>", "giraffid /a <ps>"],
+	dex: "Male <lp> have a long giraffe cock. Their giraffe penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s giraffe dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.\n\nWhen female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
+})
+dicks.set("elephant", {
+	species: ["phanpy", "donphan"],
+	adj: ["elephant /a <ds>", "elephantid /a <ds>"],
+	pussy_adj: ["elephant /a <ps>", "elephantid /a <ps>"],
+	dex: "Male <lp> have a long elephant cock. Their elephant penises are normally stored within a thick fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s elephant dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm."
+})
 dicks.set("porcine", {
-	species: ["slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "drowzee", "hypno", "slowking", "galarian_slowking"],
+	species: ["slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "drowzee", "hypno", "slowking", "galarian_slowking", "swinub", "poliswine"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy: "generic_sheath",
 	dex: "Male <lp> have a long, thin, pink penis. A male <ln>'s penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
+})
+dicks.set("cervine", {
+	species: ["slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "drowzee", "hypno", "slowking", "galarian_slowking", "swinub", "poliswine"],
+	adj: ["deer /a <ds>", "cervid /a <ds>"],
+	pussy_adj: ["deer /a <ds>", "cervid /a <ds>"],
+	pussy: "generic_sheath",
+	dex: "Male <lp> have a long, thin, pink, deer penis. A male <ln>'s deer penis normally hides within a protective fleshy sheath when not aroused."
+})
+dicks.set("ursine", {
+	species: ["teddiursa", "ursaring"],
+	adj: ["bear /a <ds>", "ursine /a <ds>"],
+	pussy_adj: ["bear /a <ps>", "ursine /a <ps>"],
+	dex: "Male <lp> have a long, thin, pink, bear penis. A male <ln>'s bear penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("sheep", {
 	species: ["mareep", "flaaffy", "ampharos"],
@@ -1986,19 +2059,25 @@ dicks.set("sheep", {
 	dex: "<p> have animalistic sheep genitals. <p> genitals are very soft and plushy, and highly sensitive. Sex with them is intensely pleasurable."
 })
 dicks.set("electric_disembodied", {
-	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon"],
+	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon", "porygon2"],
 	adj: ["magically electric /a <ds>", "pleasantly electric /a <ds>", "disembodied electric /a <ds>"],
 	pussy_adj: ["magical electric /a <ps>", "pleasently electric /a <ps>", "disembodied electric /a <ps>"],
 	dex: "Male <lp> reproduce using a penis made of magical electric energy. The penis is used like a dildo, and it's voltage is low enough that it's extremely pleasurable and doesn't shock the user. Since male <lp> have magical disembodied penises, they can create more whenever they want. They love creating several electric penises during sex."
 })
 dicks.set("cetacean", {
-	species: ["seel", "dewgong", "lapras", "vaporeon", "lanturn", "togetic"],
+	species: ["seel", "dewgong", "lapras", "vaporeon", "lanturn", "togetic", "mantine", "lugia"],
 	adj: ["prehensile /a <ds>", "muscular /a <ds>", "cetacean /a <ds>"],
 	pussy_adj: ["slick /a <ps>", "smooth /a <ps>", "cetacean /a <ps>", "muscular /a <ps>"],
 	dex: "Male <lp> have a long, slick, pink penis. A male <ln>'s penis is prehensile and can be controlled freely. When not aroused, a male <lp>'s penis retracts into a slit in its body. Male <lp> have internal testicles. A male <ln>'s penis is extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!"
 })
+dicks.set("demonic", {
+	species: ["shadow_lugia"],
+	adj: ["demonic /a <ds>", "demon /a <ds>"],
+	pussy_adj: ["enticing /a <ps>", "hypnotizing /a <ps>", "entrancing /a <ps>"],
+	dex: "Male <lp> have a long, thick, purple cock. A male <ln>'s penis is ribbed for pleasure. The male <ln>'s penis has a large knot, which expands and locks him into his partner when he cums. Male <ln>'s penises have a pointed tip and sexy feelers all around, which provide pleasure for him and his partner. Male <lp> have gigantic testicles, and they can cum gallons of intoxicating semen in a single orgasm."
+})
 dicks.set("slime", {
-	species: ["grimer", "alolan_grimer", "muk", "alolan_muk"],
+	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "slugma", "magcargo", "corsola", "galarian_corsola"],
 	adj: ["slime /a <ds>", "slimey /a <ds>"],
 	pussy_adj: ["slime /a <ps>", "slimey /a <ps>"],
 	dex: "Male <lp> reproduce by forming their slime into the shape of a penis and using it to fuck their partner. A <ln>'s slime penis can be reshaped and resized to do any kinky thing he wants. Male <lp> love to create multiple slime cocks at once and use them fuck a single partner."
@@ -2028,13 +2107,13 @@ dicks.set("crustacean", {
 	dex: "Male <lp> have an internal penis that comes out of their body when aroused."
 })
 dicks.set("fish", {
-	species: ["horsea", "seadra", "goldeen", "seaking", "magikarp", "chinchou"],
+	species: ["horsea", "seadra", "goldeen", "seaking", "magikarp", "chinchou", "qwilfish", "remoraid", "kingdra"],
 	adj: ["slick /a <ds>", "tapered /a <ds>", "fish /a <ds>"],
 	pussy: "cetacean",
 	dex: "Male <lp> have an internal penis that comes out of their body when aroused."
 })
 dicks.set("bovine", {
-	species: ["tauros"],
+	species: ["tauros", "miltank"],
 	adj: ["bull /a <ds>", "bovine /a <ds>"],
 	pussy_adj: ["cow /a <ps>", "bovine /a <ps>"],
 	dex: "Male <lp> have a bull penis. It's long and pink. Male <lp> also have massive testes. When a male <ln> cums, he can release over a gallon of semen!"
@@ -2046,7 +2125,7 @@ dicks.set("ditto", {
 	dex: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. <p> really love to transform into the person or pokemon they're currently having sex with."
 })
 dicks.set("ovipositor", {
-	species: ["beedrill", "spinarak", "ariados"],
+	species: ["beedrill", "spinarak", "ariados", "scyther", "scizor", "heracross"],
 	adj: ["/a <ds>-like ovipositor", "ovipositor", "sexual appendage"],
 	pussy: "insect",
 	dex: "Male <lp> use a specialized ovipositor as a penis. His ovipositor functions just like a penis. When a male <p> cums, he pumps eggs through his ovipositor into his partner. He doesn't ejaculate semen, he only releases large eggs when he cums. This makes his partner feel really good."
@@ -2168,6 +2247,48 @@ special.set("alolan_ponyta", {
 })
 special.set("alolan_rapidash", {
 	subspeciesOf: "rapidash"
+})
+special.set("galarian_slowpoke", {
+	subspeciesOf: "slowpoke"
+})
+special.set("galarian_slowbro", {
+	subspeciesOf: "slowbro"
+})
+special.set("galarian_farfetch'd", {
+	subspeciesOf: "farfetch'd"
+})
+special.set("alolan_grimer", {
+	subspeciesOf: "grimer"
+})
+special.set("alolan_muk", {
+	subspeciesOf: "muk"
+})
+special.set("alolan_exeggutor", {
+	subspeciesOf: "exeggutor"
+})
+special.set("alolan_marowak", {
+	subspeciesOf: "marowak"
+})
+special.set("galarian_weezing", {
+	subspeciesOf: "weezing"
+})
+special.set("galarian_mr._mime", {
+	subspeciesOf: "mr._mime"
+})
+special.set("galarian_articuno", {
+	subspeciesOf: "articuno"
+})
+special.set("galarian_zapdos", {
+	subspeciesOf: "zapdos"
+})
+special.set("galarian_moltres", {
+	subspeciesOf: "moltres"
+})
+special.set("aipom", {
+	dex: "Aipom has a hand at the end of its tail. Aipoms love using their tail hands to jerk off the partners."
+})
+special.set("unown", {
+	dex: "Unown are shaped like floating animated symbols. An unown can be shaped like any letter of the english alphabet. When there are several unown, they can use their bodies to spell words."
 })
 
 /*

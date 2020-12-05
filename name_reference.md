@@ -47,9 +47,9 @@ jigglypuff
 wigglytuff
 zubat
 golbat
-oddish
-gloom
-vileplume
+oddish | Vine genitals
+gloom | Vine genitals
+vileplume | Vine genitals
 paras
 parasect
 venonat
@@ -99,7 +99,7 @@ cloyster | Tongue genitals
 gastly | Disembodied psychic genitals
 haunter | Disembodied psychic genitals
 gengar | Psychic genitals
-onix
+onix | Double genitals
 drowzee
 hypno
 krabby
@@ -127,7 +127,7 @@ seaking
 staryu | Disembodied psychic genitals
 starmie | Disembodied psychic genitals
 mr.\_mime | Subspecies: galarian\_mr.\_mime
-scyther
+scyther | Males have an ovipositor
 jynx
 electabuzz
 magmar
@@ -166,3 +166,96 @@ meganium
 cyndaquil
 quilava
 typhlosion
+totodile
+feraligatr
+sentret
+furret
+hoothott
+noctowl
+ledyba
+ledian
+spinarak
+ariados
+crobat
+chinchou
+lanturn
+pichu
+cleffa
+igglybuff
+togepi
+togetic
+natu
+xatu
+mareep
+flaaffy
+ampharos
+bellossom | Vine genitals
+marill
+azumarill
+sudowoodo
+politoed
+hoppip | Vine genitals
+skiploom | Vine genitals
+jumpluff | Vine genitals
+aipom | Does hand stuff with its tail
+sunkern | Vine genitals
+sunflora | Vine genitals
+yanma
+wooper
+quagsire
+espeon
+umbreon
+murkrow
+slowking | Subspecies: galarian_slowking
+misdreavus
+unown | Forms aren't scripted
+wobbuffet
+girafarig
+pineco
+forretress
+dunsparce
+gligar
+steelix | Double genitals
+snubbull
+granbull
+qwilfish
+scizor | Males have an ovipositor
+shuckle
+heracross
+sneasel
+teddiursa
+ursaring
+slugma
+magcargo
+swinub
+piloswine
+corsola | Subspecies: galarian_corsola
+remoraid
+octillery | Tentacle genitals
+deliberd
+mantine
+skarmory
+houndour
+houndoom
+kingdra
+phanpy
+donphan
+porygon2 | Disembodied electric genitals
+stantler
+smeargle
+tyrogue
+hitmontop
+smoochum
+elekid
+magby
+miltank
+blissey
+raikou
+entei
+suicune
+larvitar
+pupitar
+tyranitar
+ho-oh
+lugia | Form: shadow_lugia
+celebi
