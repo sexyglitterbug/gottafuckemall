@@ -2043,7 +2043,7 @@ dicks.set("ditto", {
 	species: ["ditto"],
 	adj: ["transformable /a <ds>"],
 	pussy_adj: ["transformable /a <ps>"],
-	dex: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. When having sex with a <ln> you make feel him transforming inside you and he may change appearance throughout the fuck session."
+	dex: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. <p> really love to transform into the person or pokemon they're currently having sex with."
 })
 dicks.set("ovipositor", {
 	species: ["beedrill", "spinarak", "ariados"],
