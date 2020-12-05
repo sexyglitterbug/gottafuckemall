@@ -31,7 +31,6 @@ Here's a list of some features I want to have
 * Story mode
 * Mega evolutions
 * Scenarios:
-	* Breast/Penis milking
 	* Sex battle (you battle another trainer, determine the winner by making your pokemon fuck)
 	* Team Threesome (you bring out two pokemon and fuck them)
 	* Safari Zone (watch pokemon in their natural habitat)

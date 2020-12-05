@@ -932,7 +932,7 @@ You nervously walk up to Cherry and her ${a.name_lower}.
 
 "Never fucked a pokemon before?" Cherry laughs "I'll guide you through it, step by step, until this ${a.name_lower} cums ${a.m ? "his" : a.f ? "her" : "its"} brains out. This ${a.name_lower} is gonna reach orgasm right here, and I'm gonna teach you how to make ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} spray cum like a geyser."
 
-Cherry licks her lips and begins instructing you. "Now, first things first, I want you to touch `
+Cherry licks her lips and begins instructing you. "Now, first things first, I want you to touch`
 		
 		return str
 	}
