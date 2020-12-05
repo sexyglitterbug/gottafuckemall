@@ -497,7 +497,7 @@ On the wall are several buckets. Your goal is to fill those buckets with as much
 		if (a.m) {
 			str = str + ` He knows the drill. He positions his completely flaccid ${a.dCock()} in front of you. Since his ${a.dCock()} ${a.dick.plural ? "are" : "is"} totally flaccid you'll have to warm him up before you can collect his cum.`
 		} else if (a.f) {
-			str = str + ` She knows the dril. She positions her supple breasts in front of you.`
+			str = str + ` She knows the drill. She positions her supple breasts in front of you.`
 		}
 
 		str = str + " You can't wait to get started."
@@ -1373,7 +1373,7 @@ skinTypes.set("silk", {
 	adj: ["silk"]
 })
 skinTypes.set("cloud", {
-	species: ["castform", "sunny_castform", "rainy_castform", "snowy_castform"]
+	species: ["castform", "sunny_castform", "rainy_castform", "snowy_castform"],
 	adj: ["cloud"]
 })
 skinTypes.set("fabric", {
@@ -2033,12 +2033,12 @@ bodies.set("robot", {
 })
 bodies.set("robot_2arms", {
 	species: ["metang", "registeel"],
-	adj: ["two-armed floating robot"]
+	adj: ["two-armed floating robot"],
 	plural: "two-armed floating robots"
 })
 bodies.set("robot_4arms", {
 	species: ["metagross"],
-	adj: ["four-armed floating robot"]
+	adj: ["four-armed floating robot"],
 	plural: "four-armed floating robots"
 })
 

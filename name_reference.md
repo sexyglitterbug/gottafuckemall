@@ -346,3 +346,71 @@ cacnea | Vine genitals
 cacturn | Vine genitals
 swablu
 altaria
+zangoose
+seviper | Double genitals
+lunatone
+solrock
+barboach
+whiscash
+corphish
+crawdaunt
+baltoy
+claydol
+lileep
+cradily
+anorith
+armaldo
+feebas
+milotic
+castform | Forms: sunny_castform, rainy_castform, snowy_castform
+kecleon
+suppet
+banette
+duskull
+dusclops
+tropius
+chimecho
+absol
+wynaut
+snorunt
+glalie
+spheal
+sealeo
+walrein
+clamperl | Tentacle genitals
+huntail
+gorebyss
+relicanth
+luvdisc
+bagon
+shellgon
+salamence
+beldum
+metang
+metagross
+regirock
+regice
+registeel
+latias
+latios
+kyogre
+groudon
+rayquaza | Double genitals
+jirachi
+deoxys | Tentacle genitals, Forms: attack_deoxys, defense_deoxys, speed_deoxys
+
+# Sinnoh
+Species String | Notes
+-------------- | -----
+turtwig
+grotle
+torterra
+chimchar
+monferno
+infernape
+piplup
+prinplup
+empoleon
+starly
+staravia
+staraptor

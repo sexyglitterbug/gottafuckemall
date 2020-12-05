@@ -41,20 +41,32 @@ const modifier = (text) => {
 		if (load("SCENE_SELECTION_COMPLETE") != "1") {
 			var trim = trim_input_fluff(text)
 			var scene = scenario_options[trim.toLowerCase()]
-			console.log(`${trim} : ${scene}`)
+
 			if (scene) {
 				save("SCENE_SELECTION_COMPLETE", "1")
 				save("SELECTED_SCENE", trim.toLowerCase())
 				modifiedText = ''
 				stop_ai()
-			} else if (modifiedText.length > 0 && modifiedText.substr(0, 1) != "/") {
-				stop_ai()
-
-				if (load("DID_FIRST_MESSAGE") == "1") {
-					state.message = `Unrecognized input "${trim.toLowerCase()}. Please input a scene name such as "starter" or "sex_ed".\n\nYou can find a list of scenes at the link in the description.`
-				} else {
-					save("DID_FIRST_MESSAGE", "1")
-				}
+			} else if (trim.length > 0) {
+        console.log("mod",modifiedText)
+        if (trim.substr(0, 1) == ":") {
+          // custom scenario
+          modifiedText = trim.substr(1)
+          save("SCENE_SELECTION_COMPLETE", "1")
+          save("SCENE_PREPARED", "1")
+        } else if (trim.substr(0, 1) == "/") {
+          // command
+          modifiedText = trim
+          state.message = `Processed command`
+        } else {
+          stop_ai()
+          modifiedText = ""
+          if (load("DONE_FIRST_MESSAGE") != "1") {
+            save("DONE_FIRST_MESSAGE", "1")
+          } else {
+            state.message = `Unrecognized input "${trim.toLowerCase()}". Please input a scene name such as "starter" or "sex_ed".\n\nYou can find a list of scenes at the link in the description.`
+          }
+        }
 			}
 		}
 
