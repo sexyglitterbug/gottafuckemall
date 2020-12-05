@@ -1905,7 +1905,8 @@ dicks.set("reptilian_double", {
 	species: ["treecko", "grovyle", "sceptile"],
 	adj: ["lizard /a <ds>", "reptile /a <ds>"],
 	pussy: "reptilian",
-	dex: "Male <lp> have two reptilian cocks that slide out of a sheath when aroused. Their testicles are internal. <n> twin penises are pink and slick. The male <lp>'s dual penises are also highly muscular. Male <lp> love using their double dicks at the same time. When a fucking a female partner, a male <ln> will often put one of his dicks in her pussy and put the other one of his dicks in her ass."
+	dex: "Male <lp> have two reptilian cocks that slide out of a sheath when aroused. Their testicles are internal. <n> twin penises are pink and slick. The male <lp>'s dual penises are also highly muscular. Male <lp> love using their double dicks at the same time. When a fucking a female partner, a male <ln> will often put one of his dicks in her pussy and put the other one of his dicks in her ass.",
+	plural: true
 })
 dicks.set("draconic", {
 	species: ["charizard", "gyarados", "alolan_exeggutor"],
