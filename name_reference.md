@@ -294,3 +294,20 @@ pelipper
 ralts
 kirlia
 gardevoir
+surskit
+masquerain
+shroomish | Vine genitals
+breloom | Vine genitals
+slakoth
+vigoroth
+slaking
+nincada
+ninjask
+shedinja
+whismur
+loudred
+exploud
+makuhita
+hariyama
+azurill
+nosepass
