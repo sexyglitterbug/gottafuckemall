@@ -7,14 +7,14 @@
 
 // This modifier re-implements Author's Note as an example.
 const modifier = (text) => {
-  var finalText = text
+	var finalText = text
 
-  if (load("STOP_FROM_CONTEXT") == "1") {
-    save("STOP_FROM_CONTEXT", "0")
-    return { stop: true }
-  }
+	if (load("STOP_FROM_CONTEXT") == "1") {
+		save("STOP_FROM_CONTEXT", "0")
+		return { stop: true }
+	}
 
-  return { text: finalText }
+	return { text: finalText }
 }
 
 // Don't modify this part

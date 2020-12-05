@@ -54,13 +54,13 @@ If a pokemon's cock is visible I describe it. I describe all the cock skin, the 
 I'll repeat a pokemon's species name often so that you don't forget what species they are.`
 var memory_context_temp = []
 function add_context(str) {
-	memory_context = memory_context + "\n\n" + str
+	memory_context = memory_context + "\n\n" + process_tags(str)
 	get_context()
 }
 function add_temp_context(lifetime, str) {
 	memory_context_temp.push({
 		remaining_turns: lifetime,
-		str: str
+		str: process_tags(str)
 	})
 	get_context()
 }
@@ -153,6 +153,14 @@ function dGender(word) {
 	return m ? (f ? "hermaphrodite" : "male") : f ? "female" : adj("pretty")
 }
 
+function an(word, cap) {
+	var char = word.substr(0, 1).toLowerCase()
+	if (char == "a" || char == "e" || char == "i" || char == "o" || char == "u") {
+		return cap ? "An" : "an"
+	}
+	return cap ? "A" : "a"
+}
+
 function stop_ai() {
 	save("STOP_FROM_CONTEXT", "1")
 }
@@ -163,10 +171,89 @@ function stop_ai() {
 // tags are inserted into input text to embed high level function calls
 const tagFunctions = new Map()
 
+function process_tags(text) {
+	var modifiedText = text
+	var lowered = modifiedText.toLowerCase()
+	var parsedSomething = true
+	var searchSub = lowered
+	var searchSubOffset = 0
+	while (parsedSomething) {
+		parsedSomething = false
+		
+		var tagStart = searchSub.search("/")
+		var commandLength = 0
+		if (tagStart != -1) {
+			// found a tag
+			searchSub = searchSub.substr(tagStart+1)
+			var lookingForArgs = 0
+			var foundKey = false
+			var args = []
+			var func = {}
+			var terminator = " "
+			commandLength = commandLength + 1
+			
+			while ((foundKey == false || lookingForArgs > args.length) && searchSub.length > 0) {
+				// collect args
+				nextSpace = -1
+				adj_acceptible_trails.forEach(function(char) {
+					var index = searchSub.search("\\"+char)
+					if (nextSpace == -1 || (index >= 0 && index < nextSpace)) {
+						nextSpace = index
+						terminator = char
+					}
+				})
+
+				word = ""
+				if (nextSpace == -1) {
+					word = searchSub
+					commandLength = commandLength + searchSub.length
+					searchSub = ""
+				} else {
+					word = searchSub.substr(0, nextSpace)
+					searchSub = searchSub.substr(nextSpace+1)
+					commandLength = commandLength + nextSpace + 1
+				}
+				
+				if (!foundKey) {
+					key = word
+					func = tagFunctions.get(key)
+					foundKey = true
+					if (func && func.args) {
+						lookingForArgs = func.args
+					}
+				} else {
+					args[args.length] = word
+				}
+			}
+			if (searchSub.length > 0) {
+				commandLength = commandLength - 1
+				searchSub = " " + searchSub
+			}
+			
+			// call func
+			if (func) {
+				response = func.call(args)
+				// inject
+				modifiedText = modifiedText.substr(0, tagStart + searchSubOffset) + response + modifiedText.substr(tagStart + searchSubOffset + commandLength)
+				searchSub = response + searchSub
+				searchSubOffset = modifiedText.length - searchSub.length
+				parsedSomething = true
+				
+				if (key == "help") {
+					stop_ai()
+					break // don't re-parse the commands in the help menu
+				}
+			}
+		}
+	}
+
+	return modifiedText
+}
+
 // Adjectives
 // /a [key] 
 var adjectives = new Map()
-var adj_acceptible_trails = [".", ",", "?", "!", ":", ";"]
+var adj_acceptible_trails = [".", ",", "?", "!", ":", ";", " ", "\n"]
 function adj(word) {
 	var trail = ""
 	while (true) {
@@ -372,6 +459,49 @@ You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looki
 
 A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.m ? a.dCock(true) : a.f ? a.dPussy(true) : "sexy bodies"}. They rip your clothes off and `
 		
+		return str
+	}
+})
+
+scenes.set("milking", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`Your job is to milk ${a.name_lower_plural}' ${a.g(a.dCock(true), "breasts", "bodies")} and collect the resulting ${a.g("semen", "milk", "fluids")} in buckets. If you drink or waste the ${a.name_lower} ${a.g("cum", "milk", "fluid")} instead of collecting it in a bucket, your supervisor will get mad at you. You've always loved milking ${a.name_lower_p}' ${a.g(a.dCock(), "soft breasts", "sexy bodies")}. Your preferred style of ${a.g("penis milking", "milking", "milking")} is slow and sensual. You focus on the sensations and make the ${a.name_lower} feel really good. The ${a.name_lower}'s happiness is your reward. You love watching the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} shoot into the bucket. You're a professional, so you always collect the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} in the bucket.`)
+
+		if (a.m) {
+			add_context(`"Milking" refers to penis milking. ${a.name} penises are milked to retrieve their semen so it can be packaged and sold.`)
+		}
+
+		// string
+		var str = `You work at the MooMoo Milk factory where you spend all day milking ${an(a.name_lower)} ${a.name_lower}'s ${a.g(a.dCock(), "supple breasts", "sexy body")}.
+
+At MooMoo Milk they want each milker to figure out a milking style that works best for them. Your preferred style is slow and sensual, you just love pleasuring the ${a.name_lower}. Like every day, your supervisor leads you to a pen where she opens the door. You see a ${a.g("male", "female", "/a pretty")} ${a.name_lower} before you. "Remember, more ${a.g("cum", "milk", "juice")} means more pay." Your supervisor gives you a wink and closes the door, leaving you alone with the ${a.name_lower}.
+
+On the wall are several buckets. Your goal is to fill those buckets with as much ${a.name_lower} ${a.g("cum", "milk", "fluid")} as possible. You grab a bucket and put it in front of the ${a.name_lower}. ${a.g("He", "She", "It")} looks ${a.g("extremely pent up", "uncomfortably full of milk", "ready to go")}, ${a.g("he", "she", "it")} must not have been milked for a while. ${a.g("He's", "She's", "It's")} clearly expecting you to start doing something, and you're more than happy to oblige. You gesture for the /a pretty ${a.name_lower} to come over to you.`
+
+		if (a.m) {
+			str = str + ` He knows the drill. He positions his completely flaccid ${a.dCock()} in front of you. Since his ${a.dCock()} ${a.dick.plural ? "are" : "is"} totally flaccid you'll have to warm him up before you can collect his cum.`
+		} else if (a.f) {
+			str = str + ` She knows the dril. She positions her supple breasts in front of you.`
+		}
+
+		str = str + " You can't wait to get started."
+
 		return str
 	}
 })
@@ -936,6 +1066,9 @@ scenes.forEach(function(desc, name) {
 					data.dSkin = function() {
 						return dSkin(data.s)
 					}
+					data.g = function(m, f, x) {
+						return data.m ? m : data.f ? f : x
+					}
 
 					n+=2
 				} else if (actor.type == "person") {
@@ -1274,7 +1407,7 @@ cockSizes.set("large", {
 })
 cockSizes.set("huge", {
 	species: ["blastoise", "nidoking", "nidoqueen", "arcanine", "primeape", "rapidash", "galarian_rapidash", "slowbro", "galarian_slowbro", "cloyster", "lickitung", "kangaskhan", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "dragonite", "ampharos", "quagsire", "girafarig", "slaking"],
-	slang: "di/ck_slang_huge",
+	slang: "dick_slang_huge",
 })
 cockSizes.set("colossal", {
 	species: ["onix", "gyarados", "lapras", "steelix", "tyranitar", "ho-oh", "lugia", "shadow_lugia", "aggron", "wailmer", "wailord"],
