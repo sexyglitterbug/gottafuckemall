@@ -4,7 +4,8 @@ Gotta Fuck Em All is an AI Dungeon world where you can fuck pokemon! Play it for
 Also join our discord! https://discord.gg/84KbGFuN
 
 # Scenes
-When you start, the game will ask you for a scene name. Here are a list of scenes:
+When you start, the game will ask you for a scene name. Here are a list of scenes.
+Also check out [name_reference.md](https://github.com/sexyglitterbug/gottafuckemall/blob/main/name_reference.md), which lists all the scripted pokemon.
 
 Scene Name | Concept | Description
 ---------- | ------ | -----------

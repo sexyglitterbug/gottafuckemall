@@ -1,7 +1,8 @@
+# Name Reference Document
 This is a reference doc for all the acceptable strings for a "species" input.
 If you input something not on this list, we'll just generate a generic species at runtime. It won't work well though.
 
-#Kanto
+# Kanto
 Species String | Notes
 -------------- | -----
 bulbasaur |
@@ -19,3 +20,12 @@ butterfree |
 weedle |
 kakuna |
 beedrill | Males have an ovipositor
+pidgey |
+pidgeotto |
+pidgeot |
+rattata
+alolan_rattata
+raticate
+alolan_raticate
+spearow
+fearow
