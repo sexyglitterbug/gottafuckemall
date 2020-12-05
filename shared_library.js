@@ -1,19 +1,6 @@
-// memory context and author's note are constant
-state.memory.context = `Everyone fucks their Pokémon. Pokémon are sexy and attractive and pokemon want to fuck humans. Sex with Pokémon is normal. Everyone knows trainers fuck their Pokémon.
-
-Pokemon can't talk or speak. Pokemon never talk. Pokemon never speak.
-
-I describe Pokémon in great detail, especially their genitals. Pokemon genitalia fascinates me so I write about ever little detail. I love pokemon cocks and pokemon pussies. It's obvious that I'm super kinky by the way I write. Sex with pokemon is the best.
-
-If a pokemon's cock is visible I describe it. I describe all the cock skin, the cock muscules, the cock veins, and everything else about sexy pokemon cocks. I describe every sensation in great detail.
-
-I'll repeat a pokemon's species name often so that you don't forget what species they are.`
-
+// author's note is constant
 state.memory.authorsNote = `This is an erotic story about fucking Pokémon. Make it sensual and slow. Describe how things look and feel. Pokemon can't speak. Pokemon can't talk.`
 
-if (state.memory.context.length > 2000) {
-	console.log("MEMORY CONTEXT TOO LONG!")
-}
 if (state.memory.authorsNote.length > 150) {
 	console.log("AUTHORS NOTE TOO LONG!")
 }
@@ -56,8 +43,48 @@ function add_you(str) {
 	}
 }
 
+var memory_context = `Everyone fucks their Pokémon. Pokémon are sexy and attractive and pokemon want to fuck humans. Sex with Pokémon is normal. Everyone knows trainers fuck their Pokémon.
+
+Pokemon can't talk or speak. Pokemon never talk. Pokemon never speak.
+
+I describe Pokémon in great detail, especially their genitals. Pokemon genitalia fascinates me so I write about ever little detail. I love pokemon cocks and pokemon pussies. It's obvious that I'm super kinky by the way I write. Sex with pokemon is the best.
+
+If a pokemon's cock is visible I describe it. I describe all the cock skin, the cock muscules, the cock veins, and everything else about sexy pokemon cocks. I describe every sensation in great detail.
+
+I'll repeat a pokemon's species name often so that you don't forget what species they are.`
+var memory_context_temp = []
 function add_context(str) {
 	state.memory.context = state.memory.context + "\n\n" + str
+}
+function add_temp_context(lifetime, str) {
+	memory_context_temp.push({
+		remaining_turns: lifetime,
+		str: str
+	})
+}
+function get_context() {
+	var = str = memory_context
+	memory_context_temp.forEach(function(v, i) {
+		str = str + '\n\n' + v.str
+	})
+	if (str.length > 2000) {
+		console.log("MEMORY CONTEXT TOO LONG!")
+	}
+	state.memory.context = str
+	return str
+}
+function tick_context() {
+	var remove = []
+	memory_context_temp.forEach(function(v, i) {
+		v.remaining_turns--
+
+		if (v.remaining_turns <= 0) {
+			remove.push(v)
+		}
+	})
+	remove.forEach(function(v) {
+		memory_context_temp.splice(memory_context_temp.indexOf(v), 1)
+	})
 }
 
 function isMale(g) {
@@ -443,7 +470,7 @@ Oh, well. It's your 18th birthday, you're a pokemon trainer now. The pokemon in 
 It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
 
 		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
+		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}, as evidenced by ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "heavy breathing"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
 
 		if (a.m) {
 			str = str + ` his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
@@ -571,7 +598,7 @@ Oh, well. It's your 18th birthday, you're a pokemon trainer now. The pokemon in 
 It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
 
 		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
+		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}, as evidenced by ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "heavy breathing"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
 
 		if (a.m) {
 			str = str + ` his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
@@ -602,6 +629,8 @@ It's time. You sit on your bed with your pokeball and release the Pokémon conta
 				str = str + ` you present yourself, dislpaying your unabashed need to the already-horny ${a.name_lower}. It can't wait any more than you can at this point.`
 			}
 		}
+
+		str = str + `\n\nYou're nervous. You've never fucked a pokemon before. Luckily it looks like your new ${a.name_lower} is taking the lead. ${a.m ? "He" : a.f ? "She" : "It"}`
 		
 		return str
 	}
@@ -765,6 +794,12 @@ scenes.set("porn_vid", {
 
 scenes.set("sex_ed", {
 	peek: "Professor Cherry is teaching a hands-on class on pokemon sex...",
+	temp_context: [
+		{
+			lifetime: 5,
+			str: "Professor Cherry wants to teach you all about pokemon genitals and pokemon sexual habits."
+		}
+	],
 	actors: [
 		{
 			type: "person",
@@ -900,7 +935,7 @@ scenes.forEach(function(desc, name) {
 		}
 	})
 
-	scenario_options[scenario_options.length] = {
+	scenario_options[name] = {
 		peek: desc.peek,
 		prompt: command_template,
 		args: scene_args

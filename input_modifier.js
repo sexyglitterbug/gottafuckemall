@@ -1,16 +1,5 @@
-/*
-/scenario_starter ${What gender are you? (Use underscores instead of spaces, e.g. trans_girl)} ${What species is your partner pokemon? (Use underscores instead of spaces, e.g. \"galarian_zapdos\")} ${What gender is your pokemon?}
-*/
-
-function display_scenario_menu() {
-  var str = ``
-  scenario_options.forEach(function(value, index) {
-    str = str + `${index}: ${value.peek}\n`
-  })
-
-  state.message = str
-}
-
+// We can trim Do/Say/Story inputs to isolate the actual user input
+// For arg prompts
 var trims = [
   {
     prefix: "\n> You say \"",
@@ -41,53 +30,38 @@ const modifier = (text) => {
   state.message = ""
 
   if (!state.debug) {
-    /*
-    // display menu first time
+    // new menu: just ask for a scene name
+    // scene list menu doesn't render well after like 3 options :(
     if (load("SCENE_MENU_DISLPAYED") != "1") {
       modifiedText = ""
-      display_scenario_menu()
+      state.message = `Type the name of a scene below, such as "starter" or "sex_ed".\nSee the link in the description for a full list of scenes.`
       save("SCENE_MENU_DISLPAYED", "1")
       stop_ai()
     }
-
-    // scene selection
     if (load("SCENE_SELECTION_COMPLETE") != "1") {
-      var trim = trim_input_fluff(modifiedText)
-      var index = parseInt(trim);
-
-      if ((index || index == 0) && scenario_options[index]) {
+      var trim = trim_input_fluff(text)
+      var scene = scenario_options[trim.toLowerCase()]
+      console.log(`${trim} : ${scene}`)
+      if (scene) {
         save("SCENE_SELECTION_COMPLETE", "1")
-        save("SELECTED_SCENE", index)
-        modifiedText = ""
+        save("SELECTED_SCENE", trim.toLowerCase())
+        modifiedText = ''
         stop_ai()
       } else if (modifiedText.length > 0 && modifiedText.substr(0, 1) != "/") {
         stop_ai()
 
-        if (load("DID_FIRST_MESSAGE")) {
-          state.message = `Unrecognized input "${trim}". Please input a number. Input "menu" to display the menu again.`
-
+        if (load("DID_FIRST_MESSAGE") == "1") {
+          state.message = `Unrecognized input "${trim.toLowerCase()}. Please input a scene name such as "starter" or "sex_ed".\n\nYou can find a list of scenes at the link in the description.`
         } else {
           save("DID_FIRST_MESSAGE", "1")
         }
       }
     }
-    */
 
-    // new menu: just ask for a scene name
-    if (load("SCENE_MENU_DISLPAYED") != "1") {
-      modifiedText = ""
-      state.message = "Type the name of a scene below, such as \"starter\" or \"sex_ed\".\nSee the link in the description for a full list of scenes."
-      save("SCENE_MENU_DISLPAYED", "1")
-      stop_ai()
-    }
-    if (load("SCENE_SELECTION_COMPLETE") != "1") {
-
-    }
-
-    // scene args
+    // prompt for scene args
     if (load("SCENE_SELECTION_COMPLETE") == "1" && load("SCENE_PREPARED") != "1") {
       var stage = load("SCENE_PREP_STAGE")
-      var scenario = scenario_options[parseInt(load("SELECTED_SCENE"))]
+      var scenario = scenario_options[load("SELECTED_SCENE")]
 
       if (stage || stage == "0") {
         // process text as an argument to the scene
@@ -182,6 +156,8 @@ const modifier = (text) => {
     }
   }
 
+  // have to give AID something non-empty for the first message
+  /// or else we'll go on an adventure in larion
   if (modifiedText.length == 0) {
     if (history.length == 0) {
       modifiedText = "You're a pokemon trainer. "
@@ -190,8 +166,14 @@ const modifier = (text) => {
     }
   }
 
+  // dynamic context
+  tick_context()
+  get_context()
+
+  // debug
   //console.log("INPUT WAS: " + text + " \nMODIFIED TO: " + modifiedText + " \nMESSAGE: " + state.message)
   
+  // output
   return { text: modifiedText }
 }
 
