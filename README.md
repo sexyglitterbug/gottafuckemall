@@ -1,7 +1,7 @@
 # Welcome!
 Gotta Fuck Em All is an AI Dungeon world where you can fuck pokemon! Play it for free [here](https://play.aidungeon.io/main/scenarioView?publicId=02c0bfb0-33ac-11eb-9bb0-4341dfa93603).
 
-Also join our discord! https://discord.gg/84KbGFuN
+Also join our discord! https://discord.gg/tBqrp39bBA
 
 # Recommanded Pokemon
 Some pokemon world really well because of how similar they are to real animals. If you want a consistently good experience you should try out rapidash, arcanine, machamp, charizard, or vaporeon. This is by no means a complete list of good pokemon, just some good starting points.
