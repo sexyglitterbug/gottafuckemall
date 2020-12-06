@@ -21,7 +21,7 @@ cuck_dom   | Human-on-pokemon cuckolding | You won a battle, but the loser has n
 porn_vid   | Pokemon-on-pokemon porn | You're tired of fucking your pokemon. Time to open up the good old internet.
 battle_rape | Pokemon-on-pokemon rape | **[tw: rape]** Your pokemon is too weak to fight anymore, but your opponent wants somethng else.
 gangrape   | Human-on-pokemon gangbang | **[tw: rape]** A group of pokemon kidnap you and have their way.
-(custom)   | You can input a custom scenario by starting your input with ":", for example ":You are Cherry's assistant.". The text after the colon will be pasted directly into the story and the game will begin from there.
+(custom)   | | You can input a custom scenario by starting your input with ":", for example ":You are Cherry's assistant.". The text after the colon will be pasted directly into the story and the game will begin from there.
 
 # Contributions
 This respository is publicly accessible. All contributions are welcome! This is a massive project and it needs all the help it can get.

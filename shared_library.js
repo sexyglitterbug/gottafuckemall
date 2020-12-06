@@ -2324,7 +2324,7 @@ dicks.set("generic_slit", {
 dicks.set("fox", {
 	species: ["vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "abra", "kadabra", "alakazam", "cubone", "marowak", "alolan_marowak", "eevee", "jolteon", "flareon", "espeon", "umbreon"],
 	adj: ["fox /a <ds>", "vulpine /a <ds>", "animal /a <ds>", "beastial /a <ds>", "beast /a <ds>", "animalistic /a <ds>"],
-	pussy: ["fox /a <ps>", "vulpine /a <ps>"],
+	pussy_adj: ["fox /a <ps>", "vulpine /a <ps>"],
 	dex: dicks.get("generic_sheath").dex + " At the base of a <ln>'s penis is a thick fleshy knot, which expands when he's getting close to orgasm."
 })
 dicks.set("vine", {
@@ -2345,7 +2345,7 @@ dicks.set("self", {
 dicks.set("feline", {
 	species: ["meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mewtwo", "mew", "raikou", "skitty", "delcatty"],
 	adj: ["feline /a <ds>", "barbed /a <ds>", "cat /a <ds>"],
-	pussy: ["feline /a <ps>", "cat /a <ps>"],
+	pussy_adj: ["feline /a <ps>", "cat /a <ps>"],
 	dex: "Male <lp> have a pink penis with soft barbs on the end. The barbs don't hurt, they feel pleasant. When not aroused, a <ln>'s penis is hidden in a protective fleshy sheath."
 })
 dicks.set("human", {
@@ -2514,7 +2514,7 @@ dicks.set("fish", {
 dicks.set("shark", {
 	species: ["sharpedo"],
 	adj: ["dual shark /a <ds>", "double shark /a <ds>", "twin shark /a <ds>"],
-	pussy: ["shark /a <ds>"],
+	pussy_adj: ["shark /a <ds>"],
 	dex: "Male <lp> have two shark penises. A male <ln>'s double shark dicks are slippery and pink. Male <lp> love using both of their twin shark cocks at once when having sex."
 })
 dicks.set("whale", {
@@ -2544,13 +2544,13 @@ dicks.set("ovipositor", {
 dicks.set("crocodile", {
 	species: ["totodile", "croconaw", "feraligatr"],
 	adj: ["crocodile /a <ds>", "croc /a <ds>", "gator /a <ds>", "crocodilian /a <ds>"],
-	pussy: ["crocodile /a <ps>", "croc /a <ps>", "gator /a <ps>", "crocodilian /a <ps>"],
+	pussy_adj: ["crocodile /a <ps>", "croc /a <ps>", "gator /a <ps>", "crocodilian /a <ps>"],
 	dex: "Male <lp> have a crocodile penis. The male <ln>'s crocodilian cock is extremely muscular and powerful. Male <ln> are known to fence with their crocodile dicks to display their power. Female <lp> will always choose the male with the biggest cock, so male <lp> have evolved to have big crocodile dicks."
 })
 dicks.set("cloud", {
 	species: ["castform", "rainy_castform", "sunny_castform", "snowy_castform"],
 	adj: ["cloud /a <ds>", "cloudy /a <ds>"],
-	pussy: ["cloud /a <ps>", "cloudy /a <ps>"],
+	pussy_adj: ["cloud /a <ps>", "cloudy /a <ps>"],
 	dex: "Male <lp> have a penis made entirely of clouds. The male <ln>'s cloud penis can't penetrate anything, but it can still feel pleasure."
 })
 /*
