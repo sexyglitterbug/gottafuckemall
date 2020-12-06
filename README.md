@@ -13,6 +13,7 @@ Also check out [name_reference.md](https://github.com/sexyglitterbug/gottafuckem
 Scene Name | Concept | Description
 ---------- | ------ | -----------
 starter    | Human-on-pokemon deflowering | It's your 18th birthday and Professor Cherry gave you your first pokemon. Now you have to make them cum to gain their trust.
+starter_rr | Pokemon-on-human | Same as the starter scene, but you play as the pokemon!
 sex_ed     | Pokemon-on-pokemon exhibitionism | Professor Cherry is giving a hands-on lecture about pokemon sexuality, and she needs a volunteer.
 milking    | Human-on-pokemon milking | Just another day on the job at the moomoo milk factory. This is either penis milking or breast milking depending on the pokemon gender
 legendary  | Human-on-pokemon servicing | A rare telepathic pokemon is super pent up and it's up to you to save the day!
@@ -43,6 +44,7 @@ Here's a list of some features I want to have
 	* Saving Yourself (Pokemon try to seduce you but you must protect your virginity)
 	* Wholesome cuddling (no scripted porn, just nighttime cuddles)
 	* Daycare Worker (trainer drops off two pokemon, you have to make them fuck)
+	* Daycase Worker 2 (trainer only drops off one pokemon, you gotta fuck it yourself)
 	* Mystery Dungeon (no humans, pokemon can talk)
 		* Rescue team initiation (service the team captain)
 		* Mission Reward (your partner fucks you after a successful mission)
