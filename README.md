@@ -41,6 +41,8 @@ Here's a list of some features I want to have
 	* Lab Notes (Prof. Cherry's first-person accounts of pokemon sexual research)
 	* Maid (Pokemon maid tries to seduce you)
 	* Saving Yourself (Pokemon try to seduce you but you must protect your virginity)
+	* Wholesome cuddling (no scripted porn, just nighttime cuddles)
+	* Daycare Worker (trainer drops off two pokemon, you have to make them fuck)
 	* Mystery Dungeon (no humans, pokemon can talk)
 		* Rescue team initiation (service the team captain)
 		* Mission Reward (your partner fucks you after a successful mission)
