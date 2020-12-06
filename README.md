@@ -52,4 +52,4 @@ Here's a list of some features I want to have
 		* Generic incest (seduce a family member)
 		* Bribery (guard arrests you for indecency, fuck them to get out of it)
 		* Caught masturbating (team member fucks you)
-		* Bath house
+		* Sauna fuck (you spy a sexy someone in the sauna)
