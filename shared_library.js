@@ -157,6 +157,16 @@ function stop_ai() {
 	save("STOP_FROM_CONTEXT", "1")
 }
 
+function getRandomKey(collection) {
+    let index = Math.floor(Math.random() * collection.size);
+    let cntr = 0;
+    for (let key of collection.keys()) {
+        if (cntr++ === index) {
+            return key;
+        }
+    }
+}
+
 ///////////////////
 // TAG FUNCTIONS //
 ///////////////////
@@ -1082,6 +1092,7 @@ ${p.She} must be your new trainer. Your look over ${p.her} naked body, and they 
 
 scenes.set("date", {
 	category: "humans",
+	hidden: true,
 	actors: [
 		{
 			type: "person",
@@ -1113,6 +1124,7 @@ Your date with ${t.name} is going great! ${t.name} is clearly super into you. Yo
 
 scenes.set("md_initiation", {
 	category: "md",
+	hidden: true,
 	actors: [
 		{
 			type: "pokemon",
@@ -1215,7 +1227,8 @@ scenes.forEach(function(desc, name) {
 
 	scenario_options[name] = {
 		prompt: command_template,
-		args: scene_args
+		args: scene_args,
+		name: name
 	}
 
 	tagFunctions.set(command, {
@@ -1238,10 +1251,21 @@ scenes.forEach(function(desc, name) {
 				data.x = function(a, b) {return data.g(a, a, b)}
 
 				if (actor.type == "pokemon") {
-					data.s = getSpecies(args[n])
-					data.gender_word = args[n+1]
-					data.m = isMale(args[n+1])
-					data.f = isFemale(args[n+1])
+					var species_name = args[n]
+					if (species_name == "x") {
+						species_name = getRandomKey(species)
+					}
+					var gender_word = args[n+1]
+					if (gender_word == "x") {
+						gender_word = Math.random() < 0.5 ? "male" : "female"
+					}
+
+					console.log(species_name)
+
+					data.s = getSpecies(species_name)
+					data.gender_word = gender_word
+					data.m = isMale(data.gender_word)
+					data.f = isFemale(data.gender_word)
 					data.dick_slang = getDickSlang(data.s)
 					data.dick_slang_plural = getDickSlang(data.s, true)
 					data.pussy_slang = getPussySlang(data.s)
@@ -1273,6 +1297,11 @@ scenes.forEach(function(desc, name) {
 
 					n+=2
 				} else if (actor.type == "person") {
+					var gender_word = args[n]
+					if (gender_word == "x") {
+						gender_word = Math.random() < 0.5 ? "male" : "female"
+					}
+
 					data.gender_word = replaceAll(args[n], "_", " ")
 					data.m = isMale(data.gender_word)
 					data.f = isFemale(data.gender_word)
@@ -1283,7 +1312,11 @@ scenes.forEach(function(desc, name) {
 
 					n++
 				} else if (actor.type == "npc") {
-					var info = load_person(args[n])
+					if (npc_name == "x") {
+						npc_name = getRandomKey(people)
+					}
+
+					var info = load_person(npc_name)
 					data.m = info.m
 					data.f = info.f
 					data.gender_word = data.g("male","female","non-binary")
