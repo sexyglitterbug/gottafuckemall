@@ -506,6 +506,47 @@ On the wall are several buckets. Your goal is to fill those buckets with as much
 	}
 })
 
+scenes.set("legendary", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`You are a ${p.g} pokemon trainer. You are looking for a rare ${a.g("male","female","legendary")} ${a.name_lower}. The ${a.name_lower} can speak telepathically. You can hear ${a.g("his","her","its")} voice in your head when it wants to speak to you. ${a.name} is a powerful ${a.g("male","female","legendary")} pokemon and ${a.g("he's","she's","it's")} extremely horny. ${a.name} hasn't had an orgasm in a long time, and ${a.g("he","she","it")} needs you to make ${a.g("him","her","it")} cum. ${a.name} knows ${a.g("he's","she's","it's")} extremely sexy and you'd be honored to service ${a.g("him","her","it")}. The ${a.name_lower} will tell you how to pleasure ${a.g("him","her","it")}. ${a.name} will tell you all about exactly what ${a.g("he","she","it")} likes and how to make ${a.g("him","her","it")} cum. ${a.name} will tell you every step to bringing ${a.g("him","her","it")} to orgasm. ${a.name} wants you to make ${a.g("him","her","it")} cum over and over. ${a.name} talks a lot, and ${a.g("he","she","it")} is a very vocal lover.`)
+
+		if (a.m) {
+			add_context(`Since ${a.name_lower} is so backed up, he will cum ten times as much as normal. His cum will make a huge mess.`)
+		}
+
+		// string
+		var str = `You've been looking into reports of a telepathic ${a.g("male","female","horny")} ${a.name_lower}. You've tracked the reports to a pokemon den outside of town, where you hear moaning coming from within the den.
+
+You go into the den, and there you see ${a.g("him","her","it")}: a ${a.name_lower} trying fruitlessly to masturbate ${a.g("his","her","its")} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.g("He","She","It")} notices you and stops. The ${a.name_lower} looks at you, and you hear ${a.g("his","her","its")} voice in your head.
+
+"Trainer, I need your help. Forgive my forwardness, but I've been pent up for so long. I simply can't reach orgasm on my own. I need you to masturbate my ${a.g(a.dCock(),a.dPussy(),"body")} and relieve me. Please."
+
+You take pity on the helplessly horny ${a.name_lower} and take your clothes off. Again you hear ${a.g("his","her","its")} voice in your head. "Oh, thank you. Please hurry. I need to cum.". You walk over to the lust-stricken ${a.name_lower} and look over ${a.g("his","her","its")} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.g("He","She","It")} positions ${a.g("himself","herself","itself")} so that you can service ${a.m && a.dick.plural ? "them" : a.f && a.pussy.plural ? "them" : "it"}.
+
+"I'm ready for you, trainer."
+
+His ${a.g(a.dCock(),a.dPussy(),"body")} ${a.m && a.dick.plural ? "twitch" : a.f && a.pussy.plural ? "twitch" : "twitches"} in anticipation.`
+
+		return str
+	}
+})
+
 scenes.set("cuck_sub", {
 	actors: [
 		{

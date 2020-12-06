@@ -15,6 +15,7 @@ Scene Name | Concept | Description
 starter    | Human-on-pokemon deflowering | It's your 18th birthday and Professor Cherry gave you your first pokemon. Now you have to make them cum to gain their trust.
 sex_ed     | Pokemon-on-pokemon exhibitionism | Professor Cherry is giving a hands-on lecture about pokemon sexuality, and she needs a volunteer.
 milking    | Human-on-pokemon milking | Just another day on the job at the moomoo milk factory. This is either penis milking or breast milking depending on the pokemon gender
+legendary  | Human-on-pokemon servicing | A rare telepathic pokemon is super pent up and it's up to you to save the day!
 cuck_sub   | Human-on-pokemon cuckolding | You lost a battle but you have no money! Good thing your pokemon is willing to bail you out.
 cuck_dom   | Human-on-pokemon cuckolding | You won a battle, but the loser has no money! They do have a sexy pokemon, though.
 porn_vid   | Pokemon-on-pokemon porn | You're tired of fucking your pokemon. Time to open up the good old internet.
@@ -35,7 +36,6 @@ Here's a list of some features I want to have
 	* Sex battle (you battle another trainer, determine the winner by making your pokemon fuck)
 	* Team Threesome (you bring out two pokemon and fuck them)
 	* Safari Zone (watch pokemon in their natural habitat)
-	* Legendary encounter (a talking pokemon dominates you)
 	* First time (lose your virginity to a pokemon)
 	* Cold open (most scenarios start with everyone already horny. On this one you have to do the work to seduce the pokemon)
 	* Lab Notes (Prof. Cherry's first-person accounts of pokemon sexual research)
