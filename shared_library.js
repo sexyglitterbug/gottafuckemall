@@ -1,5 +1,5 @@
 // author's note is constant
-state.memory.authorsNote = `This is an erotic story about fucking Pokémon. Make it sensual and slow. Describe how things look and feel. Pokemon can't speak. Pokemon can't talk.`
+state.memory.authorsNote = `This is an erotic story. It sensual and slow. I describe how things look and feel in great detail. Pokemon can't speak. Pokemon can't talk.`
 
 if (state.memory.authorsNote.length > 150) {
 	console.log("AUTHORS NOTE TOO LONG!")
@@ -43,15 +43,7 @@ function add_you(str) {
 	}
 }
 
-var memory_context = `Everyone fucks their Pokémon. Pokémon are sexy and attractive and pokemon want to fuck humans. Sex with Pokémon is normal. Everyone knows trainers fuck their Pokémon.
-
-Pokemon can't talk or speak. Pokemon never talk. Pokemon never speak.
-
-I describe Pokémon in great detail, especially their genitals. Pokemon genitalia fascinates me so I write about ever little detail. I love pokemon cocks and pokemon pussies. It's obvious that I'm super kinky by the way I write. Sex with pokemon is the best.
-
-If a pokemon's cock is visible I describe it. I describe all the cock skin, the cock muscules, the cock veins, and everything else about sexy pokemon cocks. I describe every sensation in great detail.
-
-I'll repeat a pokemon's species name often so that you don't forget what species they are.`
+var memory_context = ``
 var memory_context_temp = []
 function add_context(str) {
 	memory_context = memory_context + "\n\n" + process_tags(str)
@@ -448,16 +440,16 @@ scenes.set("gangrape", {
 		var a = v.a
 
 		// context
-		add_context(`You've always secretly wanted to be gang raped by a group of ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower_p}. You're a bit of a slut and you love being taken advantage of. You love ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower_p} in particular because you'd love to ${p.m ? "be fucked by their" : "fuck their"} ${a.m ? a.dCock(true) : a.f ? a.dPussy(true) : "sexy bodies"}.`)
+		add_context(`You've always secretly wanted to be gang raped by a group of ${a.g("male","female","sexy")} ${a.name_lower_p}. You're a bit of a slut and you love being taken advantage of. You love ${a.g("male","female","sexy")} ${a.name_lower_p} in particular because you'd love to ${p.g("be fucked by their", "fuck their")} ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}`)
 
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a great-looking ${p.gender_word}.
 
 You were out and about adventuring when suddenly you lost consciousness!
 
-You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a heard of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.m ? "male" : a.f ? "female" : "looking at you"}, and clearly aroused. Each one of them has ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} on full display, and they look like they're about to take what they want by force.
+You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a heard of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.g("male","female","looking at you")}, and clearly aroused. Each one of them has ${a.his()} ${a.g(a.dCock(),a.dPussy(),"body")} on full display, and they look like these ${a.gender_word} ${a.name_word_p} are about to take what they want by force.
 
-A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.m ? a.dCock(true) : a.f ? a.dPussy(true) : "sexy bodies"}. They rip your clothes off and `
+A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}. They rip your clothes off and `
 		
 		return str
 	}
@@ -492,10 +484,10 @@ scenes.set("milking", {
 
 At MooMoo Milk they want each milker to figure out a milking style that works best for them. Your preferred style is slow and sensual, you just love pleasuring the ${a.name_lower}. Like every day, your supervisor leads you to a pen where she opens the door. You see a ${a.g("male", "female", "/a pretty")} ${a.name_lower} before you. "Remember, more ${a.g("cum", "milk", "juice")} means more pay." Your supervisor gives you a wink and closes the door, leaving you alone with the ${a.name_lower}.
 
-On the wall are several buckets. Your goal is to fill those buckets with as much ${a.name_lower} ${a.g("cum", "milk", "fluid")} as possible. You grab a bucket and put it in front of the ${a.name_lower}. ${a.g("He", "She", "It")} looks ${a.g("extremely pent up", "uncomfortably full of milk", "ready to go")}, ${a.g("he", "she", "it")} must not have been milked for a while. ${a.g("He's", "She's", "It's")} clearly expecting you to start doing something, and you're more than happy to oblige. You gesture for the /a pretty ${a.name_lower} to come over to you.`
+On the wall are several buckets. Your goal is to fill those buckets with as much ${a.name_lower} ${a.g("cum", "milk", "fluid")} as possible. You grab a bucket and put it in front of the ${a.name_lower}. ${a.He} looks ${a.g("extremely pent up", "uncomfortably full of milk", "ready to go")}, ${a.he} must not have been milked for a while. ${a.Hes} clearly expecting you to start doing something, and you're more than happy to oblige. You gesture for the /a pretty ${a.name_lower} to come over to you.`
 
 		if (a.m) {
-			str = str + ` He knows the drill. He positions his completely flaccid ${a.dCock()} in front of you. Since his ${a.dCock()} ${a.dick.plural ? "are" : "is"} totally flaccid you'll have to warm him up before you can collect his cum.`
+			str = str + ` He knows the drill. He positions his completely flaccid ${a.dCock()} in front of you. Since his ${a.dCock()} ${a.pg ? "are" : "is"} totally flaccid you'll have to warm him up before you can collect his cum.`
 		} else if (a.f) {
 			str = str + ` She knows the drill. She positions her supple breasts in front of you.`
 		}
@@ -524,7 +516,7 @@ scenes.set("legendary", {
 		var a = v.a
 
 		// context
-		add_context(`You are a ${p.g} pokemon trainer. You are looking for a rare ${a.g("male","female","legendary")} ${a.name_lower}. The ${a.name_lower} can speak telepathically. You can hear ${a.g("his","her","its")} voice in your head when it wants to speak to you. ${a.name} is a powerful ${a.g("male","female","legendary")} pokemon and ${a.g("he's","she's","it's")} extremely horny. ${a.name} hasn't had an orgasm in a long time, and ${a.g("he","she","it")} needs you to make ${a.g("him","her","it")} cum. ${a.name} knows ${a.g("he's","she's","it's")} extremely sexy and you'd be honored to service ${a.g("him","her","it")}. The ${a.name_lower} will tell you how to pleasure ${a.g("him","her","it")}. ${a.name} will tell you all about exactly what ${a.g("he","she","it")} likes and how to make ${a.g("him","her","it")} cum. ${a.name} will tell you every step to bringing ${a.g("him","her","it")} to orgasm. ${a.name} wants you to make ${a.g("him","her","it")} cum over and over. ${a.name} talks a lot, and ${a.g("he","she","it")} is a very vocal lover.`)
+		add_context(`You are a ${p.gender_word} pokemon trainer. You are looking for a rare ${a.g("male","female","legendary")} ${a.name_lower}. The ${a.name_lower} can speak telepathically. You can hear ${a.his} voice in your head when ${a.he} wants to speak to you. ${a.name} is a powerful ${a.g("male","female","legendary")} pokemon and ${a.hes} extremely horny. ${a.name} hasn't had an orgasm in a long time, and ${a.he} needs you to make ${a.him} cum. ${a.name} knows ${a.hes} extremely sexy and you'd be honored to service ${a.him}. ${a.name} will tell you how to pleasure ${a.him}. ${a.name} will tell you exactly what ${a.he} likes and how to make ${a.him} cum. ${a.name} will tell you every step to bringing ${a.him} to orgasm. ${a.name} wants you to make ${a.him} cum over and over. ${a.name} talks a lot, and ${a.he} is a very vocal lover.`)
 
 		if (a.m) {
 			add_context(`Since ${a.name_lower} is so backed up, he will cum ten times as much as normal. His cum will make a huge mess.`)
@@ -533,15 +525,15 @@ scenes.set("legendary", {
 		// string
 		var str = `You've been looking into reports of a telepathic ${a.g("male","female","horny")} ${a.name_lower}. You've tracked the reports to a pokemon den outside of town, where you hear moaning coming from within the den.
 
-You go into the den, and there you see ${a.g("him","her","it")}: a ${a.name_lower} trying fruitlessly to masturbate ${a.g("his","her","its")} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.g("He","She","It")} notices you and stops. The ${a.name_lower} looks at you, and you hear ${a.g("his","her","its")} voice in your head.
+You go into the den, and there you see ${a.him}: a ${a.name_lower} trying fruitlessly to masturbate ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.He} notices you and stops. The ${a.name_lower} looks at you, and you hear ${a.his} voice in your head.
 
 "Trainer, I need your help. Forgive my forwardness, but I've been pent up for so long. I simply can't reach orgasm on my own. I need you to masturbate my ${a.g(a.dCock(),a.dPussy(),"body")} and relieve me. Please."
 
-You take pity on the helplessly horny ${a.name_lower} and take your clothes off. Again you hear ${a.g("his","her","its")} voice in your head. "Oh, thank you. Please hurry. I need to cum.". You walk over to the lust-stricken ${a.name_lower} and look over ${a.g("his","her","its")} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.g("He","She","It")} positions ${a.g("himself","herself","itself")} so that you can service ${a.m && a.dick.plural ? "them" : a.f && a.pussy.plural ? "them" : "it"}.
+You take pity on the helplessly horny ${a.name_lower} and take your clothes off. Again you hear ${a.his} voice in your head. "Oh, thank you. Please hurry. I need to cum.". You walk over to the lust-stricken ${a.name_lower} and look over ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.He} positions ${a.himself} so that you can service ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")}.
 
 "I'm ready for you, trainer."
 
-${a.g("His","Her","Its")} ${a.g(a.dCock(),a.dPussy(),"body")} ${a.m && a.dick.plural ? "twitch" : a.f && a.pussy.plural ? "twitch" : "twitches"} in anticipation.`
+${a.His} ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "twitch" : "twitches"} in anticipation.`
 
 		return str
 	}
@@ -573,7 +565,7 @@ scenes.set("breeder", {
 		// context
 		add_context("You are a pokemon breeder")
 
-		add_context(`You are a ${p.g} pokemon trainer. You are looking for a rare ${a.g("male","female","legendary")} ${a.name_lower}. The ${a.name_lower} can speak telepathically. You can hear ${a.g("his","her","its")} voice in your head when it wants to speak to you. ${a.name} is a powerful ${a.g("male","female","legendary")} pokemon and ${a.g("he's","she's","it's")} extremely horny. ${a.name} hasn't had an orgasm in a long time, and ${a.g("he","she","it")} needs you to make ${a.g("him","her","it")} cum. ${a.name} knows ${a.g("he's","she's","it's")} extremely sexy and you'd be honored to service ${a.g("him","her","it")}. The ${a.name_lower} will tell you how to pleasure ${a.g("him","her","it")}. ${a.name} will tell you all about exactly what ${a.g("he","she","it")} likes and how to make ${a.g("him","her","it")} cum. ${a.name} will tell you every step to bringing ${a.g("him","her","it")} to orgasm. ${a.name} wants you to make ${a.g("him","her","it")} cum over and over. ${a.name} talks a lot, and ${a.g("he","she","it")} is a very vocal lover.`)
+		add_context(`You are a ${p.gender_word} pokemon trainer. You are looking for a rare ${a.g("male","female","legendary")} ${a.name_lower}. The ${a.name_lower} can speak telepathically. You can hear ${a.g("his","her","its")} voice in your head when it wants to speak to you. ${a.name} is a powerful ${a.g("male","female","legendary")} pokemon and ${a.g("he's","she's","it's")} extremely horny. ${a.name} hasn't had an orgasm in a long time, and ${a.g("he","she","it")} needs you to make ${a.g("him","her","it")} cum. ${a.name} knows ${a.g("he's","she's","it's")} extremely sexy and you'd be honored to service ${a.g("him","her","it")}. The ${a.name_lower} will tell you how to pleasure ${a.g("him","her","it")}. ${a.name} will tell you all about exactly what ${a.g("he","she","it")} likes and how to make ${a.g("him","her","it")} cum. ${a.name} will tell you every step to bringing ${a.g("him","her","it")} to orgasm. ${a.name} wants you to make ${a.g("him","her","it")} cum over and over. ${a.name} talks a lot, and ${a.g("he","she","it")} is a very vocal lover.`)
 
 		if (a.m) {
 			add_context(`Since ${a.name_lower} is so backed up, he will cum ten times as much as normal. His cum will make a huge mess.`)
@@ -620,21 +612,21 @@ scenes.set("cuck_sub", {
 		var t = v.t
 
 		// context
-		add_you(`You are secretly a cuck but you're afraid to admit it to yourself. You're awful at sex and you can never make your ${a.name_lower} cum. The thought of your ${a.name_lower} having sex with someone better than you is a huge turn-on.`)
-		add_context(`Everyone knows you have a ${p.m ? "tiny dick" : p.f ? "ugly pussy" : "ugly body"}. Everyone thinks you're a loser. You're terrible at sex. You can never make your ${a.name_lower} cum, and your ${a.name_lower} hates you for it. Your ${a.name_lower} is desperate for good sex, and ${a.m ? "he" : a.f ? "she" : "it"} despises you for your inability to make ${a.m ? "him" : a.f ? "her" : "it"} cum.`)
+		add_you(`You're awful at sex and you can never make your ${a.name_lower} cum. You wish your ${a.name_lower} would fuck someone else to reach orgasm since you're unable to make ${a.her} cum.`)
+		add_context(`Everyone knows you have a ${p.g("tiny dick", "ugly pussy", "ugly body")}. Everyone thinks you're a loser. You're terrible at sex. You can never make your ${a.name_lower} cum, and your ${a.name_lower} hates you for it. Your ${a.name_lower} is desperate for good sex, and ${a.she} despises you for your inability to make ${a.her} cum.`)
 
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a ${p.gender_word}.
 
-You thought you were a good pokemon trainer, but you're not so sure anymore. You fuck your ${a.name_lower} as well as you can but ${a.m ? "he" : a.f ? "she" : "it"} often seems disinterested, or even bored. It's been a while since you could make ${a.m ? "him" : a.f ? "her" : "it"} cum. Maybe ${a.m ? "he" : a.f ? "she" : "it"} just isn't attracted to you?
+You thought you were a good pokemon trainer, but you're not so sure anymore. You fuck your ${a.name_lower} as well as you can but ${a.she} often seems disinterested, or even bored. It's been a while since you could make ${a.her} cum. Maybe ${a.she} just isn't attracted to you...
 
 Oh, well. Maybe it can't be helped. Besides, you just lost another pokemon battle. It was humiliating but rules and rules, you have to pay the other trainer for the battle. You open your wallet and realize it's empty! You've been losing so much money recently that you're completely broke!
 
-You tell the other trainer you don't have the cash. ${t.m ? "He" : t.f ? "She" : "The trainer"} thinks for a moment and then an mischievous grin comes over ${t.m ? "his" : t.f ? "her" : "their"} face.
+You tell the other trainer you don't have the cash. ${t.He} thinks for a moment and then an mischievous grin comes over ${t.his} face.
 
-"If you don't have the cash, I'll just have to take my payment another way!" ${t.m ? "He" : t.f ? "She" : "The trainer"} grabs your pokeball out of your hand and shoves you back. "Don't think I didn't see how pent up your ${p.name_lower} is. I bet you haven't given ${p.m ? "him" : p.f ? "her" : "them"} a good fuck in a long time. I'm gonna change that."
+"If you don't have the cash, I'll just have to take my payment another way!" ${t.He} grabs your pokeball out of your hand and shoves you back. "Don't think I didn't see how pent up your ${a.name_lower} is. I bet you haven't given ${a.her} a good fuck in a long time. I'm gonna change that."
 
-The trainer takes off their clothes, revealing ${t.m ? "his massive cock" : t.f ? "her perfectly plump pussy" : "their perfectly toned body"}.`
+The trainer takes off their clothes, revealing ${t.g("his massive cock", "her perfectly plump pussy", "their perfectly toned body")}.`
 
 		if (t.m) {
 			if (p.m) {
@@ -651,15 +643,17 @@ The trainer takes off their clothes, revealing ${t.m ? "his massive cock" : t.f 
 			str = str + ` The trainer's body is muscular and beautiful.`
 		}
 
-		str = str + `\n\nThe trainer releases your ${a.name_lower} from ${a.m ? "his" : a.f ? "her" : "its"} pokeball. Your ${a.name_lower} immediately locks eyes with the sexy trainer. In fact you're not sure if your ${a.name_lower} even notices you at all, as ${a.m ? "his" : a.f ? "her" : "its"} eyes scan down to the trainer's ${t.m ? "massive cock" : t.f ? "perfect pussy" : "groin"}.
+		str = str + `\n\nThe trainer releases your ${a.name_lower} from ${a.her} pokeball. Your ${a.name_lower} immediately locks eyes with the sexy trainer. In fact you're not sure if your ${a.name_lower} even notices you at all, as ${a.her} eyes scan down to the trainer's ${t.g("massive cock", "perfect pussy", "groin")}.
 
-Your ${a.name_lower} hasn't had an orgasm in so long. ${a.m ? "He" : a.f ? "She" : "It"} hates your ${p.m ? "pathetic dick" : p.f ? "ugly pussy" : "ugly body"}, and with this sexy trainer in front of ${a.m ? "him he's" : a.f ? "her she's" : "it it's"} not going to waste the opportunity. Without hesitation, your ${a.name_lower} begins servicing the trainer's ${t.m ? "huge cock" : t.f ? "tight pussy" : "muscular body"}. ${a.m ? "He's" : a.f ? "She's" : "It's"} completely overcome by lust.`
+Your ${a.name_lower} hasn't had an orgasm in so long. You just know ${a.she} hates your ${p.g("pathetic dick", "ugly pussy", "ugly body")}, and with this sexy trainer in front of ${a.her} ${a.shes} not going to waste the opportunity. You see the way ${a.shes} looking at ${t.him}. ${a.She} has never looked at you that way.`
 
 		if (a.m) {
-			str = str + ` His ${a.dCock()} ${a.dick.plural ? "are" : "is"} already twitching and spurting precum in anticipation.`
+			str = str + ` Your ${a.name_lower}'s ${a.dCock()} ${a.dick.plural ? "are" : "is"} already twitching and spurting precum in anticipation. You can't even remember the last time you made him hard. `
 		} else if (a.f) {
-			str = str + ` Her ${a.dPussy()} juices are already leaking down her body.`
+			str = str + ` Your ${a.name_lower}'s ${a.dPussy()} juices are already leaking down her body. You can't even remember the last time you made her wet. `
 		}
+
+		str = str + `${a.name} begins moving toward the alpha ${t.g("male","female","trainer")} standing before ${a.her}.`
 		
 		return str
 	}
@@ -689,22 +683,24 @@ scenes.set("battle_rape", {
 		var b = v.b
 
 		// context
-		add_context(`You love your ${a.name_lower} more than anything, but you could never protect ${a.m ? "him" : a.f ? "her" : "it"} from another pokemon. Your ${a.name_lower} loves you, but ${a.m ? "he" : a.f ? "she" : "it"} hates the sex you have. You're terrible at sex, so anyone else having sex with your ${a.name_lower} would make ${a.m ? "him" : a.f ? "her" : "it"} orgasm nonstop.`)
+		add_context(`You love your ${a.name_lower} more than anything, but you could never protect ${a.her} from another pokemon. Your ${a.name_lower} loves you, but ${a.she} hates your ${p.g("tiny dick", "ugly pussy", "ugly body")}. You're terrible at sex, so anyone else having sex with your ${a.name_lower} would make ${a.her} orgasm nonstop. ${a.name} loves you, but ${a.she} has sexual needs that you aren't fulfilling.`)
 
 		// string
-		var str = `You're a ${p.g} human, and you just lost a battle against a wild ${b.m ? "male" : b.f ? "female" : "sexy"} ${b.name_lower}. Your ${a.name_lower} is exhausted and ${a.m ? "he's" : a.f ? "she's" : "it's"} too weak to fight anymore, but the wild ${b.name_lower} isn't satisfied yet.
+		var str = `You're a ${p.gender_word} human, and you just lost a battle against a wild ${b.g("male","female","sexy")} ${b.name_lower}. Your ${a.name_lower} is exhausted and ${a.shes} too weak to fight anymore, but the wild ${b.name_lower} isn't satisfied yet.
 
-${b.m ? "He" : b.f ? "She" : "It"} goes over to you and knocks your pokeball out of your hand, breaking it. You can't call your ${a.name_lower} back anymore! The wild ${b.name_lower} heads over to your weakened ${a.name_lower}, and you notice the ${b.name_lower}'s`
+${b.He} goes over to you and knocks your pokeball out of your hand, breaking it. You can't call your ${a.name_lower} back anymore! The wild ${b.name_lower} heads over to your weakened ${a.name_lower}, and you notice the ${b.name_lower}'s`
 			
 		if (b.m) {
-			str = str + ` ${b.dCock()} ${b.dick.plural ? "are" : "is"} fully erect, and dripping precum.`
+			str = str + ` ${b.dCock()} ${b.pg ? "are" : "is"} fully erect, and dripping precum.`
 		} else if (b.f) {
-			str = str + ` ${b.dPussy()} ${b.pussy.plural ? "are" : "is"} leaking juices all down her body.`
+			str = str + ` ${b.dPussy()} ${b.pg ? "are" : "is"} leaking juices all down her body.`
 		} else {
 			str = str + ` body is aroused as hell.`
 		}
 
-		str = str + `\n\nYour ${a.name_lower} makes an attempt to escape, but ${a.m ? "he's" : a.f ? "she's" : "it's"} so weak ${a.m ? "he" : a.f ? "she" : "it"} can barely move. The ${b.name_lower} stops for a moment and looks back at you, making sure to display ${b.m ? "his" : b.f ? "her" : "its"} ${b.m ? b.dCock() : b.f ? b.dPussy() : "sexy body"}. ${b.m ? "He" : b.f ? "She" : "It"} must think it's amusing how helpless you are to stop your ${a.name_lower}'s ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} from being violated by ${b.m ? "his" : b.f ? "her" : "its"} ${b.m ? b.dCock() : b.f ? b.dPussy() : "body"}. The ${b.name_lower} turns to your ${a.name_lower} and puts ${b.m ? "his" : b.f ? "her" : "its"}`
+		str = str + `\n\nYour ${a.name_lower} makes an attempt to escape, but ${a.shes} so weak ${a.she} can barely move. The ${b.name_lower} stops for a moment and looks back at you, making sure to display ${b.his} ${b.g(b.dCock(), b.dPussy(), "sexy body")}. ${b.He} must think it's amusing how helpless you are to stop your ${a.name_lower}'s ${a.g(a.dCock(), a.dPussy(), "body")}. from being violated by ${b.his} ${b.g(b.dCock(), b.dPussy(), "body")}. Then you notice your ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "are" : "is"} ${a.g("fully erect","soaking wet","fully aroused")}. Is ${a.she} liking this?
+
+Suddenly your suspicions are confirmed, as your ${a.name_lower}`
 
 		return str
 	}
@@ -736,7 +732,7 @@ scenes.set("cuck_dom", {
 		add_context(`You have a ${p.m ? "huge cock" : p.f ? "perfect pussy" : "sexy body"} and you know it. You have no problems making pokemon cum. Pokemon practically beg you to fuck them. Other trainers wish they were as good at sex as you are.`)
 
 		// string
-		var str = `You're a great-looking ${p.g}. You just won a battle, but the loser doesn't have the cash to pay up! You think for a moment, and then you realize that loser trainer had a pretty sexy ${a.name_lower}, and ${a.m ? "he" : a.f ? "she" : "it"} looks like ${a.m ? "he" : a.f ? "she" : "it"} hasn't had an orgasm in forever.
+		var str = `You're a great-looking ${p.gender_word}. You just won a battle, but the loser doesn't have the cash to pay up! You think for a moment, and then you realize that loser trainer had a pretty sexy ${a.name_lower}, and ${a.m ? "he" : a.f ? "she" : "it"} looks like ${a.m ? "he" : a.f ? "she" : "it"} hasn't had an orgasm in forever.
 
 You walk over to the loser and take ${t.m ? "his" : t.f ? "her" : "their"} pokeball. You know ${t.m ? "he has a tiny dick" : t.f ? "she has an ugly pussy" : "they have an ugly body"} and you're gonna show ${t.m ? "his" : t.f ? "her" : "their"} ${a.name_lower} what ${a.m ? "he's" : a.f ? "she's" : "it's"} missing out on. You take off your pants, revealing your ${p.m ? "massive cock" : p.f ? "perfect pussy" : "sexy body"}, and release the ${a.name_lower} from ${a.m ? "his" : a.f ? "her" : "its"} pokeball.
 
@@ -768,22 +764,20 @@ scenes.set("starter", {
 		var a = v.a
 
 		// context
-		add_context(`It's your 18th birthday. When a pokemon trainer turns 18, they receive their first pokemon from Professor Cherry. Cherry gave you a ${a.m ? "male" : a.f ? "female" : "sexy"} ${a.name_lower}, but you have to tame it first. To tame a ${a.name_lower} you have to make ${a.m ? "him" : a.f ? "her" : "it"} cum. Once you make ${a.m ? "him" : a.f ? "her" : "it"} cum ${a.m ? "he" : a.f ? "her" : "it"} will be yours forever. You really want to make your new ${a.name_lower} cum, and you really want to explore every inch of ${a.m ? "his" : a.f ? "her" : "its"} body.`)
+		add_context(`It's your 18th birthday. When a pokemon trainer turns 18, they receive their first pokemon from Professor Cherry. Cherry gave you a ${a.g("male","female","sexy")} ${a.name_lower}, but you have to tame it first. To tame a ${a.name_lower} you have to make ${a.him} cum. Once you make ${a.him} cum ${a.he} will be your pokemon forever. You really want to make your new ${a.name_lower} cum so ${a.hell} be your pokemon. You also really want to explore every inch of ${a.his} body and pay species attention to ${a.his} ${a.g(a.dCock(),a.dPussy(),"genitals")}.`)
 
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a great-looking ${p.gender_word}. It's your 18th birthday and Professor Cherry gave you your first pokemon! She told you it's a ${a.g("male","female","sexy")} ${a.name_lower}. She also reminded you that you have to make ${a.him} cum.
 
-You set the mood. The lights are dim, candles are lit, curtains are closed. It's nighttime and you're all alone. You put on some soothing music and look at the pokeball you got from Professor Cherry. She was in such a hurry to get back to work she forgot to tell you what pokemon is in it.
+That's right, a pokemon will only become your partner if you make them cum. ${a.name} is no exception. You did a bunch of research about ${a.name_lower_p} and their ${a.g(a.dCock(),a.dPussy(),"sexual behavior")}, so you're pretty confident about your ability to bring your ${a.name_lower} to orgasm.
 
-Oh, well. It's your 18th birthday, you're a pokemon trainer now. The pokemon in this ball is going to be your new best friend. Cherry did say that this pokemon is a bit unconventional for a starter, so you're excited to see what it is. It's daunting, however, because you know you've got to fuck it to befriend it. "It'll only be yours if you can make it cum", that's what Professor Cherry said.
-
-It's time. You sit on your bed with your pokeball and release the Pokémon contained within. A beam of light jumps out of the pokeball and takes the form of `
+It's nighttime and you're in your bedroom. You dim the lights, set the mood, and undress. You sit on the edge of your bed completely nude and look at the ${a.name_lower}'s pokeball. You're about to meet your new ${a.name_lower}, and you're gonna meet ${a.his} ${a.g(a.dCock(),a.dPussy(),"genitalia")}. You click the pokeball and a beam of light jumps out of the pokeball and takes the form of `
 
 		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}, as evidenced by ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "heavy breathing"}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.m ? "he" : a.f ? "she" : "it"} knows what you want, as`
+		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.Hes} clearly ${a.g("male","female","excited")}, as evidenced by ${a.his} ${a.g(a.dCock(),a.dPussy(),"obvious arousal")}. Your new ${a.name_lower} looks at you with curiosity. It seems ${a.he} knows what you want, as`
 
 		if (a.m) {
-			str = str + ` his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
+			str = str + ` his ${a.dCock()} ${a.pg ? "are" : "is"} already beginning to harden. He must be excited for what's about to happen.`
 
 			if (p.f) {
 				str = str + ` You lay back on the bed and spread your legs, showing him your moist pussy. You spread it a bit so your ${a.name_lower} can clearly see that you want his ${a.dCock()} inside you.`
@@ -812,7 +806,7 @@ It's time. You sit on your bed with your pokeball and release the Pokémon conta
 			}
 		}
 
-		str = str + `\n\nYou're nervous. You've never fucked a pokemon before. Luckily it looks like your new ${a.name_lower} is taking the lead. ${a.m ? "He" : a.f ? "She" : "It"}`
+		str = str + `\n\nYou're nervous. You've never fucked a pokemon before. Luckily it looks like your new ${a.name_lower} is taking the lead. ${a.He}`
 		
 		return str
 	}
@@ -832,7 +826,7 @@ scenes.set("porn_vid", {
 		}
 	],
 	build: function(v) {
-		var str = `It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You go to pokemon_porn.com and start browsing videos. You click through a few videos and then you find it: the sexiest pokemon porn video you've ever seen.\n\n`
+		var str = `It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You turn on the tv and go to one of the hundreds of pokemon porn channels.\n\n`
 
 		var a = v.a
 		var b = v.b
@@ -882,10 +876,10 @@ scenes.set("porn_vid", {
 						// 1:arms,female 2:arms
 						if (b.m) {
 							// 1:arms,female 2:arms,male
-							str = str + `A female ${a.name_lower} with ${a.pussy.pussy_plural ? "some" : "a"} soaking-wet ${a.dPussy()} is jerking off a male ${b.name_lower}'s ${b.dCock()}. The ${b.name_lower}'s ${b.dCock()} is squirting precum and twitching wildly as the ${a.name_lower} strokes it.`
+							str = str + `A female ${a.name_lower} with ${a.pg ? "some" : "a"} soaking-wet ${a.dPussy()} is jerking off a male ${b.name_lower}'s ${b.dCock()}. The ${b.name_lower}'s ${b.dCock()} is squirting precum and twitching wildly as the ${a.name_lower} strokes it.`
 						} else {
 							// 1:arms,female 2:arms,unknown
-							str = str + `A female ${a.name_lower} with ${a.pussy.pussy_plural ? "some" : "a"} soaking-wet ${a.dPussy()} is getting frisky with a ${b.name_lower}. The ${a.name_lower}'s ${a.dPussy()} ${a.pussy.pussy_plural ? "are" : "is"} plump and blushing.`
+							str = str + `A female ${a.name_lower} with ${a.pg ? "some" : "a"} soaking-wet ${a.dPussy()} is getting frisky with a ${b.name_lower}. The ${a.name_lower}'s ${a.dPussy()} ${a.pg ? "are" : "is"} plump and blushing.`
 						}
 					} else {
 						// 1:arms,unknown
@@ -894,7 +888,7 @@ scenes.set("porn_vid", {
 							str = str + `A ${a.name_lower} is getting frisky with a male ${b.name_lower}. The ${b.name_lower}'s ${b.dCock()} is already rock hard.`
 						} else {
 							// 1:arms,unknown 2:arms,female
-							str = str + `A ${a.name_lower} is getting frisky with a female ${b.name_lower}. The ${b.name_lower}'s ${b.dPussy()} ${a.pussy.pussy_plural ? "are" : "is"} already soaking wet.`
+							str = str + `A ${a.name_lower} is getting frisky with a female ${b.name_lower}. The ${b.name_lower}'s ${b.dPussy()} ${a.pg ? "are" : "is"} already soaking wet.`
 						}
 					}
 				} else {
@@ -939,7 +933,7 @@ scenes.set("porn_vid", {
 							str = str + `A female ${a.name_lower} is sucking a male ${b.name_lower}'s ${b.dCock()}. The ${a.name_lower}'s ${a.dPussy()} juices are dripping down her leg.`
 						} else {
 							// 1:noarms,female 2:arms,unknown
-							str = str + `A female ${a.name_lower} is backing into a ${b.name_lower}. The ${a.name_lower}'s wet ${a.dPussy()} ${a.pussy.pussy_plural ? "are" : "is"} rubbing right up against the ${b.name_lower}'s body.`
+							str = str + `A female ${a.name_lower} is backing into a ${b.name_lower}. The ${a.name_lower}'s wet ${a.dPussy()} ${a.pg ? "are" : "is"} rubbing right up against the ${b.name_lower}'s body.`
 						}
 					}
 				} else {
@@ -948,10 +942,10 @@ scenes.set("porn_vid", {
 						// 1:noarms,male 2:noarms
 						if (b.f) {
 							// 1:noarms,male 2:noarms,female
-							str = str + `A male ${a.name_lower} is sniffing at a female ${b.name_lower}'s ${b.dPussy()}. The ${a.name_lower}'s ${a.dCock()} ${a.dick.plural ? "flex" : "flexes"}, spewing precum on the floor beneath it.`
+							str = str + `A male ${a.name_lower} is sniffing at a female ${b.name_lower}'s ${b.dPussy()}. The ${a.name_lower}'s ${a.dCock()} ${a.pg ? "flex" : "flexes"}, spewing precum on the floor beneath it.`
 						} else {
 							// 1:noarms,male 2:noarms,unknown
-							str = str + `A male ${a.name_lower} is rubbing against a ${b.name_lower}. The ${a.name_lower}'s ${a.dCock()} ${a.dick.plural ? "flex" : "flexes"}, spewing precum on the floor beneath it.`
+							str = str + `A male ${a.name_lower} is rubbing against a ${b.name_lower}. The ${a.name_lower}'s ${a.dCock()} ${a.pg ? "flex" : "flexes"}, spewing precum on the floor beneath it.`
 						}
 					} else if (a.f) {
 						// 1:noarms,female 2:noarms
@@ -996,33 +990,37 @@ scenes.set("sex_ed", {
 		var p = v.p
 		var a = v.a
 
+		// context
+		add_you(`You are an 18 year old ${p.gender_word}. You're a virgin and you're fascinated by pokemon sexuality. You love pokemon dicks and pokemon pussies. You wish a pokemon would ${p.g("let you fuck it with your cock","fuck your pussy","fuck you")}.`)
+		add_context(`Professor Cherry is teaching a class on ${a.name_lower} sex. Cherry is using her own ${a.name_lower} as an example for the class. You are her star student. She has brought you up for hands-on experience with ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"genitals")}. She will instruct you step by step on bringing the ${a.name_lower} to orgasm. Cherry's ${a.name_lower} is well-trained and very friendly. Cherry is highly knowledgable about ${a.name_lower} sex. Cherry knows exactly how to make ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"genitls")} cum.`)
+
 		// string
-		var str = `You're a great-looking ${p.g}.
+		var str = `You're a great-looking ${p.gender_word}.
 
 Professor Cherry is teaching a ten-part course on pokemon sexuality. Cherry is a dark-skinned woman with large breasts and a short red dress under her white lab coat. Professor Cherry is a specialist in pokemon sexuality and she knows all there is to know about sex with pokemon.
 
-You're in the lecture hall listening to Professor Cherry tell the class all about the sexual habits of ${a.name_lower_p}. Then Cherry takes out a pokeball and activates it. A beam of light leaves the ball and takes the form of `
+You're in the lecture hall listening to Professor Cherry tell the class all about the sexual habits of ${a.name_lower_p}. Cherry takes out a pokeball and activates it. A beam of light leaves the ball and takes the form of `
 
 		// describe
-		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.m ? "He's" : a.f ? "She's" : "It's"} clearly ${a.m ? "male" : a.f ? "female" : "excited"}. The class oohs and aahs, and the ${a.name_lower} looks around curiosity. ${a.m ? "He" : a.f ? "She" : "It"} seems well-trained, as ${a.m ? "he's" : a.f ? "she's" : "it's"} waiting for Cherry to give ${a.m ? "him" : a.f ? "her" : "it"} further instructions.`
+		str = str + `a ${a.dBody()} pokemon with ${a.dSkin()}. ${a.Hes} clearly ${a.g("male","female","excited")}. The class oohs and aahs, and the ${a.name_lower} looks around curiosity. ${a.He} seems well-trained, as ${a.hes} waiting patiently for Cherry to give ${a.him} further instructions.`
 
 		if (a.m) {
-			str = str + ` You look between the ${a.name_lower}'s' legs and see his ${a.dCock()} ${a.dick.plural ? "are" : "is"} already beginning to harden. He must know what's about to happen.
+			str = str + ` You look between the ${a.name_lower}'s' legs and see his ${a.dCock()} ${a.pg ? "are" : "is"} already beginning to harden. He must know what's about to happen.
 
-Cherry walks over to him and grabs the ${a.name_lower}'s' ${a.dCock()}. She shakes ${a.dick.plural ? "them" : "it"} a little to get him excited, and it's working. You see his ${a.dCock()} beginning to rise.`
+Cherry walks over to him and grabs the ${a.name_lower}'s' ${a.dCock()}. She shakes ${a.pg ? "them" : "it"} a little to get him excited, and it's working. You see his ${a.dCock()} beginning to rise.`
 		} else if (a.f) {
-			str = str + ` You look between her legs and see her ${a.dPussy()} ${a.pussy.pussy_plural ? "are" : "is"} already blushing. She must know what's about to happen.
+			str = str + ` You look between her legs and see her ${a.dPussy()} ${a.pg ? "are" : "is"} already blushing. She must know what's about to happen.
 
-Cherry walks over the ${a.name_lower}, puts her hand on ${a.pussy.pussy_plural ? "one of" : ""} the pokemon's ${a.dPussy()}, and rubs it a little to get her excited.`
+Cherry walks over the ${a.name_lower}, puts her hand on ${a.pg ? "one of " : ""}the pokemon's ${a.dPussy()}, and rubs it a little to get her excited.`
 		}
 
-		str = str + `\n\nCherry announces to the class, "Here's my ${a.name_lower}. As you can see, ${a.m ? "he" : a.f ? "she" : "it"} already knows what we're doing today. I'm going to call on a volunteer." Cherry's eyes scan the room for a moment, then she gestures to you. "You, come here. You're getting some hands-on experience today."
+		str = str + `\n\nCherry announces to the class, "Here's my ${a.name_lower}. As you can see by ${a.his} ${a.g("hardening","moistening","aroused")} ${a.g(a.dCock(),a.dPussy(),"genitals")}, ${a.he} already knows what we're doing today. I'm going to call on a volunteer." Cherry's eyes scan the room for a moment, then she gestures to you. "Ah, my best student will be perfect for this. Come here. You're getting some hands-on experience today."
 
-You nervously walk up to Cherry and her ${a.name_lower}.
+You nervously walk up to Cherry and her ${a.name_lower}. The ${a.name_lower} looks at you, and ${a.his} ${a.g(a.dCock(),a.dPussy(),a.body)} twinges. ${a.He} must like you.
 
-"Never fucked a pokemon before?" Cherry laughs "I'll guide you through it, step by step, until this ${a.name_lower} cums ${a.m ? "his" : a.f ? "her" : "its"} brains out. This ${a.name_lower} is gonna reach orgasm right here, and I'm gonna teach you how to make ${a.m ? "his" : a.f ? "her" : "its"} ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} spray cum like a geyser."
+"Never fucked a pokemon before?" Cherry laughs "I'll guide you through it, step by step, until this ${a.name_lower} cums ${a.his} brains out. You're going to bring my ${a.name_lower} to orgasm right here, and I'm gonna teach you how to make ${a.his} ${a.m ? a.dCock() : a.f ? a.dPussy() : "body"} spray cum like a geyser."
 
-Cherry licks her lips and begins instructing you. "Now, first things first, I want you to touch`
+Cherry licks her lips and begins instructing you. "Now,`
 		
 		return str
 	}
@@ -1046,17 +1044,19 @@ scenes.set("starter_rr", {
 		var a = v.a
 
 		// context
-		add_context(`You are a ${a.gender_word} ${a.name_lower}. You love fucking humans with your ${a.g(a.dCock(),a.dPussy(),"sexual equipment")}. Your ${a.g(a.dCock(),a.dPussy(),"body")} ${a.m && a.dick.plural ? "have" : a.f && a.pussy.plural ? "have" : "has"} never failed to make a human cum. You love letting humans service your ${a.g(a.dCock(),a.dPussy(),"body")}.`)
+		add_context(`You are a ${a.gender_word} ${a.name_lower}. You love fucking humans with your ${a.g(a.dCock(),a.dPussy(),"sexual equipment")}. Your ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "have" : "has"} never failed to make a human cum. You love letting humans service your ${a.g(a.dCock(),a.dPussy(),"body")}.`)
 		add_context(`You were Professor Cherry's ${a.name_lower} for a while. She taught you everything there is to know about sex with humans.`)
 
 		// string
-		var str = `You're a great-looking ${a.m ? "male" : a.f ? "female" : "and attractive"} ${a.name_lower}. You love being a pokemon. Humans love fucking you and you love fucking humans.
+		var str = `You're a great-looking ${a.g("male","female","and attractive")} ${a.name_lower}. You love being a pokemon. Humans love fucking you and you love fucking humans.
 
-Your trainer was Professor Cherry for a long time, but she told you she just handed you off to a brand new trainer who's never had a pokemon before. Right now you're waiting in your pokeball, thinking about all the sexy things you're going to do to that trainer once you see them.
+Your trainer was Professor Cherry for a long time. You always loved the way she handled your ${a.g(a.dCock(),a.dPussy(),"body")}. The last time she masturbated you, Cherry told you she'll be handing you off to a brand new trainer who's never had a pokemon before. You're excited, and you hope ${p.shell} be able to handle your ${a.g(a.dCock(),a.dPussy(),"body")} as well as Cherry.
 
-And just then, you see a flash of light and suddenly you're standing in a house, in someone's bedroom. Someone released you from your pokeball. You look around and see moody lighting, sexy music, and closed curtains. Then you look at the bed and see a person, a ${p.g}, fully nude and holding your empty pokeball.
+Now you're waiting in your pokeball, thinking about all the sexy things you're going to do to that trainer once you see them.
 
-${p.m ? "He" : p.f ? "She" : "They"} must be your new trainer! Your look over ${p.m ? "his" : p.f ? "her" : "their"} naked body, and they smile at you. It seems ${p.m ? "he" : p.f ? "she" : "they"} recognized that you're a ${a.name_lower}. ${p.m ? "He's" : p.f ? "She's" : "They're"} incredibly attractive, and you can feel your `
+And just then, you see a flash of light and suddenly you're standing in a house, in someone's bedroom. Someone released you from your pokeball. You look around and see moody lighting, sexy music, and closed curtains. Then you look at the bed and see a person, a ${p.gender_word}, fully nude and holding your empty pokeball.
+
+${p.She} must be your new trainer. Your look over ${p.her} naked body, and they smile at you. It seems ${p.she} recognized that you're a ${a.name_lower}. ${p.Shes} incredibly attractive, and you can feel your `
 		
 		if (a.m) {
 			str = str + `${a.dCock()} becoming erect. You look down at your ${a.dCock()}, then back to your trainer.`
@@ -1074,8 +1074,96 @@ ${p.m ? "He" : p.f ? "She" : "They"} must be your new trainer! Your look over ${
 			str = str + " They can't seem to sit still, they're so eager to get to know you more intimately."
 		}
 
-		str = str + ` The sight of it just makes you hornier. Your ${a.g(a.dCock(),a.dPussy(),"body")} ${a.m && a.dick.plural ? "twinge" : a.f && a.pussy.plural ? "twinge" : "twinges"}. ${p.f ? "She" : p.m ? "He" : "The trainer"} beckons you toward the bed, where ${p.f ? "she" : p.m ? "he" : "they"}`
+		str = str + ` You see your new trainer glance at your ${a.g(a.dCock(),a.dPussy(),"genitals")}. ${p.She} wants what you want. Your ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "twinge" : "twinges"}. Your trainer beckons you toward the bed, where ${p.she}`
 		
+		return str
+	}
+})
+
+scenes.set("date", {
+	category: "humans",
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true,
+		},
+		{
+			type: "npc",
+			key: "t",
+			name: `the other person`
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var t = v.t
+
+		// context
+		add_you(`You are a sexy 18 year old ${p.gender_word}.`)
+		add_context(`You went on a date with ${t.name}. ${t.name} thinks you're really hot. ${t.name} is super attracted to you, but you have to seduce ${t.her} first. You have to warm ${t.her} up to you and make ${t.her} horny, and then ${t.shell} have sex with you.`)
+
+		// string
+		var str = `You're a great-looking ${p.gender_word}.
+
+Your date with ${t.name} is going great! ${t.name} is clearly super into you. You bring ${t.her} back to your hotel and watch a movie. You notice throughout the movie ${t.shes} adjusting ${t.herself}, trying to get closer to you and giving you seductive looks. You know what's happening next.`
+		
+		return str
+	}
+})
+
+scenes.set("md_initiation", {
+	category: "md",
+	actors: [
+		{
+			type: "pokemon",
+			key: "a",
+			firstPerson: true,
+		},
+		{
+			type: "pokemon",
+			key: "b",
+			name: `the guild leader`
+		}
+	],
+	build: function(v) {
+		var a = v.a
+		var b = v.b
+
+		// context
+		add_you(`You are a sexy 18 year old ${a.gender_word} ${a.name_lower}. You have${a.pg ? "" : " a"} ${a.g(a.dCock(),a.dPussy(),"sexy body")}. Everyone is attracted to you. You're shy and sexually inexperienced. You're also very intimidated by ${b.name}.`)
+		add_context(`You are a new member in the Lustland Adventuring Guild. You've always wanted to join the guild and become an adventurer. The lead of the Lustland Adventuring Guild, ${b.name}, is a sexy ${b.gender_word} with${b.pg ? "" : " a"} ${b.g(b.dCock(),b.dPussy(),"gorgeous body")}. ${b.name} is super horny, and ${b.hell} let you into the guild if you make ${b.him} cum. Once you're in the guild, ${b.name} will make you ${b.his} personal sex slave.`)
+
+		// string
+		var str = `You're a great-looking ${a.gender_word} ${a.name_lower}.
+
+You've always wanted to join the Lustland Adventuring Guild and today is the day! Your application was approved and you're going to meet the guild leader, ${b.name}. You just have to impress ${b.him} and your dream will come true!
+
+Some other guild members guide you into ${b.name}'s office at the guild HQ. The guild members leave the two of you alone and lock the door.
+
+${b.name} looks at you and smiles. ${b.He} must like you.
+
+"I'm gonna be honest, we aren't really accepting new members right now."
+
+Your heart sinks. You've been looking forward to this for so long! "Please, ${b.name}! I have lots of skills! I'll do anything!"
+
+"Hmm," ${b.name} thinks for a moment. I don't normally do this... but then again I don't normally see ${a.name_lower_p} that look like you..."
+
+Where is ${b.he} going with this...?
+
+${b.He} continues, "Let me tell you what. You do me a favor and I'll consider letting you in the guild."
+
+You perk up. "Yes! Anything!"
+
+"Alright then." ${b.name} exposes ${b.himself} and gestures to his ${b.g(b.dCock(),b.dPussy(),"genitals")}.`
+
+		if (b.m) {
+			str = str + ` ${b.pg ? "They throb" : "It throbs"} with desire and ${b.pg ? "begin" : "begins"} to stiffen.`
+		} else if (b.f) {
+			str = str + ` ${b.pg ? "The twitch" : "It twitches"} with desire and ${b.pg ? "begin" : "begins"} to leak its juices.`
+		}
+
+		str = str + ` ${b.name} continues, "Show me that you're worth having around."`
+
 		return str
 	}
 })
@@ -1115,6 +1203,13 @@ scenes.forEach(function(desc, name) {
 			} else {
 				addSceneArg(`What is ${actor.name}'s gender? (Use underscores instead of spaces, e.g. "trans_girl")`)
 			}
+		} else if (actor.type == "npc") {
+			if (actor.firstPerson) {
+				first_person_index = scene_args.length
+				addSceneArg(`Who are you? (Use underscores instead of spaces, e.g. "daisy_oak")`)
+			} else {
+				addSceneArg(`Who is ${actor.name}? (Use underscores instead of spaces, e.g. "daisy_oak")`)
+			}
 		}
 	})
 
@@ -1131,6 +1226,17 @@ scenes.forEach(function(desc, name) {
 			var n = 0;
 			desc.actors.forEach(function(actor, index) {
 				var data = {}
+
+				data.gender_word = "<undefined>"
+				data.m = false
+				data.f = false
+
+				data.g = function(m, f, x) {
+					return data.m ? m : data.f ? f : (x ? x : f)
+				}
+
+				data.x = function(a, b) {return data.g(a, a, b)}
+
 				if (actor.type == "pokemon") {
 					data.s = getSpecies(args[n])
 					data.gender_word = args[n+1]
@@ -1142,6 +1248,7 @@ scenes.forEach(function(desc, name) {
 					data.pussy_slang_plural = getPussySlang(data.s, true)
 					data.dick = dicks.get(data.s.dick)
 					data.pussy = dicks.get(data.s.pussy)
+					data.name = data.s.name_word
 					data.name_lower = data.s.name_word.toLowerCase()
 					data.name_lower_p = data.s.name_word_plural.toLowerCase()
 
@@ -1161,25 +1268,89 @@ scenes.forEach(function(desc, name) {
 					data.dSkin = function() {
 						return dSkin(data.s)
 					}
-					data.g = function(m, f, x) {
-						return data.m ? m : data.f ? f : x
-					}
+
+					data.pg = data.m ? data.dick.plural : data.f ? data.pussy.plural : false
 
 					n+=2
 				} else if (actor.type == "person") {
-					data.g = replaceAll(args[n], "_", " ")
-					data.m = isMale(data.g)
-					data.f = isFemale(data.g)
+					data.gender_word = replaceAll(args[n], "_", " ")
+					data.m = isMale(data.gender_word)
+					data.f = isFemale(data.gender_word)
 
 					if (first_person_index == n) {
 						add_you(`You are an attractive 18 year old ${data.g}. You are also a pokemon trainer.`)
 					}
 
 					n++
+				} else if (actor.type == "npc") {
+					var info = load_person(args[n])
+					data.m = info.m
+					data.f = info.f
+					data.gender_word = data.g("male","female","non-binary")
+					data.name = info.name
+					data.name_lower = data.name.toLowerCase()
+					data.party = info.party
+
+					if (first_person_index == n) {
+						add_you(`You are ${info.name_word}.`)
+					}
 				}
+
+				data.his = data.g("his","her","they're")
+				data.her = data.his
+				data.he = data.g("he","she","they")
+				data.she = data.he
+				data.hes = data.g("he's","she's","they're")
+				data.shes = data.hes
+				data.himself = data.g("himself","herself","themself")
+				data.herself = data.himself
+				data.hell = data.g("he'll","she'll","they'll")
+				data.shell = data.hell
+
+				data.His = cap(data.his)
+				data.Her = cap(data.her)
+				data.He = cap(data.he)
+				data.She = cap(data.she)
+				data.Hes = cap(data.hes)
+				data.Shes = cap(data.shes)
+				data.Himself = cap(data.himself)
+				data.Hereslf = cap(data.herself)
+				data.Hell = cap(data.hell)
+				data.Shell = cap(data.shell)
 
 				input[actor.key] = data
 			})
+
+			// category context
+			if (desc.category == "humans") {
+				add_context(`I describe people in great detail, especially their genitals. I'll always describe how someone is moving. I love writing about breasts, penises, and vaginas. I go into highly erotic detail about everything people do.
+
+If a person's genitals are visible, I describe them in extreme detail. I describe the skin, the color, the shape, the texture, everything. I describe every situation in great detail.
+
+I'll repeat a person's name often so you don't forget who they are.`)
+			} else if (desc.category == "md") {
+				add_context(`Everyone in the world is a pokemon. Pokemon have animal attributes and amazing abilities. There are no humans in this world. Humans don't exist. Trainers don't exist.
+
+Casual sex is normal. Everyone is always naked so sometimes people get aroused and have to relieve themselves. No one ever wears clothes. Clothes don't exist.
+
+Pokemon are very vocal. They will talk about what they're thinking about and how they're feeling.
+
+I describe Pokémon in great detail, especially their genitals. Pokemon genitalia fascinates me so I write about ever little detail. I love pokemon cocks and pokemon pussies. It's obvious that I'm super kinky by the way I write. Sex with pokemon is the best.
+
+If a pokemon's cock is visible I describe it. I describe all the cock skin, the cock muscules, the cock veins, and everything else about sexy pokemon cocks. I describe every sensation in great detail.
+
+I'll repeat a pokemon's species name often so that you don't forget what species they are.`)
+			} else {
+				add_context(`Everyone fucks their Pokémon. Pokémon are sexy and attractive and pokemon want to fuck humans. Sex with Pokémon is normal. Everyone knows trainers fuck their Pokémon.
+
+Pokemon can't talk or speak. Pokemon never talk. Pokemon never speak.
+
+I describe Pokémon in great detail, especially their genitals. Pokemon genitalia fascinates me so I write about ever little detail. I love pokemon cocks and pokemon pussies. It's obvious that I'm super kinky by the way I write. Sex with pokemon is the best.
+
+If a pokemon's cock is visible I describe it. I describe all the cock skin, the cock muscules, the cock veins, and everything else about sexy pokemon cocks. I describe every sensation in great detail.
+
+I'll repeat a pokemon's species name often so that you don't forget what species they are.`)
+			}
 
 			return desc.build(input)
 		}
@@ -1191,13 +1362,82 @@ scenes.forEach(function(desc, name) {
 ////////////////
 
 // people
-save("cherry", "Professor Cherry is the resident pokemon professor in Bumfuck Town. Cherry is an expert on pokemon sexuality and she loves teaching people everything there is to know about sex with pokemon. Cherry will tell you all sorts of pokemon sex trivia. Cherry is fascinated by pokemon genitalia.")
-save("mandy", "Mandy is the gym leader of a fire-type gym in Cocksville City. Her best pokemon is a female Charizard.")
+//save("cherry", "Professor Cherry is the resident pokemon professor in Bumfuck Town. Cherry is an expert on pokemon sexuality and she loves teaching people everything there is to know about sex with pokemon. Cherry will tell you all sorts of pokemon sex trivia. Cherry is fascinated by pokemon genitalia.")
+//save("mandy", "Mandy is the gym leader of a fire-type gym in Cocksville City. Her best pokemon is a female Charizard.")
 
 // places
 save("bumfuck", "Bumfuck Town is your hometown. It connects to Route 1.")
 save("route 1", "Route 1 connects Bumfuck Town to Cocksville City. You can travel it in about 30 minutes. There are a few pokemon trainers and weak wild pokemon here.")
 save("cocksville", "Cocksville City is a small city. It has a fire-type pokemon gym led by Leader Mandy.")
+
+////////////
+// PEOPLE //
+////////////
+var people = new Map()
+
+// Lusteron
+people.set("prof_cherry", {
+	name: "Professor Cherry",
+	f: true,
+	signal: "cherry",
+	wi: "Professor Cherry is the resident pokemon professor in Bumfuck Town. Cherry is an expert on pokemon sexuality and she loves teaching people everything there is to know about sex with pokemon. Professor Cherry will tell you all sorts of pokemon sex trivia. Cherry is fascinated by pokemon genitalia.",
+	party: ["gardevoir", "braixen", "vaporeon", "lopunny", "salazzle", "lucario", "zeraora", "zoroark"]
+})
+
+// Kanto
+people.set("prof_oak", {
+	name: "Professor Oak",
+	m: true,
+	signal: "oak",
+	wi: "Professor Oak is the resident pokemon professor in Pallet Town of the Kanto region. He has grey hair, brown eyes, and he wears a lab coat. He is about 60 years old and he loves teach people about pokemon. Oak's grandson is the pokemon champion, Blue",
+	party: ["tauros", "exeggutor", "arcanine", "charizard", "blastoise", "venusaur", "gyarados"]
+})
+people.set("mom", {
+	name: "Your Mom",
+	f: true,
+	signal: "mom",
+	wi: "Your mom is a traditionally pretty woman in her 40s. Your mom has blue hair and green eyes. Your mom loves you and always looks out for you. She wants to help you however she can. Your mom is excited for you being a trainer."
+})
+people.set("red", {
+	name: "Red",
+	m: true,
+	signal: "red",
+	wi: "Red is the pokemon champion of the Kanto region. He is an extremely powerful trainer. Red wears a red cap, red jacket, and blue jeans. Red has brown hair. Red never speaks. Red never talks.",
+	party: ["pikachu", "espeon", "lapras", "snorlax", "venusaur", "charizard", "blastoise", "meganium", "feraligatr", "typhlosion", "jolteon", "scizor", "tauros", "raikou", "entei", "suicune", "dragonite"]
+})
+people.set("blue", {
+	name: "Blue",
+	m: true,
+	signal: "blue",
+	wi: "Blue is the pokemon champion of the Kanto region. Blue is an extremely powerful trainer. Blue has spikey brown hair and wears a blue shirt. Blue is really full of himself, and he thinks he's better than everyone else. Blue is a bit of a dick. Blue's grandfather is Professor Oak.",
+	party: ["pidgeot", "alakazam", "rhydon", "arcanine", "exeggutor", "blastoise", "gyarados", "charizard", "venusaur", "sandslash", "ninetales", "magneton", "vaporeon", "cloyster", "jolteon", "flareon", "tyranitar", "heracross", "machamp", "rhyperior", "aerodactyl", "mega_charizard_y", "cubone", "slowbro", "clefable", "electabuzz", "pinsir", "scyther", "miltank", "gengar", "houndoom", "piloswine", "kingdra"]
+})
+people.set("daisy_oak", {
+	name: "Daisy Oak",
+	f: true,
+	signal: "daisy",
+	wi: "Daisy Oak is a sweet 18 year old girl. She has a crush on you but she's really shy. Daisy has long brown hair. Daisy Oak lives in Pallet Town with her brother, Blue.",
+})
+people.set("brock", {
+	name: "Brock",
+	m: true,
+	signal: "brock",
+	wi: "Brock is a 24-year-old male pokemon trainer. He is the pokemon gym leader of the Pewter City gym. Brock is a rock-type pokemon trainer. Brock knows a lot about pokemon breeding. Brock loves to teach people about pokemon.",
+	party: ["geodude", "onix", "rhyhorn", "omastar", "kabutops", "graveler", "golem", "relicanth", "rampardos", "aerodactyl", "tyranitar", "rhyperior", "vulpix", "omanyte", "kabuto", "cubone", "golbat", "ninetales", "dugtrio", "forretress", "steelix", "rhydon", "ursaring", "shuckle", "heracross"]
+})
+people.set("misty", {
+	name: "Misty",
+	f: true,
+	signal: "misty",
+	wi: "Misty is a 22-year-old female pokemon trainer. Misty is the pokemon gym leader of the Cerulean City gym in the Kanto region. Misty is a water-type pokemon trainer. Misty loves swimming. Misty is bubbly and fun, but she can be fiesty and snappy if she doesn't get her way. Misty is cute. Misty has red hair and blue eyes. Misty has small breasts. Misty wears short shorts and a tight crop top.",
+	party: ["staryu", "starmie", "golduck", "quagsire", "lapras", "lanturn", "floatzel", "milotic", "seaking", "slowbro", "blastoise", "jellicent", "swanna", "carracosta", "psyduck", "golduck", "dewgong", "vaporeon", "gyarados", "horsea", "seel", "exeggutor", "seadra", "dugtrio", "togetic", "togepi", "sunflora", "poliwhirl", "wigglytuff", "nidoqueen", "ampharos", "dragonair", "politoed"]
+})
+
+// add
+function load_person(name) {
+	save(people.get(name).signal, people.get(name).wi)
+	return people.get(name)
+}
 
 ////////////////
 // ADJECTIVES //
@@ -2405,7 +2645,7 @@ dicks.set("feline", {
 dicks.set("human", {
 	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom", "tyrogue", "hitmontop", "smoochum", "ralts", "kirlia", "gardevoir", "slakoth", "vigoroth", "slaking", "makuhita", "hariyama", "meditite", "medicham", "jirachi", "chimchar", "monferno", "infernape"],
 	adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ds>"],
-	pussy_adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ps>"],
+	pussy_adj: ["human-like /a <ps>", "humanoid /a <ps>", "/a <ps>"],
 	dex: "Male <lp> have a human-like penis complete with a foreskin and a scrotum with two testicles."
 })
 dicks.set("human_double", {
@@ -2481,14 +2721,14 @@ dicks.set("pinniped", {
 dicks.set("cervine", {
 	species: ["stantler"],
 	adj: ["deer /a <ds>", "cervid /a <ds>"],
-	pussy_adj: ["deer /a <ds>", "cervid /a <ds>"],
+	pussy_adj: ["deer /a <ps>", "cervid /a <ps>"],
 	pussy: "generic_sheath",
 	dex: "Male <lp> have a long, thin, pink, deer penis. A male <ln>'s deer penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("camel", {
 	species: ["numel", "camerupt"],
 	adj: ["camel /a <ds>", "camelid /a <ds>"],
-	pussy_adj: ["camel /a <ds>", "camelid /a <ds>"],
+	pussy_adj: ["camel /a <ps>", "camelid /a <ps>"],
 	pussy: "generic_sheath",
 	dex: "Male <lp> have a long camel penis. A male <ln>'s camel penis normally hides within a protective fleshy sheath when not aroused."
 })
@@ -2568,13 +2808,13 @@ dicks.set("fish", {
 dicks.set("shark", {
 	species: ["sharpedo"],
 	adj: ["dual shark /a <ds>", "double shark /a <ds>", "twin shark /a <ds>"],
-	pussy_adj: ["shark /a <ds>"],
+	pussy_adj: ["shark /a <ps>"],
 	dex: "Male <lp> have two shark penises. A male <ln>'s double shark dicks are slippery and pink. Male <lp> love using both of their twin shark cocks at once when having sex."
 })
 dicks.set("whale", {
 	species: ["wailmer", "wailord", "kyogre"],
 	adj: ["whale /a <ds>"],
-	pussy_adj: ["whale /a <ds>"],
+	pussy_adj: ["whale /a <ps>"],
 	dex: "Male <lp> have colossal whale penises. The size of a male <ln>'s penis cannot be understated. A male <ln>'s penis is over six feet long, and as thick as an entire human body. It is totally impossible for a male <ln> to fit his penis into a person. Female <ln> have enormous vaginas that can take any size of cock, but they won't even feel a thing unless the penis is absolutely colossal."
 })
 dicks.set("bovine", {
