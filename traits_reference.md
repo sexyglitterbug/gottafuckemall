@@ -1,5 +1,5 @@
 # Traits
-When you're prompted to input a pokemon species, you can input "x" to say "give me a random pokemon". You can add qualifiers to this, which will refine the possible results. For example, inputting "x[bodysize_large+cocksize_large]" will give you a random pokemon with a large body and large cock.
+When you're prompted to input a pokemon species, you can input `x` to say "give me a random pokemon". You can add qualifiers to this, which will refine the possible results. For example, inputting `x[bodysize_large+cocksize_large]` will give you a random pokemon with a large body and large cock.
 
 The symbol `+` will separate terms that must be matched in order for a pokemon to be considered. The symbol `;` can be used to create a list of traits where, if any of those traits match, the entire term matches. For example,
 
