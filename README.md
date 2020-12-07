@@ -51,7 +51,7 @@ Here's a list of some features I want to have
 	* Wholesome cuddling (no scripted porn, just nighttime cuddles)
 	* Breeder (trainer drops off two pokemon, you have to make them fuck)
 	* Breeder 2 (trainer only drops off one pokemon, you gotta fuck it yourself)
-	* Cum Drinking (trainer is hungry, pokemon needs to cum/lactate. Also the opposite, pokemon is hungry and trainer needs to cum/lactate)
+	* Cum/Milk Drinking (trainer is hungry, pokemon needs to cum/lactate. Also the opposite, pokemon is hungry and trainer needs to cum/lactate)
 	* Wildlife conservation (a wild pokemon needs to breed, pokemon ranger cums to the rescue)
 	* Mystery Dungeon (no humans, pokemon can talk)
 		* Rescue team initiation (service the team captain)
