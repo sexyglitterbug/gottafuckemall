@@ -414,3 +414,106 @@ empoleon
 starly
 staravia
 staraptor
+bidoof
+bibarel
+kricketot
+kricketune
+shinx
+luxio
+luxray
+budew | Vine genitals
+roserade | Vine genitals
+cranidos
+rampardos
+shieldon
+bastiodon
+burmy | Forms: grass_burmy, sand_burmy, trash_burmy
+wormadam | Forms: grass_wormadam, sand_wormadam, trash_wormadam
+mothim
+combee
+vespiqueen
+pachirisu
+buizel
+floatzel
+cherubi
+cherrim | Forms: sunny_cherrim, overcast_cherrim
+shells | Forms: east_shellos, west_shells
+gastrodon | Forms: east_gastrodon, west_gastrodon
+ambipom
+drifloon
+drifblim
+buneary
+lopunny
+mismagius
+honchkrow
+glameow
+purugly
+chingling
+stunky
+skuntank
+bronzor
+bronzong
+bonsly
+mime_jr.
+happiny
+chatot
+spiritomb | Disembodied ghost genitals
+gible | Double dick
+gabite | Double dick
+garchomp | Double dick
+munchlax
+riolu
+lucario
+hippopotas
+hippowdon
+skorupi
+drapion
+croagunk
+toxicroak
+carnivine | Vine genitals
+finneon
+lumineon
+mantyke
+snover
+abomasnow
+weavile
+magnezone | Disembodied electric genitals
+lickilicky | Its tongue is its genitalia
+rhyperior
+tangrowth | Vine genitals
+electivire
+magmortar
+togekiss
+yanmega
+leafeon
+glaceon
+gliscor
+mamoswine
+porygon_z | Disembodied electric genitals
+gallade
+probopass
+dusknoir
+froslass
+rotom | Forms: heat_rotom, wash_rotom, frost_rotom, fan_rotom, mow_rotom, dex_rotom, phone_rotom
+uxie
+mesprit
+azelf
+dialga | unique genitals
+palkia | unique genitals
+heatran
+regigigas
+giratina | unique genitals, Forms: altered_giratina, origin_giratina
+cresselia
+phione
+manaphy
+darkrai | Tentacle genitals
+shaymin | Forms: land_shaymin, sky_shaymin
+arceus | Unique genitals
+
+# Unova
+Species String | Notes
+-------------- | -----
+victini
+snivy
+servine
+serperior
