@@ -1080,6 +1080,85 @@ ${p.She} must be your new trainer. Your look over ${p.her} naked body, and they 
 	}
 })
 
+scenes.set("nursing", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "your pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`You are an 18 year old ${p.gender_word} pokemon trainer. You are deeply in love with your ${a.name_lower}. ${a.name} is very ${a.g("fatherly","motherly","parental")}. ${a.name} babies you and takes care of you. ${a.name} loves you like a child. ${a.name} is very loving and affectionate to you. ${a.name} doesn't want to fuck you. ${a.name} wants to ${p.g("jerk you off","finger you","masturbate you")} while you ${a.g("nurse on his cock","nurse on her breasts","suck on its body")}. ${a.name} will slowly and passionately masturbate you while you nurse.`)
+
+		if (a.f) {
+			add_context(`${a.name} will orgasm as you nurse her. ${a.name} would rather orgasm from nursing that from sex.`)
+		}
+
+		// str
+		var str = `You're an 18 year old ${p.gender_word}. Your favorite pokemon is your ${a.name_lower}. Your favorite pokemon is your ${a.name_lower}. ${a.Shes} always been there for you and you love ${a.her} very much. ${a.name} loves you too. ${a.name} is like a ${a.g("father","mother","parental")} figure to you. You look up to ${a.him} and ${a.she} takes care of you.
+
+This night started out like any other. You and ${a.name_lower} lay on the couch, spooning. You're the little spoon, of course. ${a.name} has always loved wrapping you up in ${a.her} ${a.s.arms ? "arms" : "body"}. This night, though, you have another idea. You rolled over to face ${a.name}. ${a.Her} face is beautiful in the dim light. ${a.name} looks at you with ${a.her} gentle, loving eyes and smiles. You look at ${a.her} ${a.g("soft "+a.dCock(),"breasts","sensitive bits")}. ${a.name} breathes heavily and adjusts ${a.herself} to give you a better view. You see that ${a.her} ${a.g(a.dCock(),"nipples","body")} ${a.g(a.pg,true,false) ? "are" : "is"} ${a.g("engorging","erect","aroused")}.
+
+You bend down to ${a.name_lower}'s ${a.g(a.dCock(),"teat","bits")} and slowly work ${a.g(a.pg,false,true) ? "them" : "it"} into your mouth. You apply a slow, seductive suction as you begin to nurse on ${a.her} ${a.g(a.dCock(),"breast","body")}. ${a.She} lets out a relaxed, ${a.g("fatherly","motherly","parental")} moan at the new sensation, and looks at you with that gentle loving look ${a.she} always has. ${a.She} holds you close as you nurse`
+
+		return str
+	}
+})
+
+scenes.set("oral", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "your pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`You are an 18 year old `)
+	}
+})
+
+scenes.set("oral_rr", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "your pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`You are an 18 year old `)
+	}
+})
+
 scenes.set("date", {
 	category: "humans",
 	actors: [
@@ -1306,6 +1385,7 @@ scenes.forEach(function(desc, name) {
 				data.herself = data.himself
 				data.hell = data.g("he'll","she'll","they'll")
 				data.shell = data.hell
+				data.him = data.g("him","her","them")
 
 				data.His = cap(data.his)
 				data.Her = cap(data.her)
@@ -1317,6 +1397,7 @@ scenes.forEach(function(desc, name) {
 				data.Hereslf = cap(data.herself)
 				data.Hell = cap(data.hell)
 				data.Shell = cap(data.shell)
+				data.Him = cap(data.him)
 
 				input[actor.key] = data
 			})
@@ -3047,7 +3128,7 @@ species.forEach(function(data, name) {
 	var color = data.bodyColor
 
 	// beginning
-	str = data.name_word + " is a species of pokemon."
+	str = data.name_word + ` is a species of pokemon. ${data.name_word} can't speak. ${data.name_word} can't talk.`
 
 	// subspecies
 	if (data.subspeciesOf) {
