@@ -345,6 +345,20 @@ scenes.set("test", {
 	}
 })
 
+scenes.set("rand", {
+	hidden: true,
+	actors: [
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		return JSON.stringify(v.a.randomOptions)
+	}
+})
+
 scenes.set("gangrape", {
 	actors: [
 		{
@@ -1259,7 +1273,7 @@ scenes.forEach(function(desc, name) {
 							contents_array.forEach(function(set) {
 								var set_ok = false
 								set.forEach(function(item) {
-									set_ok = set_ok || s[item]
+									set_ok = set_ok || s[item] || s.name == item
 								})
 								ok = ok && set_ok
 							})
@@ -1267,7 +1281,9 @@ scenes.forEach(function(desc, name) {
 								options[options.length] = s.name
 							}
 						})
-console.log("json",json_contents)
+
+						data.randomOptions = options
+
 						if (options.length <= 0) {
 							species_name = "missingno"
 						} else {

@@ -9,6 +9,10 @@ translates to "(cocksize_large or cocksize_huge or cocksize_colossal) and (bodys
 
 This page is a reference doc for the traits that you can search for this way. I'll add traits for cock types and body types once I get a good plan for it.
 
+Tip: you can also write a pokemon's name directly instead of writing a trait. For example, `cocksize_huge;bulbasaur` will match both bulbasaur and anything that has a huge cock.
+
+Bonus Tip: Use the scene `rand` to test your random string. This scene will print out the list of pokemon that matched your input.
+
 # bodysize
 bodysize_ | Example
 --------- | -------

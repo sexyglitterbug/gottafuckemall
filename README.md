@@ -10,7 +10,7 @@ Some pokemon world really well because of how similar they are to real animals. 
 When you start, the game will ask you for a scene name. Here are a list of scenes.
 Also check out [name_reference.md](https://github.com/sexyglitterbug/gottafuckemall/blob/main/name_reference.md), which lists all the scripted pokemon.
 
-Also, if you input "x" the game will randomly pick from all available inputs. You can use this to choose a random scene, a random pokemon, or a random gender.
+Also, if you input `x` the game will randomly pick from all available inputs. You can use this to choose a random scene, a random pokemon, or a random gender. You can further refine this by searching for specific terms, which are documented in [traits_reference.md](https://github.com/sexyglitterbug/gottafuckemall/blob/main/traits_reference.md)
 
 Scene Name | Concept | Description
 ---------- | ------ | -----------
