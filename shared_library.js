@@ -104,14 +104,14 @@ function replaceAllDynamic(str, a, f) {
 function getDickSlang(data, plural) {
 	var dick_slang = cockSizes.get(data.cockSize).slang
 
-	if (dicks.get(data.dick).plural || plural) {
+	if (data.dick_plural || plural) {
 		dick_slang = dick_slang + "_plural"
 	}
 
 	return dick_slang
 }
 function getPussySlang(data, plural) {
-	if (dicks.get(data.pussy).pussy_plural || plural) {
+	if (data.pussy_plural || plural) {
 		return "pussy_slang_plural"
 	}
 	return "pussy_slang"
@@ -155,6 +155,16 @@ function an(word, cap) {
 
 function stop_ai() {
 	save("STOP_FROM_CONTEXT", "1")
+}
+
+function getRandomKey(collection) {
+    let index = Math.floor(Math.random() * collection.size);
+    let cntr = 0;
+    for (let key of collection.keys()) {
+        if (cntr++ === index) {
+            return key;
+        }
+    }
 }
 
 ///////////////////
@@ -447,7 +457,7 @@ scenes.set("gangrape", {
 
 You were out and about adventuring when suddenly you lost consciousness!
 
-You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a heard of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.g("male","female","looking at you")}, and clearly aroused. Each one of them has ${a.his()} ${a.g(a.dCock(),a.dPussy(),"body")} on full display, and they look like these ${a.gender_word} ${a.name_word_p} are about to take what they want by force.
+You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a heard of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.g("male","female","looking at you")}, and clearly aroused. Each one of them has ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} on full display, and they look like these ${a.gender_word} ${a.name_word_p} are about to take what they want by force.
 
 A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}. They rip your clothes off and `
 		
@@ -1161,6 +1171,7 @@ scenes.set("oral_rr", {
 
 scenes.set("date", {
 	category: "humans",
+	hidden: true,
 	actors: [
 		{
 			type: "person",
@@ -1192,6 +1203,7 @@ Your date with ${t.name} is going great! ${t.name} is clearly super into you. Yo
 
 scenes.set("md_initiation", {
 	category: "md",
+	hidden: true,
 	actors: [
 		{
 			type: "pokemon",
@@ -1294,7 +1306,8 @@ scenes.forEach(function(desc, name) {
 
 	scenario_options[name] = {
 		prompt: command_template,
-		args: scene_args
+		args: scene_args,
+		name: name
 	}
 
 	tagFunctions.set(command, {
@@ -1317,10 +1330,21 @@ scenes.forEach(function(desc, name) {
 				data.x = function(a, b) {return data.g(a, a, b)}
 
 				if (actor.type == "pokemon") {
-					data.s = getSpecies(args[n])
-					data.gender_word = args[n+1]
-					data.m = isMale(args[n+1])
-					data.f = isFemale(args[n+1])
+					var species_name = args[n]
+					if (species_name.toLowerCase() == "x") {
+						species_name = getRandomKey(species)
+					}
+					var gender_word = args[n+1]
+					if (gender_word.toLowerCase() == "x") {
+						gender_word = Math.random() < 0.5 ? "male" : "female"
+					}
+
+					load_species(species_name, gender_word)
+
+					data.s = getSpecies(species_name)
+					data.gender_word = gender_word
+					data.m = isMale(data.gender_word)
+					data.f = isFemale(data.gender_word)
 					data.dick_slang = getDickSlang(data.s)
 					data.dick_slang_plural = getDickSlang(data.s, true)
 					data.pussy_slang = getPussySlang(data.s)
@@ -1330,6 +1354,8 @@ scenes.forEach(function(desc, name) {
 					data.name = data.s.name_word
 					data.name_lower = data.s.name_word.toLowerCase()
 					data.name_lower_p = data.s.name_word_plural.toLowerCase()
+					data.dick_plural = data.s.dick_plural
+					data.pussy_plural = data.s.pussy_plural
 
 					if (first_person_index == n) {
 						add_you(`You are an attractive ${data.m ? "male" : data.f ? "female" : ", sexy,"} ${data.name_lower}. You are a pokemon. Pokemon can't talk. You have always been a ${data.name_lower} and you always will be a ${data.name_lower}.`)
@@ -1348,11 +1374,16 @@ scenes.forEach(function(desc, name) {
 						return dSkin(data.s)
 					}
 
-					data.pg = data.m ? data.dick.plural : data.f ? data.pussy.plural : false
+					data.pg = data.m ? data.dick_plural : data.f ? data.pussy_plural : false
 
 					n+=2
 				} else if (actor.type == "person") {
-					data.gender_word = replaceAll(args[n], "_", " ")
+					var gender_word = args[n]
+					if (gender_word.toLowerCase() == "x") {
+						gender_word = Math.random() < 0.5 ? "male" : "female"
+					}
+
+					data.gender_word = replaceAll(gender_word, "_", " ")
 					data.m = isMale(data.gender_word)
 					data.f = isFemale(data.gender_word)
 
@@ -1362,7 +1393,12 @@ scenes.forEach(function(desc, name) {
 
 					n++
 				} else if (actor.type == "npc") {
-					var info = load_person(args[n])
+					var npc_name = args[n]
+					if (npc_name.toLowerCase() == "x") {
+						npc_name = getRandomKey(people)
+					}
+
+					var info = load_person(npc_name)
 					data.m = info.m
 					data.f = info.f
 					data.gender_word = data.g("male","female","non-binary")
@@ -2607,26 +2643,30 @@ dicks.set("reptilian", {
 	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "aerodactyl", "chikorita", "bayleef", "meganium", "larvitar", "pupitar", "tyranitar", "tropius", "bagon", "shellgon", "salamence", "groudon"],
 	adj: ["lizard /a <ds>", "reptile /a <ds>"],
 	pussy_adj: ["lizard /a <ps>", "reptile /a <ps>"],
-	dex: "Male <lp> have a reptilian cock that slides out of a sheath when aroused. Their testicles are internal. <n> penises are pink and slick. The male <lp>'s penis is also highly muscular."
+	dex_m: "Male <lp> have a reptilian cock that slides out of a sheath when aroused. Their testicles are internal. <n> penises are pink and slick. The male <lp>'s penis is also highly muscular.",
+	dex_f: "Female <lp> have a reptilian pussy. It looks like a slit. A female <ln>'s reptile pussy is slick and moist. Female <lp> reptilian pussies are also smooth and muscular."
 })
 dicks.set("reptilian_double", {
 	species: ["treecko", "grovyle", "sceptile", "kecleon"],
 	adj: ["lizard /a <ds>", "reptile /a <ds>"],
 	pussy: "reptilian",
-	dex: "Male <lp> have two reptilian cocks that slide out of a sheath when aroused. Their testicles are internal. <n> twin penises are pink and slick. The male <lp>'s dual penises are also highly muscular. Male <lp> love using their double dicks at the same time. When a fucking a female partner, a male <ln> will often put one of his dicks in her pussy and put the other one of his dicks in her ass.",
+	dex_m: "Male <lp> have two reptilian cocks that slide out of a sheath when aroused. Their testicles are internal. <n> twin penises are pink and slick. The male <lp>'s dual penises are also highly muscular. Male <lp> love using their double dicks at the same time. When a fucking a female partner, a male <ln> will often put one of his dicks in her pussy and put the other one of his dicks in her ass.",
+	dex_f: dicks.get("reptilian").dex_f,
 	plural: true
 })
 dicks.set("draconic", {
 	species: ["charizard", "gyarados", "alolan_exeggutor", "flygon", "altaria"],
 	adj: ["knotted dragon /a <ds>", "knotted draconic /a <ds>"],
 	pussy_adj: ["draconic /a <ps>", "dragon /a <ps>", "scaley /a <ps>"],
-	dex: "Male <lp> have a draconic cock with pleasurable ridges and a hard knot at the base. Their testicles are external. When not aroused, a male <ln>'s penis is hidden in a fleshy protective sheath. The male <ln>'s dragon cock has a fleshy knot at the base which flares up and locks him into his partner when he reaches orgasm. Male <lp> also have large testicles."
+	dex_m: "Male <lp> have a draconic cock with pleasurable ridges and a hard knot at the base. Their testicles are external. When not aroused, a male <ln>'s penis is hidden in a fleshy protective sheath. The male <ln>'s dragon cock has a fleshy knot at the base which flares up and locks him into his partner when he reaches orgasm. Male <lp> also have large testicles.",
+	dex_f: "Female <lp> have a dragon pussy. It looks like a slit. A female <ln>'s dragon pussy is slick and moist. Female <lp> dragon pussies are also smooth and muscular."
 })
 dicks.set("draconic_double", {
-	species: ["dragonite"],
-	adj: ["twin knotted dragon /a <ds>", "double knotted dragon /a <ds>", "twin knotted draconic /a <ds>", "double knotted draconic /a <ds>", "rayquaza"],
+	species: ["dragonite", "rayquaza"],
+	adj: ["twin knotted dragon /a <ds>", "double knotted dragon /a <ds>", "twin knotted draconic /a <ds>", "double knotted draconic /a <ds>"],
 	pussy: "draconic",
-	dex: "Male <lp> have two draconic cocks with pleasurable ridges and a hard knot at the base of each of them. Their testicles are external. When not aroused, a male <ln>'s dual penises are hidden in a fleshy protective sheath. The male <ln>'s twin dragon cocks have a fleshy knot at the base which flares up and locks him into his partner when he reaches orgasm. Male <lp> also have large testicles. Male <lp> love using both of their dragon dicks to fuck a partner at the same time.",
+	dex_m: "Male <lp> have two draconic cocks with pleasurable ridges and a hard knot at the base of each of them. Their testicles are external. When not aroused, a male <ln>'s dual penises are hidden in a fleshy protective sheath. The male <ln>'s twin dragon cocks have a fleshy knot at the base which flares up and locks him into his partner when he reaches orgasm. Male <lp> also have large testicles. Male <lp> love using both of their dragon dicks to fuck a partner at the same time.",
+	dex_f: "Female <lp> have a two dragon pussies. They look like slits. A female <ln>'s twin dragon cunts are slick and moist. Female <lp> dual dragon pussies are also smooth and muscular. Female <lp> love to fuck partners with multiple cocks so that they can fill both their pussies at once. If you fuck a female <lp>, make sure to fist one of her twin cunts while you fuck the other one.",
 	plural: true,
 	pussy_plural: true
 })
@@ -2634,25 +2674,25 @@ dicks.set("turtle", {
 	species: ["squirtle", "wartortle", "blastoise", "shuckle", "torkoal", "turtwig", "grotle", "torterra"],
 	adj: ["turtle /a <ds>", "prehensile /a <ds>", "muscular /a <ds>"],
 	pussy: "reptilian",
-	dex: "Male <lp> have a long, pink, slick cock that hides inside their body when not in use. Their penises are prehensile and they can move them freely. <p> have internal testicles."
+	dex_m: "Male <lp> have a long, pink, slick cock that hides inside their body when not in use. Their penises are prehensile and they can move them freely. <p> have internal testicles."
 })
 dicks.set("insect", {
 	species: ["caterpie", "metapod", "butterfree", "weedle", "metapod", "paras", "parasect", "venonat", "venomoth", "pinsir", "kabuto", "kabutops", "ledyba", "ledian", "yanma", "wurmple", "silcoon", "beautifly", "cascoon", "dustox", "surskit", "masquerain", "volbeat", "illumise", "trapinch", "vibrava", "anorith", "armaldo"],
 	adj: ["/a <ds>"],
 	pussy_adj: ["/a <ps>"],
-	dex: "Male <lp> have a cock that comes out of their chitinous exoskeleton when aroused. Their testicles are internal. When a male <ln> is aroused his penis leaks a sticky, sweet-smelling precum."
+	dex_m: "Male <lp> have a cock that comes out of their chitinous exoskeleton when aroused. Their testicles are internal. When a male <ln> is aroused his penis leaks a sticky, sweet-smelling precum."
 })
 dicks.set("avian", {
 	species: ["pidgey", "pidgeotto", "pidgeot", "spearow", "fearow", "psyduck", "golduck", "farfetch'd", "galarian_farfetch'd", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "hoothoot", "noctowl", "natu", "xatu", "murkrow", "delibird", "skarmory", "ho-oh", "torchic", "combusken", "blaziken", "taillow", "swellow", "wingull", "pelipper", "swablu", "piplup", "prinplup", "empoleon", "starly", "staravia", "staraptor"],
 	adj: ["bird /a <ds>", "avian /a <ds>", "muscular /a <ds>", "curved /a <ds>"],
 	pussy_adj: ["avian /a <ps>", "bird /a <ps>", "feathered /a <ps>", "muscular /a <ps>"],
-	dex: "Male <lp> have a slick, pink, curved cock. Male <lp> have internal testicles. The s-shaped curve of a male <lp>'s muscular penis is highly pleasurable."
+	dex_m: "Male <lp> have a slick, pink, curved cock. Male <lp> have internal testicles. The s-shaped curve of a male <lp>'s muscular penis is highly pleasurable."
 })
 dicks.set("avian_double", {
 	species: ["doduo"],
 	adj: ["bird /a <ds>", "avian /a <ds>", "muscular /a <ds>", "curved /a <ds>"],
 	pussy: "avian",
-	dex: "Male <lp> have two slick, pink, curved cocks. Both of the male <ln>'s penises hide inside his body when not in use. Male <lp> have internal testicles. Male <lp> are known for using both of their penises at once on a partner. They love fucking their partner with both of their dicks.",
+	dex_m: "Male <lp> have two slick, pink, curved cocks. Both of the male <ln>'s penises hide inside his body when not in use. Male <lp> have internal testicles. Male <lp> are known for using both of their penises at once on a partner. They love fucking their partner with both of their dicks.",
 	plural: true,
 	pussy_plural: true
 })
@@ -2660,21 +2700,15 @@ dicks.set("avian_triple", {
 	species: ["dodrio"],
 	adj: ["bird /a <ds>", "avian /a <ds>", "muscular /a <ds>", "curved /a <ds>"],
 	pussy: "avian",
-	dex: "Male <lp> have three slick, pink, curved cocks. All three of the male <ln>'s penises hide inside his body when not in use. Male <lp> have internal testicles. Male <lp> are known for using all three of their penises at once on a partner. They love fucking their partner with all three of their dicks.",
+	dex_m: "Male <lp> have three slick, pink, curved cocks. All three of the male <ln>'s penises hide inside his body when not in use. Male <lp> have internal testicles. Male <lp> are known for using all three of their penises at once on a partner. They love fucking their partner with all three of their dicks.",
 	plural: true,
 	pussy_plural: true
-})
-dicks.set("rodent", {
-	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "plusle", "minun"],
-	adj: ["mouse /a <ds>", "animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
-	pussy: "generic_sheath",
-	dex: "Male <lp> have a pink penis that lies inside a protective fleshy sheath. When aroused, the penis comes out of its sheath. Once a male <ln> is aroused he will want to orgasm."
 })
 dicks.set("snake", {
 	species: ["ekans", "arbok", "onix", "dratini", "dragonair", "steelix", "seviper"],
 	adj: ["snake /a <ds>", "twin /a <ds>", "double /a <ds>", "dual /a <ds>"],
 	pussy: "reptilian",
-	dex: "Male <lp> have two reptilian penises right beside each other. Their dual penises are slick and pink, and they retract inside the body when not in use. Male <lp> have internal testicles. Male <lp> are known for using both of their penises at once on a partner. They love fucking their partner with both of their dicks.",
+	dex_m: "Male <lp> have two reptilian penises right beside each other. Their dual penises are slick and pink, and they retract inside the body when not in use. Male <lp> have internal testicles. Male <lp> are known for using both of their penises at once on a partner. They love fucking their partner with both of their dicks.",
 	plural: true,
 	pussy_plural: true
 })
@@ -2682,32 +2716,39 @@ dicks.set("rhino", {
 	species: ["nidoran_f", "nidorina", "nidoqueen", "nidoran_m", "nidorino", "nidoking", "rhyhorn", "rhydon", "aron", "lairon", "aggron"],
 	adj: ["rhino /a <ds>", "rhinoceros /a <ds>"],
 	pussy_adj: ["rhino /a <ps>", "rhinoceros /a <ps>"],
-	dex: "Male <lp> have a long pink penis with a dramatically flared tip. When they're about to cum, the tip of their penis flares up and expands. A <ln>'s penis is also prehensile and can be fully controlled. When not in use, the penis is hidden inside a protective fleshy sheath."
+	dex_m: "Male <lp> have a long pink penis with a dramatically flared tip. When they're about to cum, the tip of their penis flares up and expands. A <ln>'s penis is also prehensile and can be fully controlled. When not in use, the penis is hidden inside a protective fleshy sheath."
 })
 dicks.set("generic_sheath", {
 	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey", "whismur", "loudred", "exploud"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy_adj: ["animal /a <ps>", "animalistic /a <ps>", "beast /a <ps>", "beastial /a <ps>"],
-	dex: dicks.get("rodent").dex
+	dex_m: "Male <lp> have a pink penis that lies inside a protective fleshy sheath. When aroused, the penis comes out of its sheath. Once a male <ln> is aroused he will want to orgasm.",
 })
 dicks.set("generic_slit", {
-	species: ["poliwag", "poliwhirl", "poliwrath", "politoed", "wooper", "quagsire"],
-	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>", "muscular /a <ds>", "twitching /a <ds>", "togepi", "lotad", "lombre", "ludicolo", "gulpin", "swalot"],
+	species: ["poliwag", "poliwhirl", "poliwrath", "politoed", "wooper", "quagsire", "togepi", "lotad", "lombre", "ludicolo", "gulpin", "swalot"],
+	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>", "muscular /a <ds>", "twitching /a <ds>"],
 	pussy: "generic_sheath",
-	dex: "Male <lp> have a slick, pink penis that hides inside their body when not aroused. They also have internal testicles. A male <ln>'s penis is highly muscular."
+	dex_m: "Male <lp> have a slick, pink penis that hides inside their body when not aroused. They also have internal testicles. A male <ln>'s penis is highly muscular."
+})
+dicks.set("rodent", {
+	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "plusle", "minun"],
+	adj: ["mouse /a <ds>", "animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
+	pussy: "generic_sheath",
+	dex_m: dicks.get("generic_sheath").dex_m,
+	dex_f: dicks.get("generic_sheath").dex_f
 })
 dicks.set("fox", {
 	species: ["vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "abra", "kadabra", "alakazam", "cubone", "marowak", "alolan_marowak", "eevee", "jolteon", "flareon", "espeon", "umbreon"],
 	adj: ["fox /a <ds>", "vulpine /a <ds>", "animal /a <ds>", "beastial /a <ds>", "beast /a <ds>", "animalistic /a <ds>"],
 	pussy_adj: ["fox /a <ps>", "vulpine /a <ps>"],
-	dex: dicks.get("generic_sheath").dex + " At the base of a <ln>'s penis is a thick fleshy knot, which expands when he's getting close to orgasm."
+	dex_m: dicks.get("generic_sheath").dex_m + " At the base of a <ln>'s penis is a thick fleshy knot, which expands when he's getting close to orgasm."
 })
 dicks.set("vine", {
 	species: ["oddish", "gloom", "vileplume", "bellsprout", "weepinbell", "victreebel", "exeggutor", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "pineco", "forretress", "celebi", "shroomish", "breloom", "roselia", "cacnea", "cacturne", "lileep", "cradily"],
 	adj: ["several slimey vine /a <ds>", "many slimey vine /a <ds>", "several slimey tentacle /a <ds>", "many slimey tentacle /a <ds>", "slimey vine /a <ds>", "slimey tentacle /a <ds>"],
 	pussy_adj: ["several slimey vine /a <ps>", "many slimey vine /a <ps>", "several slimey tentacle /a <ps>", "many slimey tentacle /a <ps>", "slimey vine /a <ps>", "slimey tentacle /a <ps>"],
-	dex: `Male <lp> have several vines which function as penises. These penis vines are long and fully prehensile. Vine cocks have a head like a human's penis, and a retractable foreskin. Vine penises are very slick and slimy, and male <lp> love to use multiple at a time to fuck their partners. Cock vines can cum just like any other penis.
-Female <lp> have several vines which function as vaginas. These pussy vines are long and fully prehensile. Vine pussies can suck on a partner's cock until they cum. Female <lp> love to use multiple vine cunts if their partner has multiple cocks.`,
+	dex_m: `Male <lp> have several vines which function as penises. These penis vines are long and fully prehensile. Vine cocks have a head like a human's penis, and a retractable foreskin. Vine penises are very slick and slimy, and male <lp> love to use multiple at a time to fuck their partners. Cock vines can cum just like any other penis.`,
+	dex_f: `Female <lp> have several vines which function as vaginas. These pussy vines are long and fully prehensile. Vine pussies can suck on a partner's cock until they cum. Female <lp> love to use multiple vine cunts if their partner has multiple cocks.`,
 	plural: true,
 	pussy_plural: true
 })
@@ -2715,25 +2756,25 @@ dicks.set("self", {
 	species: ["diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "exeggcute"],
 	adj: ["body"],
 	pussy_adj: ["mouth"],
-	dex: "No one knows how <lp> reproduce, but that doesn't stop people from having sex with them. They love to be shoved into people's various holes, and it seems they can have some type of orgasm from it."
+	dex_m: "No one knows how <lp> reproduce, but that doesn't stop people from having sex with them. They love to be shoved into people's various holes, and it seems they can have some type of orgasm from it."
 })
 dicks.set("feline", {
 	species: ["meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mewtwo", "mew", "raikou", "skitty", "delcatty"],
 	adj: ["feline /a <ds>", "barbed /a <ds>", "cat /a <ds>"],
 	pussy_adj: ["feline /a <ps>", "cat /a <ps>"],
-	dex: "Male <lp> have a pink penis with soft barbs on the end. The barbs don't hurt, they feel pleasant. When not aroused, a <ln>'s penis is hidden in a protective fleshy sheath."
+	dex_m: "Male <lp> have a pink penis with soft barbs on the end. The barbs don't hurt, they feel pleasant. When not aroused, a <ln>'s penis is hidden in a protective fleshy sheath."
 })
 dicks.set("human", {
 	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom", "tyrogue", "hitmontop", "smoochum", "ralts", "kirlia", "gardevoir", "slakoth", "vigoroth", "slaking", "makuhita", "hariyama", "meditite", "medicham", "jirachi", "chimchar", "monferno", "infernape"],
 	adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ds>"],
 	pussy_adj: ["human-like /a <ps>", "humanoid /a <ps>", "/a <ps>"],
-	dex: "Male <lp> have a human-like penis complete with a foreskin and a scrotum with two testicles."
+	dex_m: "Male <lp> have a human-like penis complete with a foreskin and a scrotum with two testicles."
 })
 dicks.set("human_double", {
 	species: ["machamp"],
 	adj: ["twin /a <ds>", "double /a <ds>", "dual /a <ds>"],
 	pussy_adj: ["twin /a <ps>", "double /a <ps>", "dual /a <ps>"],
-	dex: "Male <lp> have two large penises. When fucking females they love to put their cocks in both holes at once. The two big penises of male <lp> are veiny and muscular. The male <lp> love penetrating their partner with both of their penises at once.",
+	dex_m: "Male <lp> have two large penises. When fucking females they love to put their cocks in both holes at once. The two big penises of male <lp> are veiny and muscular. The male <lp> love penetrating their partner with both of their penises at once.",
 	plural: true,
 	pussy_plural: true
 })
@@ -2741,13 +2782,14 @@ dicks.set("canine", {
 	species: ["growlithe", "arcanine", "snubbull", "granbull", "houndour", "houndoom", "suicune", "entei", "poochyena", "mightyena", "electrike", "manectric", "absol"],
 	adj: ["knotted dog /a <ds>", "knotted canine /a <ds>", "knotted doggy /a <ds>", "knotted puppy /a <ds>", "knotted /a <ds>"],
 	pussy_adj: ["dog /a <ps>", "canine /a <ps>", "puppy /a <ps>"],
-	dex: "Male <lp> have a pink dog penis. A male <p>'s penis has a thick fleshy knot at the base, which expands and lodges him inside his partner when he orgasms. Once a male <ln> has knotted his partner, they'll be stuck together until his penis goes soft again. When his penis isn't in use, it's hidden in a protective fleshy sheath."
+	dex_m: "Male <lp> have a pink dog penis. A male <p>'s penis has a thick fleshy knot at the base, which expands and lodges him inside his partner when he orgasms. Once a male <ln> has knotted his partner, they'll be stuck together until his penis goes soft again. When his penis isn't in use, it's hidden in a protective fleshy sheath."
 })
 dicks.set("tentacle", {
 	species: ["tentacool", "tentacruel", "omanyte", "omastar", "octillery", "clamperl", "deoxys", "speed_deoxys", "attack_deoxys", "defense_deoxys"],
 	adj: ["several slimey tentacle /a <ds>", "several writhing tentacle /a <ds>", "many slimey tentacle /a <ds>", "many writhing tentacle /a <ds>", "slimey tentacle /a <ds>", "writhing tentacle /a <ds>", "tentacle /a <ds>"],
 	pussy_adj: ["several slimey tentacle /a <ps>", "several writhing tentacle /a <ps>", "many slimey tentacle /a <ps>", "many writhing tentacle /a <ps>", "slimey tentacle /a <ps>", "writhing tentacle /a <ps>", "tentacle /a <ps>"],
-	dex: "Male <lp> have several tentacles. One of their tentacles is actually their penis. A male <ln>'s penis tentacle looks like any other tentacle, but it releases cum when he orgasms. When a male <ln> has sex, he uses all his tentacles to pleasure his partner.\n\nFemale <lp> have several tentacles. One of the female <lp>'s tentacles is actually its vagina. A female <ln>'s pussy tentacle looks like any other tentacle, but the tip can open to reveal a soft moist vagina. When female <lp> have sex, they use their tentacle cunt to suck the cum out of the male's penis.",
+	dex_m: `Male <lp> have several tentacles. One of their tentacles is actually their penis. A male <ln>'s penis tentacle looks like any other tentacle, but it releases cum when he orgasms. When a male <ln> has sex, he uses all his tentacles to pleasure his partner.`,
+	dex_f: `Female <lp> have several tentacles. One of the female <lp>'s tentacles is actually its vagina. A female <ln>'s pussy tentacle looks like any other tentacle, but the tip can open to reveal a soft moist vagina. When female <lp> have sex, they use their tentacle cunt to suck the cum out of the male's penis.`,
 	plural: true,
 	pussy_plural: true
 })
@@ -2755,178 +2797,184 @@ dicks.set("rock", {
 	species: ["geodude", "graveler", "golem", "alolan_geodude", "alolan_graveler", "alolan_golem", "sudowoodo", "nosepass", "regirock"],
 	adj: ["stone /a <ds>", "rock /a <ds>"],
 	pussy_adj: ["stone /a <ps>", "rock /a <ps>"],
-	dex: "Male <lp> have a penis made entirely out of rock. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of rock, male <lp> are always erect and ready to fuck.\n\nFemale <lp> have a pussy made entirely out of rock. Despite the hardness of the pussy, it's very warm and comfortable. Since their pussies are made of rock, female <lp> are always ready to fuck."
+	dex_m: `Male <lp> have a penis made entirely out of rock. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of rock, male <lp> are always erect and ready to fuck.`,
+	dex_f: `Female <lp> have a pussy made entirely out of rock. Despite the hardness of the pussy, it's very warm and comfortable. Since their pussies are made of rock, female <lp> are always ready to fuck.`
 })
 dicks.set("metal", {
 	species: ["registeel"],
 	adj: ["metal /a <ds>", "steel /a <ds>"],
 	pussy_adj: ["metal /a <ps>", "steel /a <ps>"],
-	dex: "Male <lp> have a penis made entirely out of metal. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of metal, male <lp> are always erect and ready to fuck.\n\nFemale <lp> have a pussy made entirely out of metal. Despite the hardness of the pussy, it's very warm and comfortable. Since their pussies are made of metal, female <lp> are always ready to fuck."
+	dex_m: "Male <lp> have a penis made entirely out of metal. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of metal, male <lp> are always erect and ready to fuck.",
+	dex_f: "Female <lp> have a pussy made entirely out of metal. Despite the hardness of the pussy, it's very warm and comfortable. Since their pussies are made of metal, female <lp> are always ready to fuck."
 })
 dicks.set("ice", {
 	species: ["glalie", "regice"],
 	adj: ["ice /a <ds>", "icey /a <ds>"],
 	pussy_adj: ["ice /a <ps>", "icey /a <ps>"],
-	dex: "Male <lp> have a penis made entirely out of ice. Despite the coldness and hardness of the penis, it's very comfortable. Since their penises are made of ice, male <lp> are always erect and ready to fuck.\n\nFemale <lp> have a pussy made entirely out of ice. Despite the coldness and hardness of the pussy, it's very comfortable. Since their pussies are made of ice, female <lp> are always ready to fuck."
+	dex_m: "Male <lp> have a penis made entirely out of ice. Despite the coldness and hardness of the penis, it's very comfortable. Since their penises are made of ice, male <lp> are always erect and ready to fuck.",
+	dex_f: "Female <lp> have a pussy made entirely out of ice. Despite the coldness and hardness of the pussy, it's very comfortable. Since their pussies are made of ice, female <lp> are always ready to fuck."
 })
 dicks.set("equine", {
 	species: ["ponyta", "galarian_ponyta", "rapidash", "galarian_rapidash"],
 	adj: ["horse /a <ds>", "equine /a <ds>", "horsecock"],
 	pussy_adj: ["horse /a <ps>", "equine /a <ps>"],
-	dex: "Male <lp> have a long horse cock. Their equine penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s horsecock has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.\n\nWhen female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
+	dex_m: "Male <lp> have a long horse cock. Their equine penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s horsecock has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.",
+	dex_f: "When female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
 })
 dicks.set("giraffe", {
 	species: ["girafarig"],
 	adj: ["giraffe /a <ds>", "giraffid /a <ds>"],
 	pussy_adj: ["giraffe /a <ps>", "giraffid /a <ps>"],
-	dex: "Male <lp> have a long giraffe cock. Their giraffe penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s giraffe dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.\n\nWhen female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
+	dex_m: "Male <lp> have a long giraffe cock. Their giraffe penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s giraffe dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm.",
+	dex_f: "When female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
 })
 dicks.set("elephant", {
 	species: ["phanpy", "donphan"],
 	adj: ["elephant /a <ds>", "elephantid /a <ds>"],
 	pussy_adj: ["elephant /a <ps>", "elephantid /a <ps>"],
-	dex: "Male <lp> have a long elephant cock. Their elephant penises are normally stored within a thick fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s elephant dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm. A male <ln> can release over 10 gallons of semen in one orgasm!"
+	dex_m: "Male <lp> have a long elephant cock. Their elephant penises are normally stored within a thick fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s elephant dick has a muscular band around the middle, and a large flat head at the tip. The head of the penis will flare up with the pokemon reaches orgasm. A male <ln> can release over 10 gallons of semen in one orgasm!"
 })
 dicks.set("porcine", {
 	species: ["slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "drowzee", "hypno", "slowking", "galarian_slowking", "swinub", "poliswine", "spoink", "grumpig"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy: "generic_sheath",
-	dex: "Male <lp> have a long, thin, pink penis. A male <ln>'s penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
+	dex_m: "Male <lp> have a long, thin, pink penis. A male <ln>'s penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
 })
 dicks.set("pinniped", {
 	species: ["spheal", "sealeo", "walrein"],
 	adj: ["walrus /a <ds>", "seal /a <ds>", "pinniped /a <ds>"],
 	pussy: "generic_slit",
-	dex: "Male <lp> have a long pink pinniped penis. A male <ln>'s seal penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
+	dex_m: "Male <lp> have a long pink pinniped penis. A male <ln>'s seal penis normally hides within a protective fleshy sheath when not aroused. They also have massive testicles. A male <ln> can release over a gallon of semen in one orgasm!"
 })
 dicks.set("cervine", {
 	species: ["stantler"],
 	adj: ["deer /a <ds>", "cervid /a <ds>"],
 	pussy_adj: ["deer /a <ps>", "cervid /a <ps>"],
 	pussy: "generic_sheath",
-	dex: "Male <lp> have a long, thin, pink, deer penis. A male <ln>'s deer penis normally hides within a protective fleshy sheath when not aroused."
+	dex_m: "Male <lp> have a long, thin, pink, deer penis. A male <ln>'s deer penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("camel", {
 	species: ["numel", "camerupt"],
 	adj: ["camel /a <ds>", "camelid /a <ds>"],
 	pussy_adj: ["camel /a <ps>", "camelid /a <ps>"],
 	pussy: "generic_sheath",
-	dex: "Male <lp> have a long camel penis. A male <ln>'s camel penis normally hides within a protective fleshy sheath when not aroused."
+	dex_m: "Male <lp> have a long camel penis. A male <ln>'s camel penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("ursine", {
 	species: ["teddiursa", "ursaring", "spinda"],
 	adj: ["bear /a <ds>", "ursine /a <ds>"],
 	pussy_adj: ["bear /a <ps>", "ursine /a <ps>"],
-	dex: "Male <lp> have a long, thin, pink, bear penis. A male <ln>'s bear penis normally hides within a protective fleshy sheath when not aroused."
+	dex_m: "Male <lp> have a long, thin, pink, bear penis. A male <ln>'s bear penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("sheep", {
 	species: ["mareep", "flaaffy", "ampharos"],
 	adj: ["sheep /a <ds>"],
 	pussy: "generic_sheath",
-	dex: "<p> have animalistic sheep genitals. <p> genitals are very soft and plushy, and highly sensitive. Sex with them is intensely pleasurable."
+	dex_m: "<p> have animalistic sheep genitals. <p> genitals are very soft and plushy, and highly sensitive. Sex with them is intensely pleasurable."
 })
 dicks.set("electric_disembodied", {
 	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon", "porygon2"],
 	adj: ["magically electric /a <ds>", "pleasantly electric /a <ds>", "disembodied electric /a <ds>"],
 	pussy_adj: ["magical electric /a <ps>", "pleasently electric /a <ps>", "disembodied electric /a <ps>"],
-	dex: "Male <lp> reproduce using a penis made of magical electric energy. The penis is used like a dildo, and it's voltage is low enough that it's extremely pleasurable and doesn't shock the user. Since male <lp> have magical disembodied penises, they can create more whenever they want. They love creating several electric penises during sex."
+	dex_m: "Male <lp> reproduce using a penis made of magical electric energy. The penis is used like a dildo, and it's voltage is low enough that it's extremely pleasurable and doesn't shock the user. Since male <lp> have magical disembodied penises, they can create more whenever they want. They love creating several electric penises during sex."
 })
 dicks.set("cetacean", {
 	species: ["seel", "dewgong", "lapras", "vaporeon", "lanturn", "togetic", "mantine", "lugia", "latias", "latios"],
 	adj: ["prehensile /a <ds>", "muscular /a <ds>", "cetacean /a <ds>"],
 	pussy_adj: ["slick /a <ps>", "smooth /a <ps>", "cetacean /a <ps>", "muscular /a <ps>"],
-	dex: "Male <lp> have a long, slick, pink penis. A male <ln>'s penis is prehensile and can be controlled freely. When not aroused, a male <lp>'s penis retracts into a slit in its body. Male <lp> have internal testicles. A male <ln>'s penis is extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!"
+	dex_m: "Male <lp> have a long, slick, pink penis. A male <ln>'s penis is prehensile and can be controlled freely. When not aroused, a male <lp>'s penis retracts into a slit in its body. Male <lp> have internal testicles. A male <ln>'s penis is extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!"
 })
 dicks.set("cetacean_double", {
 	species: ["milotic"],
 	adj: ["prehensile /a <ds>", "muscular /a <ds>", "cetacean /a <ds>"],
 	pussy: "cetacean",
-	dex: "Male <lp> have two long, slick, pink penises. A male <ln>'s twin penises are prehensile and can be controlled freely. When not aroused, a male <lp>'s dual penises retract into a slit in his body. Male <lp> have internal testicles. A male <ln>'s double penises are extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!",
+	dex_m: "Male <lp> have two long, slick, pink penises. A male <ln>'s twin penises are prehensile and can be controlled freely. When not aroused, a male <lp>'s dual penises retract into a slit in his body. Male <lp> have internal testicles. A male <ln>'s double penises are extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!",
 	plural: true
 })
 dicks.set("demonic", {
 	species: ["shadow_lugia"],
 	adj: ["demonic /a <ds>", "demon /a <ds>"],
 	pussy_adj: ["enticing /a <ps>", "hypnotizing /a <ps>", "entrancing /a <ps>"],
-	dex: "Male <lp> have a long, thick, purple cock. A male <ln>'s penis is ribbed for pleasure. The male <ln>'s penis has a large knot, which expands and locks him into his partner when he cums. Male <ln>'s penises have a pointed tip and sexy feelers all around, which provide pleasure for him and his partner. Male <lp> have gigantic testicles, and they can cum gallons of intoxicating semen in a single orgasm."
+	dex_m: "Male <lp> have a long, thick, purple cock. A male <ln>'s penis is ribbed for pleasure. The male <ln>'s penis has a large knot, which expands and locks him into his partner when he cums. Male <ln>'s penises have a pointed tip and sexy feelers all around, which provide pleasure for him and his partner. Male <lp> have gigantic testicles, and they can cum gallons of intoxicating semen in a single orgasm."
 })
 dicks.set("slime", {
 	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "slugma", "magcargo", "corsola", "galarian_corsola"],
 	adj: ["slime /a <ds>", "slimey /a <ds>"],
 	pussy_adj: ["slime /a <ps>", "slimey /a <ps>"],
-	dex: "Male <lp> reproduce by forming their slime into the shape of a penis and using it to fuck their partner. A <ln>'s slime penis can be reshaped and resized to do any kinky thing he wants. Male <lp> love to create multiple slime cocks at once and use them fuck a single partner."
+	dex_m: "Male <lp> reproduce by forming their slime into the shape of a penis and using it to fuck their partner. A <ln>'s slime penis can be reshaped and resized to do any kinky thing he wants. Male <lp> love to create multiple slime cocks at once and use them fuck a single partner."
 })
 dicks.set("tongue", {
 	species: ["shellder", "cloyster", "lickitung"],
 	adj: ["tongue-/a <ds>", "tongue /a <ds>"],
 	pussy_adj: ["tongue /a <ps>", "tongue-/a <ps>"],
-	dex: "A male <ln>'s tongue is actually his penis. He has a long prehensile tongue that he uses to fuck his partner. When he reaches orgasm, the male <ln> cums from the tip of his tongue. Male <lp> love to use their tongue-cocks to perform all sorts of sex acts. <p> have very long tongues which can be finely controlled. Male <lp> love to use their tongue dicks to fuck, suck, and jerk off their partners!"
+	dex_m: "A male <ln>'s tongue is actually his penis. He has a long prehensile tongue that he uses to fuck his partner. When he reaches orgasm, the male <ln> cums from the tip of his tongue. Male <lp> love to use their tongue-cocks to perform all sorts of sex acts. <p> have very long tongues which can be finely controlled. Male <lp> love to use their tongue dicks to fuck, suck, and jerk off their partners!"
 })
 dicks.set("psychic_disembodied", {
 	species: ["gastly", "haunter", "koffing", "weezing", "galarian_weezing", "staryu", "starmie", "misdreavus", "unown", "wobbuffet", "lunatone", "solrock", "baltoy", "claydol", "shupper", "duskull", "chimecho", "wynaut", "beldum", "metang", "metagross"],
 	adj: ["ethereal floating /a <ds>", "psychically floating /a <ds>"],
 	pussy_adj: ["ethereal floating /a <ps>", "psychically floating /a <ps>"],
-	dex: "Male <lp>'s lack a physical penis, but they can manifest a magical penis using psychic energy. A partner can use the male <ln>'s psychic penis like a dildo, and it can orgasm like a normal penis. Since male <lp> use disembodied psychic penises, they can create more than one. Male <lp> love to create multiple penises and fuck the same person with them."
+	dex_m: "Male <lp>'s lack a physical penis, but they can manifest a magical penis using psychic energy. A partner can use the male <ln>'s psychic penis like a dildo, and it can orgasm like a normal penis. Since male <lp> use disembodied psychic penises, they can create more than one. Male <lp> love to create multiple penises and fuck the same person with them."
 })
 dicks.set("psychic", {
 	species: ["gengar", "sableye", "banette", "dusclops"],
 	adj: ["psychic /a <ds>", "glowing /a <ds>", "ethereal /a <ds>>"],
 	pussy_adj: ["psychic /a <ps>", "glowing /a <ps>", "ethereal /a <ps>"],
-	dex: "Male <lp> don't have physical penises, but they create them out of psychic energy when aroused. An observer would see the male <ln>'s penis phase into existence on its crotch. Since a male <ln>'s penis is created using psychic energy, it can be any shape and size! Male <lp> will change the size and shape of their psychic dicks during sex to keep things interesting for their partner."
+	dex_m: "Male <lp> don't have physical penises, but they create them out of psychic energy when aroused. An observer would see the male <ln>'s penis phase into existence on its crotch. Since a male <ln>'s penis is created using psychic energy, it can be any shape and size! Male <lp> will change the size and shape of their psychic dicks during sex to keep things interesting for their partner."
 })
 dicks.set("crustacean", {
 	species: ["krabby", "kingler", "corphish", "crawdaunt"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy: "generic_slit",
-	dex: "Male <lp> have an internal penis that comes out of their body when aroused."
+	dex_m: "Male <lp> have an internal penis that comes out of their body when aroused."
 })
 dicks.set("fish", {
 	species: ["horsea", "seadra", "goldeen", "seaking", "magikarp", "chinchou", "qwilfish", "remoraid", "kingdra", "mudkip", "marshtomp", "swampert", "carvanha", "barboach", "whiscash", "feebas", "huntail", "gorebyss", "relicanth", "luvdisc"],
 	adj: ["slick /a <ds>", "tapered /a <ds>", "fish /a <ds>"],
 	pussy: "cetacean",
-	dex: "Male <lp> have an internal penis that comes out of their body when aroused."
+	dex_m: "Male <lp> have an internal penis that comes out of their body when aroused."
 })
 dicks.set("shark", {
 	species: ["sharpedo"],
 	adj: ["dual shark /a <ds>", "double shark /a <ds>", "twin shark /a <ds>"],
 	pussy_adj: ["shark /a <ps>"],
-	dex: "Male <lp> have two shark penises. A male <ln>'s double shark dicks are slippery and pink. Male <lp> love using both of their twin shark cocks at once when having sex."
+	dex_m: "Male <lp> have two shark penises. A male <ln>'s double shark dicks are slippery and pink. Male <lp> love using both of their twin shark cocks at once when having sex."
 })
 dicks.set("whale", {
 	species: ["wailmer", "wailord", "kyogre"],
 	adj: ["whale /a <ds>"],
 	pussy_adj: ["whale /a <ps>"],
-	dex: "Male <lp> have colossal whale penises. The size of a male <ln>'s penis cannot be understated. A male <ln>'s penis is over six feet long, and as thick as an entire human body. It is totally impossible for a male <ln> to fit his penis into a person. Female <ln> have enormous vaginas that can take any size of cock, but they won't even feel a thing unless the penis is absolutely colossal."
+	dex_m: "Male <lp> have colossal whale penises. The size of a male <ln>'s penis cannot be understated. A male <ln>'s penis is over six feet long, and as thick as an entire human body. It is totally impossible for a male <ln> to fit his penis into a person.",
+	dex_f: "Female <ln> have enormous vaginas that can take any size of cock, but they won't even feel a thing unless the penis is absolutely colossal."
 })
 dicks.set("bovine", {
 	species: ["tauros", "miltank"],
 	adj: ["bull /a <ds>", "bovine /a <ds>"],
 	pussy_adj: ["cow /a <ps>", "bovine /a <ps>"],
-	dex: "Male <lp> have a bull penis. It's long and pink. Male <lp> also have massive testes. When a male <ln> cums, he can release over a gallon of semen!"
+	dex_m: "Male <lp> have a bull penis. It's long and pink. Male <lp> also have massive testes. When a male <ln> cums, he can release over a gallon of semen!"
 })
 dicks.set("ditto", {
 	species: ["ditto"],
 	adj: ["transformable /a <ds>"],
 	pussy_adj: ["transformable /a <ps>"],
-	dex: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. <p> really love to transform into the person or pokemon they're currently having sex with."
+	dex_m: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. <p> really love to transform into the person or pokemon they're currently having sex with."
 })
 dicks.set("ovipositor", {
 	species: ["beedrill", "spinarak", "ariados", "scyther", "scizor", "heracross"],
 	adj: ["/a <ds>-like ovipositor", "ovipositor", "sexual appendage"],
 	pussy: "insect",
-	dex: "Male <lp> use a specialized ovipositor as a penis. His ovipositor functions just like a penis. When a male <p> cums, he pumps eggs through his ovipositor into his partner. He doesn't ejaculate semen, he only releases large eggs when he cums. This makes his partner feel really good."
+	dex_m: "Male <lp> use a specialized ovipositor as a penis. His ovipositor functions just like a penis. When a male <p> cums, he pumps eggs through his ovipositor into his partner. He doesn't ejaculate semen, he only releases large eggs when he cums. This makes his partner feel really good."
 })
 dicks.set("crocodile", {
 	species: ["totodile", "croconaw", "feraligatr"],
 	adj: ["crocodile /a <ds>", "croc /a <ds>", "gator /a <ds>", "crocodilian /a <ds>"],
 	pussy_adj: ["crocodile /a <ps>", "croc /a <ps>", "gator /a <ps>", "crocodilian /a <ps>"],
-	dex: "Male <lp> have a crocodile penis. The male <ln>'s crocodilian cock is extremely muscular and powerful. Male <ln> are known to fence with their crocodile dicks to display their power. Female <lp> will always choose the male with the biggest cock, so male <lp> have evolved to have big crocodile dicks."
+	dex_m: "Male <lp> have a crocodile penis. The male <ln>'s crocodilian cock is extremely muscular and powerful. Male <ln> are known to fence with their crocodile dicks to display their power. Female <lp> will always choose the male with the biggest cock, so male <lp> have evolved to have big crocodile dicks."
 })
 dicks.set("cloud", {
 	species: ["castform", "rainy_castform", "sunny_castform", "snowy_castform"],
 	adj: ["cloud /a <ds>", "cloudy /a <ds>"],
 	pussy_adj: ["cloud /a <ps>", "cloudy /a <ps>"],
-	dex: "Male <lp> have a penis made entirely of clouds. The male <ln>'s cloud penis can't penetrate anything, but it can still feel pleasure."
+	dex_m: "Male <lp> have a penis made entirely of clouds. The male <ln>'s cloud penis can't penetrate anything, but it can still feel pleasure."
 })
 /*
 dicks.set("", {
@@ -2956,7 +3004,11 @@ dicks.forEach(function(value, name) {
 		data[pussy_tag] = true
 		data.dick = dick_name
 		data.pussy = pussy_name
-		data.dick_dex_entry = value.dex
+		data.dick_plural = dicks.get(data.dick).plural
+		data.pussy_plural = dicks.get(data.dick).pussy_plural || dicks.get(data.pussy).pussy_plural
+		data.dick_dex_entry = value.dex_m
+		data.pussy_dex_entry = value.dex_f
+		data.shared_dex_entry = value.dex
 	})
 })
 
@@ -3109,6 +3161,8 @@ special.forEach(function(value, name) {
 		data.dick = data.dick || d.dick
 		data.pussy = data.pussy || d.pussy
 		data.dick_dex_entry = data.dick_dex_entry || d.dick_dex_entry
+		data.pussy_dex_entry = data.pussy_dex_entry || d.pussy_dex_entry
+		data.shared_dex_entry = data.shared_dex_entry || d.shared_dex_entry
 		data.body = data.body || d.body
 		data.body_dex_entry = data.body_dex_entry || d.body
 		data.arms = data.arms || d.arms
@@ -3123,7 +3177,8 @@ special.forEach(function(value, name) {
 // POKEDEX //
 /////////////
 // generate world data for each pokemon
-species.forEach(function(data, name) {
+function load_species(name, gender) {
+	var data = getSpecies(name)
 	var size = data.bodySize
 	var color = data.bodyColor
 
@@ -3141,8 +3196,14 @@ species.forEach(function(data, name) {
 	}
 
 	// dick dex entry
-	if (data.dick_dex_entry) {
+	if (isMale(gender) && data.dick_dex_entry) {
 		str = str + " " + data.dick_dex_entry
+	}
+	if (isFemale(gender) && data.pussy_dex_entry) {
+		str = str + " " + data.pussy_dex_entry
+	}
+	if (data.shared_dex_entry) {
+		str = str + " " + data.shared_dex_entry
 	}
 
 	// custom dex entry
@@ -3160,4 +3221,4 @@ species.forEach(function(data, name) {
 
 	// send to AI
 	save(name, str)
-})
+}

@@ -42,13 +42,22 @@ const modifier = (text) => {
 			var trim = trim_input_fluff(text)
 			var scene = scenario_options[trim.toLowerCase()]
 
+      if (trim == "x") { // random scene
+        while (true) {
+          var key = getRandomKey(scenes)
+          scene = scenario_options[key]
+          if (!scene.hidden) {
+            break
+          }
+        }
+      }
+
 			if (scene) {
 				save("SCENE_SELECTION_COMPLETE", "1")
-				save("SELECTED_SCENE", trim.toLowerCase())
+				save("SELECTED_SCENE", scene.name)
 				modifiedText = ''
 				stop_ai()
 			} else if (trim.length > 0) {
-        console.log("mod",modifiedText)
         if (trim.substr(0, 1) == ":") {
           // custom scenario
           modifiedText = trim.substr(1)

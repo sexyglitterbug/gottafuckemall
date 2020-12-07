@@ -10,6 +10,8 @@ Some pokemon world really well because of how similar they are to real animals. 
 When you start, the game will ask you for a scene name. Here are a list of scenes.
 Also check out [name_reference.md](https://github.com/sexyglitterbug/gottafuckemall/blob/main/name_reference.md), which lists all the scripted pokemon.
 
+Also, if you input "x" the game will randomly pick from all available inputs. You can use this to choose a random scene, a random pokemon, or a random gender.
+
 Scene Name | Concept | Description
 ---------- | ------ | -----------
 starter    | Human-on-pokemon deflowering | It's your 18th birthday and Professor Cherry gave you your first pokemon. Now you have to make them cum to gain their trust.
@@ -23,6 +25,7 @@ cuck_dom   | Human-on-pokemon cuckolding | You won a battle, but the loser has n
 porn_vid   | Pokemon-on-pokemon porn | You're tired of fucking your pokemon. Time to open up the good old internet.
 battle_rape | Pokemon-on-pokemon rape | **[tw: rape]** Your pokemon is too weak to fight anymore, but your opponent wants somethng else.
 gangrape   | Human-on-pokemon gangbang | **[tw: rape]** A group of pokemon kidnap you and have their way.
+x          | Random | If you input "x" the game will pick a random scene.
 (custom)   | | You can input a custom scenario by starting your input with ":", for example ":You are Cherry's assistant.". The text after the colon will be pasted directly into the story and the game will begin from there.
 
 # Contributions
