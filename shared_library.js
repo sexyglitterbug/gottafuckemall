@@ -89,14 +89,24 @@ function isFemale(g) {
 }
 
 function replaceAll(str, a, b) {
-	while (str.search(a) > -1) {
-		str = str.replace(a, b)
+	while (true) {
+		var index = str.indexOf(a)
+		if (index > -1) {
+			str = str.substr(0, index) + b + str.substr(index+a.length)
+		} else {
+			break
+		}
 	}
 	return str
 }
 function replaceAllDynamic(str, a, f) {
-	while (str.search(a) > -1) {
-		str = str.replace(a, f())
+	while (true) {
+		var index = str.indexOf(a)
+		if (index > -1) {
+			str = str.substr(0, index) + f() + str.substr(index+a.length)
+		} else {
+			break
+		}
 	}
 	return str
 }
@@ -255,7 +265,7 @@ function process_tags(text) {
 // Adjectives
 // /a [key] 
 var adjectives = new Map()
-var adj_acceptible_trails = [".", ",", "?", "!", ":", ";", " ", "\n"]
+var adj_acceptible_trails = [".", ",", "?", "!", ":", " ", "\n", "-"]
 function adj(word) {
 	var trail = ""
 	while (true) {
@@ -316,121 +326,24 @@ tagFunctions.set("dbw", { // debug dump world info for a specific key
 	}
 })
 
-// Tips
-// /tip
-// /tip [index]
-tips = [
-"Some pokemon have two penises! A couple even have three!",
-"You can put a number after the tip command to get a specific tip.",
-"Have you tried fucking a beedrill? The males use an ovipositor to place eggs in their partners!",
-"Lickitung's tongue is its sexual organ!",
-"Try fucking something with tentacles!",
-"Dragonite keeps the double dick from its previous snake-like evolutions!",
-"This game has over 2000 lines of code!"
-]
-tagFunctions.set("tip", {
-	args: 1,
-	call: function(args) {
-		if (args[0] && tips[args[0]]) {
-			return "Tip #" + args[0] + ": " + tips[args[0]]
-		} else {
-			idx = rand(0, tips.length-1)
-			return "Tip #" + (idx+1) + ": " + tips[idx]
-		}
-	}
-})
-
-// Help
-// /help
-tagFunctions.set("help", { // debug help menu
-	call: function(args) {
-		return `/help: List of commands:
-- /tip [num] | gives you a random tip, or gives you a specific tip if you give it a number.
-- /names | is your pokemon not working right? You might have typed the name wrong. Use this to get more info.
-- /dex [name] | brings up a pokedex entry, which is actually the string I feed to the AI for context. Use this to figure out what the AI knows about your pokemon.
-=== (end of list) ===`
-	}
-})
-
-// Names help
-// /names
-tagFunctions.set("names", {
-	call: function(args) {
-		return `When you input a pokemon name into a scripted function like the /dex command or the starter pokemon name at the beginning, use underscores instead of spaces to separate words. You can also input forms. Here are some specific tips for specific pokemon:
-- mimes: mr._mime, galarian_mr._mime, mr._rime, mime_jr.
-- megas: mega_venusaur, mega_charizard_x, etc.
-- nidos: nidoran_f, nidoran_m`
-/*
-- unown: unown_!, unown_?, unown_a, unown_b, unown_c, etc
-- gmax: gmax_venusaur, gmax_charizard, etc
-- regional: alolan_rattata, galarian_meowth, etc
-- cosplay pikachus: cosplay_*, rockstar_*, belle_*, popstar_*, phd_*, libre_*
-- pikachu in a cap: original_*, hoenn_*, sinnoh_*, unova_*, kalos_*, alola_*, partner_*, world_*
-- spiky pichu: pichu, spiky_*
-- lugia: lugia, shadow_*
-- castform: castform, sunny_*, rainy_*, snowy_*
-- kyogre/groudon: kyogre, groudon, primal_*
-- deoxys: deoxys, attack_*, defense_*, speed_*
-- burmy/wormadam: plant_*, sand_*, trash_*
-- cherrim: overcast_*, sunshine_*
-- shellos/gastrodon: west_*, east_*
-- rotom: rotom, wash_*, heat_*, frost_*, mow_*, fan_*, dex_*, phone_*
-- giratina: altered_*, origin_*
-- shaymin: land_*, sky_*
-- arceus: water_*, fairy_*, etc
-- basculin: red_*, blue_*
-- darmanitan: darmanitam, galarian_*, zen_*, zen_galarian_*
-- deerling/sawsbuck: spring_deerling, summer_*, fall_*, winter_*
-- landorus/thundurus/tornadus: therian_*, incarnate_*
-- kyurem: kyurem, white_*, black_*
-- keldeo: keldeo, resolute_*
-- meloetta: aria_*, pirouette_*
-- genesect: normal_*, shock_*, burn_*, chill_*, douse_*
-- greninja: greninja, ash_*
-- vivillon: pokeball_*, icysnow_*, archipelago_*, continental_*, etc
-- flabebe/floette/florges: red_*, yellow_*, orange_*, blue_*, white_*, az_*
-- furfrou: furfrou, heart_*, star_*, diamond_*, debutante_*, matron_*, dandy_*, lareine_*, kabuki_*, pharaoh_*
-- aegislash: shield_*, blade_*
-- pumpkaboo/gourgeist: small_*, average_*, large_*, super_*
-- xerneas: neutral_*, active_*
-- zygarde: *_cell, *_core, *_10, *_50, *_complete
-- hoopa: comfined_*, unbound_*
-- oricorio: baile_*, pompom_*, pau_*, sensu_*
-- lycanroc: midday_*, midnight_*, dusk_*
-- wishiwashi: wishiwashi, school_*
-- silvally: normal_*, fighting_*, etc
-- minior: meteor_*, red_*, orange_*, yellow_*, green_*, blue_*, indigo_*, violet_*
-- mimikyu: disguised_*, busted_*
-- necrozma: necrozma, duskmane_*, dawnwings_*, ultra_*
-- magearna: magearna, original_*
-- toxitricity: amped_*, lowkey_*
-- sinistea/polteageist: phony_*, antique_*
-- alcremie: no
-- eiscue: ice_*, noice_*
-- morpeko: fullbelly_*, hangry_*
-- zacian: zacian, sword_*
-- zamazenta: zamazenta, shield_*
-- eternatus: eternatus, gmax_*
-- urshifu: singlestrike_*, rapidstrike_*
-- zarude: zarude, dada_*
-- calyrex: calyrex, icerider_*, shadowrider_*
-*/
-}
-})
-
-// Short pokemon descriptor
-// /desc_short [species] [gender]
-tagFunctions.set("desc_short", {
-	args: 2,
-	call: function(args) {
-		return `a ${dGender(args[1])} ${getSpecies(args[0]).name_word}`
-	}
-})
-
 ////////////
 // SCENES //
 ////////////
 var scenes = new Map()
+
+scenes.set("test", {
+	hidden: true,
+	actors: [
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		return JSON.stringify(v.a)
+	}
+})
 
 scenes.set("gangrape", {
 	actors: [
@@ -1330,9 +1243,36 @@ scenes.forEach(function(desc, name) {
 				data.x = function(a, b) {return data.g(a, a, b)}
 
 				if (actor.type == "pokemon") {
-					var species_name = args[n]
-					if (species_name.toLowerCase() == "x") {
+					var species_name = args[n].toLowerCase()
+					if (species_name == "x") {
 						species_name = getRandomKey(species)
+					} else if (species_name.substr(0, 2) == "x[") {
+						var end = species_name.search("]")
+						var contents = species_name.substr(2, end-2)
+						var json_contents = `[ ["` + replaceAll(contents, ";", `","`) + `"] ]`
+						json_contents = replaceAll(json_contents, "+", `"],["`)
+						var contents_array = JSON.parse(json_contents)
+
+						var options = []
+						species.forEach(function(s) {
+							var ok = true
+							contents_array.forEach(function(set) {
+								var set_ok = false
+								set.forEach(function(item) {
+									set_ok = set_ok || s[item]
+								})
+								ok = ok && set_ok
+							})
+							if (ok) {
+								options[options.length] = s.name
+							}
+						})
+console.log("json",json_contents)
+						if (options.length <= 0) {
+							species_name = "missingno"
+						} else {
+							species_name = options[rand(0, options.length-1)]
+						}
 					}
 					var gender_word = args[n+1]
 					if (gender_word.toLowerCase() == "x") {
@@ -1727,7 +1667,7 @@ bodyColors.set("black", {
 	species: ["alolan_rattata", "alolan_raticate", "alolan_meowth", "alolan_persian", "galarian_weezing", "galarian_moltres", "umbreon", "murkrow", "unown", "sneasel", "houndour", "houndoom", "galarian_zigzagoon", "galarian_linoone", "ninjask", "seviper", "claydol", "shuppet", "banette", "duskull", "dusclops", "snorunt", "starly", "staravia", "staraptor", "luxio", "luxray", "mothim", "honchkrow", "weavile", "dusknoir", "darkrai"]
 })
 bodyColors.set("grey", {
-	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon", "steelix", "skarmory", "donphan", "poochyena", "mightyena", "aron", "lairon", "aggron", "meditite", "spoink", "barboach", "anorith", "registeel", "cranidos", "rampardos", "glameow", "purugly", "magnezone", "altered_giratina", "origin_giratina"]
+	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon", "steelix", "skarmory", "donphan", "poochyena", "mightyena", "aron", "lairon", "aggron", "meditite", "spoink", "barboach", "anorith", "registeel", "cranidos", "rampardos", "glameow", "purugly", "magnezone", "altered_giratina", "origin_giratina", "missingno"]
 })
 bodyColors.set("white", {
 	species: ["galarian_ponyta", "galarian_rapidash", "seel", "dewgong", "electrode", "togetic", "galarian_corsola", "lugia", "silcoon", "beautifly", "wingull", "pelipper", "ralts", "kirlia", "gardevoir", "masquerain", "vigoroth", "nincada", "zangoose", "castform", "absol", "glalie", "shellgon", "jirachi", "pachirisu", "snover", "abomasnow", "togekiss", "gallade", "froslass", "regigigas", "land_shaymin", "sky_shaymin", "arceus"]
@@ -1801,7 +1741,7 @@ skinTypes.set("rock", {
 	adj: ["rocks", "stone"]
 })
 skinTypes.set("metal", {
-	species: ["magnemite", "magneton", "voltorb", "electrode", "steelix", "skarmory", "aron", "lairon", "aggron", "beldum", "metang", "metagross", "registeel", "trash_wormadam", "trash_burmy", "chingling", "bronzor", "bronzong", "magnezone", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom"],
+	species: ["magnemite", "magneton", "steelix", "skarmory", "aron", "lairon", "aggron", "beldum", "metang", "metagross", "registeel", "trash_wormadam", "trash_burmy", "chingling", "bronzor", "bronzong", "magnezone", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom"],
 	adj: ["metal"]
 })
 skinTypes.set("slime", {
@@ -1817,7 +1757,7 @@ skinTypes.set("ghost", {
 	adj: ["ghostly essence"]
 })
 skinTypes.set("plastic", {
-	species: ["porygon", "porygon2", "porygon_z"],
+	species: ["porygon", "voltorb", "electrode", "porygon2", "porygon_z", "missingno"],
 	adj: ["plastic"]
 })
 skinTypes.set("silk", {
@@ -1922,7 +1862,7 @@ bodies.set("reptilian_biped", {
 	plural: "bipedal reptiles that walk on their hind legs",
 	arms: 2
 })
-bodies.set("repilian_sextuped", {
+bodies.set("reptilian_sextuped", {
 	species: ["altered_giratina"],
 	adj: ["six-legged reptile", "six-legged dinosaur", "six-legged monster"],
 	plural: "six-legged reptiles"
@@ -3182,6 +3122,13 @@ dicks.set("cloud", {
 	adj: ["cloud /a <ds>", "cloudy /a <ds>"],
 	pussy_adj: ["cloud /a <ps>", "cloudy /a <ps>"],
 	dex_m: "Male <lp> have a penis made entirely of clouds. The male <ln>'s cloud penis can't penetrate anything, but it can still feel pleasure."
+})
+dicks.set("glitchy", {
+	species: ["missingno"],
+	adj: ["glitchy /a <ds>", "glitch /a <ds>"],
+	pussy_adj: ["glitchy /a <ps>", "glitch /a <ps>"],
+	dex_m: "Male <lp> have a penis made out of glitchy cyber material.",
+	dex_f: "Female <lp> have a pussy made out of glitchy cyber material."
 })
 /*
 dicks.set("", {
