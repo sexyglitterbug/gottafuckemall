@@ -19,6 +19,7 @@ date       | Human-on-human third base | You went on a date with a trainer and
 starter_rr | Pokemon-on-human | Same as the starter scene, but you play as the pokemon!
 sex_ed     | Pokemon-on-pokemon exhibitionism | Professor Cherry is giving a hands-on lecture about pokemon sexuality, and she needs a volunteer.
 milking    | Human-on-pokemon milking | Just another day on the job at the moomoo milk factory. This is either penis milking or breast milking depending on the pokemon gender
+nursing    | Human-on-pokemon nursing | Slow, loving nursing. Either breast nursing or penis nursing depending on pokemon gender
 legendary  | Human-on-pokemon servicing | A rare telepathic pokemon is super pent up and it's up to you to save the day!
 cuck_sub   | Human-on-pokemon cuckolding | You lost a battle but you have no money! Good thing your pokemon is willing to bail you out.
 cuck_dom   | Human-on-pokemon cuckolding | You won a battle, but the loser has no money! They do have a sexy pokemon, though.

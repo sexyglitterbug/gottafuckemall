@@ -1339,7 +1339,7 @@ scenes.forEach(function(desc, name) {
 						gender_word = Math.random() < 0.5 ? "male" : "female"
 					}
 
-					load_species(species_name, gender_word)
+					load_species(species_name, gender_word, desc.category || "feral")
 
 					data.s = getSpecies(species_name)
 					data.gender_word = gender_word
@@ -3177,13 +3177,18 @@ special.forEach(function(value, name) {
 // POKEDEX //
 /////////////
 // generate world data for each pokemon
-function load_species(name, gender) {
+function load_species(name, gender, contextCategory) {
 	var data = getSpecies(name)
 	var size = data.bodySize
 	var color = data.bodyColor
 
 	// beginning
-	str = data.name_word + ` is a species of pokemon. ${data.name_word} can't speak. ${data.name_word} can't talk.`
+	str = data.name_word + ` is a species of pokemon.`
+
+	// contexts
+	if (contextCategory == "feral") {
+		str = str + ` ${data.name_word} can't speak. ${data.name_word} can't talk.`
+	}
 
 	// subspecies
 	if (data.subspeciesOf) {
