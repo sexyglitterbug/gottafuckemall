@@ -38,6 +38,7 @@ Here's a list of some features I want to have
 * More scenarios
 * Story mode
 * Mega evolutions
+* Randomness subsets (e.g. select only large pokemon, pokemon with big dicks, etc)
 * Scenarios:
 	* Sex battle (you battle another trainer, determine the winner by making your pokemon fuck)
 	* Team Threesome (you bring out two pokemon and fuck them)
