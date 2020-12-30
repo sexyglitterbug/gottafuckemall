@@ -517,3 +517,154 @@ victini
 snivy
 servine
 serperior
+tepig
+pignite
+emboar
+oshawott
+dewott
+samurott
+patrat
+watchog
+lillipup
+herdier
+stoutland
+purrloin
+liepard
+pansage
+simisage
+pansear
+simisear
+panpour
+simipour
+munna
+musharna
+pidove
+tranquill
+unfezant
+blitzle
+zebstrika
+roggenrola
+boldore
+gigalith
+woobat
+swoobat
+drillbur
+audino
+timburr
+gurdurr
+conkeldurr
+tympole
+palpitoad
+seismitoad
+throh
+sawk
+sewaddle
+swadloon
+leavanny
+venipede
+whirlipede
+scolipede
+cottonee
+whimsicott
+petilil | vines
+lilligant | vines
+basculin
+sandile
+krokorok
+krookodile
+darumaka | Subspecies: galarian_darumaka
+darmanitan | Subspecies: galarian_darmanitan, Forms: zen_darmanitan, galarian_zen_darmanitan
+maractus | vines
+dwebble
+crustle
+scraggy
+scrafty
+sigilyph | psychic gens
+yamask | disembodied psychic gens. Subspecies: galarian_yamask
+cofagrigus | disembodied psychic gens
+tirtouga
+carracosta
+archen
+archeops
+trubbish
+garbodor
+zorua
+zoroark
+minccino
+cinccino
+gothita
+gothorita
+gothitelle
+solosis | disembodied psychic gens
+duosion | disembodied psychic gens
+reuniclus | disembodied psychic gens
+ducklett
+swanna
+vanillite
+vanillish
+vanilluxe
+spring_deerling | Forms: summer_deerling, winter_deerling, autumn_deerling
+sawsbuck
+emolga
+karrablast
+escavalier
+foongus | vines
+amoongus | vines
+m_frillish | tentacles. Also: f_frillish
+m_jellicent | tentacles. Also: f_jellicent
+alomomola
+joltik
+galvantula
+ferroseed | vines
+ferrothorn | vines
+klink | disembodied electric gens
+klang | disembodied electric gens
+klinklang | disembodied electric gens
+tynamo
+eelektrik
+eelektross
+elgyem | disembodied psychic gens
+beheeyem | disembodied psychic gens
+litwick | disembodied psychic gens
+lampent | disembodied psychic gens
+chandelure | disembodied psychic gens
+axew
+fraxure
+haxorus
+cubchoo
+beartic
+cryogonal
+shelmet
+accelgor
+stunfisk | Subspecies: galarian_stunfisk
+mienfoo
+mienshao
+druddigon
+golett
+golurk
+pawniard
+bisharp
+bouffalant
+rufflet
+braviary
+vullaby
+mandibuzz
+heatmor
+durant
+deino
+zweilous | double dragon gens
+hydreigon | triple dragon gens
+larvesta
+volcarona
+cobalion
+terrakion
+virizion
+incarnate_tornadus | Also: therian_tornadus
+incarnate_thundurus | Also: therian_thundurus
+reshiram
+zekrom
+incarnate_landorus | Also: therian_landorus
+kyurem | Also: white_kyurem, black_kyurem
+keldeo
+meloetta
+genesect
