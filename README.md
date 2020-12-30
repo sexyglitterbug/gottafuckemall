@@ -15,7 +15,6 @@ Also, if you input `x` the game will randomly pick from all available inputs. Yo
 Scene Name | Concept | Description
 ---------- | ------ | -----------
 starter    | Human-on-pokemon deflowering | It's your 18th birthday and Professor Cherry gave you your first pokemon. Now you have to make them cum to gain their trust.
-date       | Human-on-human third base | You went on a date with a trainer and 
 starter_rr | Pokemon-on-human | Same as the starter scene, but you play as the pokemon!
 sex_ed     | Pokemon-on-pokemon exhibitionism | Professor Cherry is giving a hands-on lecture about pokemon sexuality, and she needs a volunteer.
 milking    | Human-on-pokemon milking | Just another day on the job at the moomoo milk factory. This is either penis milking or breast milking depending on the pokemon gender
