@@ -549,6 +549,7 @@ gigalith
 woobat
 swoobat
 drillbur
+excadrill
 audino
 timburr
 gurdurr
@@ -668,3 +669,33 @@ kyurem | Also: white_kyurem, black_kyurem
 keldeo
 meloetta
 genesect
+
+# Kalos
+Species String | Notes
+-------------- | -----
+chespin
+quilladin
+chesnaught
+fennekin
+braixen
+delphox
+froakie
+frogadier
+greninja
+bunnelby
+diggersby
+fletchling
+fletchinder
+talonflame
+scatterbug
+spewpa
+vivillon
+litleo
+pyroar
+flabebe | vines
+floette | vines
+florges | vines
+skiddo
+gogoat
+pancham
+pangoro
