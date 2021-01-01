@@ -2,8 +2,8 @@
 Instead of picking from a preset scenario, you can write your own or input scenarios other players have made! When the game prompts you for a scenario, simply type `:` followed by your own story.
 
 Example:
-You say: `: pokemon trainer.`
-Game says: `You're a pokemon trainer.`
+* You say: `: pokemon trainer.`
+* Game says: `You're a pokemon trainer.`
 
 Now you know how to write a custom story! There are some details to consider when writing custom stories, which are laid out in this guide.
 
@@ -17,9 +17,9 @@ In certain cases you may want more control. For example, if you want a galarian 
 The parameter for loading pokemon species is called `pokemon` and its value is an array of strings.
 
 Example: 
-You say: `:{"pokemon":["machamp","victreebel"]} pokemon trainer.`
-Game says: `You're a pokemon trainer.`
-And the game will load machamp and victreebel's data.
+* You say: `:{"pokemon":["machamp","victreebel"]} pokemon trainer.`
+* Game says: `You're a pokemon trainer.`
+* And the game will load machamp and victreebel's data.
 
 In addition to supplying the pokemon name, you can suffix it with additional parameters to make things easier on the AI. If you know the pokemon's sex you can add `:m` or `:f` to load the gendered data.
 
@@ -29,9 +29,9 @@ Note that supplying a `pokemon` parameter will stop the game from scanning your 
 Mystery dungeon scenarios allow all pokemon to talk. To make your scenario a mystery dungeon scenario, simply add `"md":true` to your scenario options.
 
 Example:
-You say: `:{"md":true} pokemon trainer.`
-Game says: `You're a pokemon trainer.`
-And the game will know that pokemon can talk.
+> You say: `:{"md":true} pokemon trainer.`
+> Game says: `You're a pokemon trainer.`
+> And the game will know that pokemon can talk.
 
 # Complete Example
 Here is a complete example of a simple custom scenario. You can paste this directly into the game to run it and try it out.
