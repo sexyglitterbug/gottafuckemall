@@ -437,7 +437,7 @@ buizel
 floatzel
 cherubi
 cherrim | Forms: sunny_cherrim, overcast_cherrim
-shells | Forms: east_shellos, west_shells
+shells | Forms: east_shellos, west_shellos
 gastrodon | Forms: east_gastrodon, west_gastrodon
 ambipom
 drifloon
@@ -604,15 +604,15 @@ swanna
 vanillite
 vanillish
 vanilluxe
-spring_deerling | Forms: summer_deerling, winter_deerling, autumn_deerling
+deerling | Forms: spring_deerling, summer_deerling, winter_deerling, autumn_deerling
 sawsbuck
 emolga
 karrablast
 escavalier
 foongus | vines
 amoongus | vines
-m_frillish | tentacles. Also: f_frillish
-m_jellicent | tentacles. Also: f_jellicent
+frillish | tentacles. Also: m_frillish, f_frillish
+jellicent | tentacles. Also: m_jellicent, f_jellicent
 alomomola
 joltik
 galvantula
@@ -660,11 +660,11 @@ volcarona
 cobalion
 terrakion
 virizion
-incarnate_tornadus | Also: therian_tornadus
-incarnate_thundurus | Also: therian_thundurus
+tornadus | Forms: incarnate_tornadus, therian_tornadus
+thundurus | Forms: incarnate_thundurus, therian_thundurus
 reshiram
 zekrom
-incarnate_landorus | Also: therian_landorus
+landorus | Forms: incarnate_landorus, therian_landorus
 kyurem | Also: white_kyurem, black_kyurem
 keldeo
 meloetta
@@ -701,7 +701,7 @@ pancham
 pangoro
 furfrou
 espurr
-m_meowstic | Also: f_meowstic
+meowstic | Also: m_meowstic, f_meowstic
 honedge | Disembodied psychic gens
 duoblade | Disembodied psychic gens
 aegislash | Disembodied psychic gens
@@ -740,7 +740,52 @@ noibat
 noivern
 xerneas
 yveltal
-zygarde_50 | Also: zygarde_10, zygarde_100
+zygarde | Forms: zygarde_10, zygarde_50, zygarde_100
 diancie
-hoopa_confined | Also: hoopa_unbound
+hoopa | Forms: hoopa_confined, hoopa_unbound
 volcanion
+
+# Alola
+Species String | Notes
+-------------- | -----
+rowlet
+dartrix
+decidueye
+litten
+torracat
+incineroar
+popplio
+brionne
+primarina
+pikipek
+trumbeak
+toucannon
+yungoos
+gumshoos
+grubbin
+charjabug
+vikavolt
+crabrawler
+oricorio | Forms: baile_oricorio, pompom_oricorio, pa'u_oricorio, sensu_oricorio
+cutiefly
+ribombee
+rockruff
+lycanroc | Forms: midday_lycanroc, midnight_lycanroc, dusk_lycanroc
+wishiwashi | Forms: solo_wishiwashi, school_wishiwashi
+mareani
+toxapex
+mudbray
+mudsdale
+dewpider | ovipositor
+araquanid | ovipositor
+fomantis | ovipositor
+lurantis | ovipositor
+morelull | vines
+shiinotic | vines
+salandit
+salazzle
+stufful
+bewear
+bounsweet | vines
+steenee | vines
+tsareena | vines
