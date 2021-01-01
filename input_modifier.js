@@ -42,15 +42,15 @@ const modifier = (text) => {
 			var trim = trim_input_fluff(text)
 			var scene = scenario_options[trim.toLowerCase()]
 
-      if (trim == "x") { // random scene
-        while (true) {
-          var key = getRandomKey(scenes)
-          scene = scenario_options[key]
-          if (!scene.hidden) {
-            break
-          }
-        }
-      }
+			if (trim == "x") { // random scene
+				while (true) {
+					var key = getRandomKey(scenes)
+					scene = scenario_options[key]
+					if (!scene.hidden) {
+						break
+					}
+				}
+			}
 
 			if (scene) {
 				save("SCENE_SELECTION_COMPLETE", "1")
@@ -58,24 +58,75 @@ const modifier = (text) => {
 				modifiedText = ''
 				stop_ai()
 			} else if (trim.length > 0) {
-        if (trim.substr(0, 1) == ":") {
-          // custom scenario
-          modifiedText = trim.substr(1)
-          save("SCENE_SELECTION_COMPLETE", "1")
-          save("SCENE_PREPARED", "1")
-        } else if (trim.substr(0, 1) == "/") {
-          // command
-          modifiedText = trim
-          state.message = `Processed command`
-        } else {
-          stop_ai()
-          modifiedText = ""
-          if (load("DONE_FIRST_MESSAGE") != "1") {
-            save("DONE_FIRST_MESSAGE", "1")
-          } else {
-            state.message = `Unrecognized input "${trim.toLowerCase()}". Please input a scene name such as "starter" or "sex_ed".\n\nYou can find a list of scenes at the link in the description.`
-          }
-        }
+				if (trim.substr(0, 1) == ":") {
+					// custom scenario
+					modifiedText = trim.substr(1)
+
+					var options
+
+					if (modifiedText.substr(0, 1) == "{") {
+						var options_str = modifiedText.match(/{.*}/)
+						if (options_str) {
+							options_str = options_str[0]
+						}
+
+						if (options_str) {
+							modifiedText = modifiedText.substr(options_str.length)
+
+							try {
+								options = JSON.parse(options_str)
+							} catch(err) {
+								modifiedText = "Error parsing arguments: " + err + "\n\n\n"
+							}
+						}
+					}
+
+					var is_mystery_dungeon = false
+					if (options && options.md) {
+						is_mystery_dungeon = true
+					}
+
+					add_category_context(is_mystery_dungeon ? "md" : "regular")
+
+					if (options && options.pokemon) {
+						options.pokemon.forEach(function(name) {
+							var species_name = name
+
+							var first_arg = name.search(":")
+							if (first_arg != -1) {
+								species_name = name.substr(0, first_arg)
+							}
+
+							var gender_m = name.search(/:m:|:m$/) != -1
+							var gender_f = name.search(/:f:|:f$/) != -1
+							var gender = gender_m ? (gender_f ? "herm" : "male") : gender_f ? "female" : null
+
+							load_species(species_name, gender, is_mystery_dungeon ? "md" : "feral")
+						})
+					} else {
+						species.forEach(function(v, name) {
+							if (modifiedText.search(name) > -1) {
+								load_species(name, "herm", "feral")
+							}
+						})
+						alias
+					}
+
+					save("SCENE_SELECTION_COMPLETE", "1")
+					save("SCENE_PREPARED", "1")
+				} else if (trim.substr(0, 1) == "/") {
+					// command
+					modifiedText = trim
+					state.message = `Processed command`
+				} else {
+					stop_ai()
+					modifiedText = ""
+					if (load("DONE_FIRST_MESSAGE") != "1") {
+						save("DONE_FIRST_MESSAGE", "1")
+					} else {
+						state.message = `Unrecognized input "${trim.toLowerCase()}". Please input a scene name such as "starter" or "sex_ed".\n\nYou can find a list of scenes at the link in the description.`
+					}
+				}
 			}
 		}
 
@@ -124,7 +175,7 @@ const modifier = (text) => {
 	/// or else we'll go on an adventure in larion
 	if (modifiedText.length == 0) {
 		if (history.length == 0) {
-			modifiedText = "You're a pokemon trainer. "
+			modifiedText = "You're a"
 		} else {
 			modifiedText = null
 		}
