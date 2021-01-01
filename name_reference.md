@@ -699,3 +699,48 @@ skiddo
 gogoat
 pancham
 pangoro
+furfrou
+espurr
+m_meowstic | Also: f_meowstic
+honedge | Disembodied psychic gens
+duoblade | Disembodied psychic gens
+aegislash | Disembodied psychic gens
+spritzee
+aromatisse
+swirlix
+slurpuff
+inkay | tentacles
+malamar | tentacles
+binacle
+barbaracle
+skrelp
+dragalge
+clauncher
+clawitzer
+helioptile
+heliolisk
+tyrunt
+amaura
+aurorus
+sylveon
+hawlucha
+dedenne
+carbink
+goomy
+sliggoo
+goodra
+klefki | disembodied psychic gens
+phantump | vines
+trevenant | vines
+pumpkaboo | vines
+gourgeist | vines
+bergmite
+avalugg
+noibat
+noivern
+xerneas
+yveltal
+zygarde_50 | Also: zygarde_10, zygarde_100
+diancie
+hoopa_confined | Also: hoopa_unbound
+volcanion
