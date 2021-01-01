@@ -36,14 +36,13 @@ Example:
 # Complete Example
 Here is a complete example of a simple custom scenario. You can paste this directly into the game to run it and try it out.
 
-```
-:{"md":true,"pokemon":["riolu:m","ampharos:f"]} male riolu. You're watching tv when your friend Ampharos walks in. She looks distressed.
-
-"What's wrong?" You ask
-
-Ampharos blushes and looks away. "I'm in heat and I don't have a mate."
-
-"Oh," you say. "I could be your mate for tonight."
-
-Ampharos lights up. "Really?! Thank you so much!" She hops on the couch next to you and eyes your flaccid cock. You know what she's thinking.
+> :{"md":true,"pokemon":["riolu:m","ampharos:f"]} male riolu. You're watching tv when your friend Ampharos walks in. She looks distressed.
+> 
+> "What's wrong?" You ask
+> 
+> Ampharos blushes and looks away. "I'm in heat and I don't have a mate."
+> 
+> "Oh," you say. "I could be your mate for tonight."
+> 
+> Ampharos lights up. "Really?! Thank you so much!" She hops on the couch next to you and eyes your flaccid cock. You know what she's thinking.
 ```
