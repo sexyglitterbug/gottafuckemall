@@ -789,3 +789,49 @@ bewear
 bounsweet | vines
 steenee | vines
 tsareena | vines
+comfey | vines
+oranguru
+passimian
+wimpod
+golisopod
+sandygast
+palossand
+pyukumuku
+type_null | knotted horsecock
+silvally | knotted horsecock
+minior | disembodied psychic gens
+komala
+turtonator
+togedemaru
+mimikyu
+bruxish
+drampa
+dhelmise
+jangmoo
+hakamoo
+kommoo
+tapu_koko
+tapu_lele
+tapu_bulu
+tapu_fini
+cosmog
+cosmoem | no genitals
+solgaleo | knotted feline dick
+lunala
+nihilego | tentacles
+buzzwole | ovipositor
+pheromosa | ovipositor
+xurkitree | tentacles
+celesteela
+kartana
+guzzlord | tongue genitals
+necrozma | knotted dick
+magearna
+marshadow
+poipole
+naganadel
+stakataka
+blacephalon
+zeraora | knotted feline dick
+meltan
+melmetal

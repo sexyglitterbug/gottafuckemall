@@ -1,5 +1,5 @@
 // author's note is constant
-state.memory.authorsNote = `This is an erotic story. It sensual and slow. I describe how things look and feel in great detail. Pokemon can't speak. Pokemon can't talk.`
+state.memory.authorsNote = `This is a an erotic story. It sensual and very slow. I describe how things look and feel in great detail. Pokemon can't speak. Pokemon can't talk.`
 
 if (state.memory.authorsNote.length > 150) {
 	console.log("AUTHORS NOTE TOO LONG!")
@@ -438,6 +438,41 @@ On the wall are several buckets. Your goal is to fill those buckets with as much
 		}
 
 		str = str + " You can't wait to get started."
+
+		return str
+	}
+})
+
+scenes.set("cold_open_wild", {
+	actors: [
+		{
+			type: "person",
+			key: "p",
+			firstPerson: true
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`You are a ${p.gender_word} pokemon trainer. You are adventuring when you find a wild ${a.g("male","female","rare")} ${a.name_lower}. The ${a.name_lower} is minding ${a.g("his","her","its")} own business. You can't keep your eyes off the ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"sexy body")}. The ${a.name_lower} is completely unaroused, so you will have to spend a long time playing with ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} before ${a.he} gets horny. Right now the wild ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "are" : "is"} completely ${a.g("flaccid", "dry", "unaroused")}. You will spend a very long time playing with the ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.name}'s ${a.g(a.dCock(),a.dPussy(),"body")} will get ${a.g("hard","wet","aroused")} very slowly.`)
+
+		// string
+		var str = `You know you heard it from this direction - it must be a wild ${a.name_lower}! You shove past bush after bush heading in the direction of the noise, when suddenly you see ${a.him}.
+
+A wild ${a.g("male","female","beautiful")} ${a.name_lower}. ${a.He} hasn't noticed you yet. From where you're standing you've got a great view of ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")}. ${a.he}'s been blessed with ${a.pg ? "" : "a "}great-looking ${a.g(a.dCock(),a.dPussy(),"body")}. Just looking at ${a.pg ? "them" : "it"} is making your ${p.g("cock hard","pussy wet","body aroused")}.
+
+You think for a moment and then you decide. You're not going to catch this ${a.name_lower}, you're going to fuck ${a.him}. It looks like ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "are" : "is"} totally ${a.g("flaccid","dry","unaroused")}, in fact ${a.he}'s probably not even thinking about sex. You'll have to spend a while getting ${a.him} warmed up before ${a.hell} want to do anything fun with you.
+
+You saunter up to the wild ${a.name_lower}, showing ${a.him} that you aren't a threat. You can't stop eyeing ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")}. God, ${a.pg ? "they look" : "it looks"} delicious. You can't wait to ${a.g("have his "+a.dCock()+" inside you", "penetrate her "+a.dPussy(),"play with its body")}. Too bad ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} ${a.pg ? "are" : "is"} completely ${a.g("flaccid","dry","unaroused")} right now. You know you'll have to spend a while warming ${a.him} up before ${a.hell} be aroused enough to do anything with.
+
+You offer ${a.him} some berries, which ${a.he} takes excitedly. Once ${a.hes} comfortable with you, you decide to begin the slow process of getting ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} ${a.g("hard","wet","turned on")}.`
 
 		return str
 	}
@@ -1610,23 +1645,23 @@ function getSpecies(name) {
 var bodySizes = new Map()
 
 bodySizes.set("tiny", {
-	species: ["caterpie", "metapod", "weedle", "kakuna", "pidgey", "rattata", "alolan_rattata", "nidoran_f", "nidoran_m", "oddish", "paras", "parasect", "venonat", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "sunkern", "yanma", "phanpy", "smoochum", "elekid", "magby", "surskit", "nincada", "kricketot", "budew", "grass_burmy", "sand_burmy", "trash_burmy", "combee", "cherubi", "chingling", "bronzor", "bonsly", "mime_jr.", "happiny", "mantyke", "tepig", "oshawott", "patrat", "lillipup", "woobat", "tympole", "sewaddle", "cottonee", "petilil", "dwebble", "solosis", "vanillish", "emolga", "karrablast", "foongus", "joltik", "ferroseed", "klink", "tynamo", "litwick", "shelmet", "scatterbug", "spewpa", "flabebe", "klefki", "grubbin", "cutiefly", "solo_wishiwashi", "dewpider", "fomantis", "morelull", "bounsweet"],
+	species: ["caterpie", "metapod", "weedle", "kakuna", "pidgey", "rattata", "alolan_rattata", "nidoran_f", "nidoran_m", "oddish", "paras", "parasect", "venonat", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "sunkern", "yanma", "phanpy", "smoochum", "elekid", "magby", "surskit", "nincada", "kricketot", "budew", "grass_burmy", "sand_burmy", "trash_burmy", "combee", "cherubi", "chingling", "bronzor", "bonsly", "mime_jr.", "happiny", "mantyke", "tepig", "oshawott", "patrat", "lillipup", "woobat", "tympole", "sewaddle", "cottonee", "petilil", "dwebble", "solosis", "vanillish", "emolga", "karrablast", "foongus", "joltik", "ferroseed", "klink", "tynamo", "litwick", "shelmet", "scatterbug", "spewpa", "flabebe", "klefki", "grubbin", "cutiefly", "solo_wishiwashi", "dewpider", "fomantis", "morelull", "bounsweet", "comfey", "wimpod", "pyukumuku", "cosmog", "cosmoem", "kartana", "meltan"],
 	adj: ["tiny"]
 })
 bodySizes.set("small", {
-	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown", "pineco", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "corsola", "galarian_corsola", "remoraid", "donphan", "porygon2", "smeargle", "tyrogue", "celebi", "teecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "masquerain", "shroomish", "shedinja", "ninjask", "whismur", "azurill", "nosepass", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "volbeat", "illumise", "roselia", "gulpin", "carvanha", "spoink", "spinda", "trapinch", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "feebas", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "dusclops", "chimecho", "wynaut", "snorunt", "spheal", "clamperl", "luvdisc", "bagon", "beldum", "jirachi", "turtwig", "chimchar", "piplup", "starly", "bidoof", "kricketune", "shinx", "cranidos", "shieldon", "grass_wormadam", "sand_wormadam", "trash_wormadam", "mothim", "pachirisu", "buizel", "sunny_cherrim", "overcast_cherrim", "west_shellos", "east_shellos", "drifloon", "buneary", "chatot", "munchlax", "riolu", "scorupi", "finneon", "rotom", "fan_rotom", "mow_rotom", "uxie", "mesprit", "azelf", "phone_rotom", "dex_rotom", "phione", "manaphy", "land_shaymin", "sky_shaymin", "victini", "snivy", "pignite", "dewott", "watchog", "herdier", "purrloin", "swoobat", "drillbur", "gurdurr", "swadloon", "venipede", "whimsicott", "basculin", "sandile", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "tirtouga", "archen", "trubbish", "zorua", "minccino", "gothita", "duosion", "ducklett", "vanillite", "summer_deerling", "winter_deerling", "spring_deerling", "autumn_deerling", "f_frillish", "m_frillish", "klang", "elgyem", "lampent", "axew", "cubchoo", "stunfisk", "galarian_stunfisk", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "larvesta", "meloetta", "chespin", "fennekin", "froakie", "bunnelby", "fletchling", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "skrelp", "clauncher", "helioptile", "tyrunt", "amaura", "dedenne", "carbink", "goomy", "phantump", "pumpkaboo", "bergmite", "noibat", "hoopa_confined", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "steenee", "stufful", "salandit"],
+	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown", "pineco", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "corsola", "galarian_corsola", "remoraid", "donphan", "porygon2", "smeargle", "tyrogue", "celebi", "teecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "masquerain", "shroomish", "shedinja", "ninjask", "whismur", "azurill", "nosepass", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "volbeat", "illumise", "roselia", "gulpin", "carvanha", "spoink", "spinda", "trapinch", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "feebas", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "dusclops", "chimecho", "wynaut", "snorunt", "spheal", "clamperl", "luvdisc", "bagon", "beldum", "jirachi", "turtwig", "chimchar", "piplup", "starly", "bidoof", "kricketune", "shinx", "cranidos", "shieldon", "grass_wormadam", "sand_wormadam", "trash_wormadam", "mothim", "pachirisu", "buizel", "sunny_cherrim", "overcast_cherrim", "west_shellos", "east_shellos", "drifloon", "buneary", "chatot", "munchlax", "riolu", "scorupi", "finneon", "rotom", "fan_rotom", "mow_rotom", "uxie", "mesprit", "azelf", "phone_rotom", "dex_rotom", "phione", "manaphy", "land_shaymin", "sky_shaymin", "victini", "snivy", "pignite", "dewott", "watchog", "herdier", "purrloin", "swoobat", "drillbur", "gurdurr", "swadloon", "venipede", "whimsicott", "basculin", "sandile", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "tirtouga", "archen", "trubbish", "zorua", "minccino", "gothita", "duosion", "ducklett", "vanillite", "summer_deerling", "winter_deerling", "spring_deerling", "autumn_deerling", "f_frillish", "m_frillish", "klang", "elgyem", "lampent", "axew", "cubchoo", "stunfisk", "galarian_stunfisk", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "larvesta", "meloetta", "chespin", "fennekin", "froakie", "bunnelby", "fletchling", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "skrelp", "clauncher", "helioptile", "tyrunt", "amaura", "dedenne", "carbink", "goomy", "phantump", "pumpkaboo", "bergmite", "noibat", "hoopa_confined", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "steenee", "stufful", "salandit", "sandygast", "minior", "komala", "togedemaru", "mimikyu", "jangmoo", "marshadow", "poipole"],
 	adj: ["small"]
 })
 bodySizes.set("large", {
-	species: ["venusaur", "charizard", "blastoise", "pidgeot", "fearow", "nidoking", "nidoqueen", "ninetales", "alolan_ninetales", "venomoth", "persian", "alolan_persian", "arcanine", "poliwrath", "tentacruel", "dodrio", "muk", "alolan_muk", "cloyster", "galarian_weezing", "kangaskhan", "lapras", "aerodactyl", "dragonite", "mewtwo", "ampharos", "sudowoodo", "quagsire", "scizor", "heracross", "octillery", "mantine", "skarmory", "houndoom", "kingdra", "raikou", "entei", "suicune", "sceptile", "blaziken", "swampert", "slaking", "exploud", "hariyama", "camerupt", "torkoal", "flygon", "cacturne", "altaria", "claydol", "cradily", "armaldo", "walrein", "salamence", "metagross", "regirock", "registeel", "regice", "latias", "latios", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "torterra", "empoleon", "infernape", "staraptor", "bibarel", "luxray", "bastiodon", "floatzel", "west_gastrodon", "east_gastrodon", "drifblim", "honchkrow", "purugly", "skuntank", "bronzong", "gabite", "lucario", "hippowdon", "drapion", "toxicroak", "carnivine", "magnezone", "yanmega", "gliscor", "gallade", "probopass", "dusknoir", "heatran", "cresselia", "darkrai", "emboar", "samurott", "excadrill", "darmanitan", "galarian_darmanitan", "zen_darmanitan", "galarian_zen_darmanitan", "sigilyph", "cofagrigus", "carracosta", "archeops", "zoroark", "gothitelle", "reuniclus", "f_jellicent", "m_jellicent", "alomomola", "galvantula", "galvantula", "ferrothorn", "klinklang", "beheeyem", "chandelure", "cryogonal", "druddigon", "braviary", "mandibuzz", "heatmor", "cobalion", "terrakion", "virizion", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "genesect", "chesnaught", "delphox", "greninja", "diggersby", "pyroar", "pangoro", "malamar", "barbaracle", "dragalge", "heliolisk", "trevenant", "avalugg", "volcanion", "decidueye", "inceneroar", "primarina", "school_wishiwashi", "mudsdale", "araquanid", "bewear"],
+	species: ["venusaur", "charizard", "blastoise", "pidgeot", "fearow", "nidoking", "nidoqueen", "ninetales", "alolan_ninetales", "venomoth", "persian", "alolan_persian", "arcanine", "poliwrath", "tentacruel", "dodrio", "muk", "alolan_muk", "cloyster", "galarian_weezing", "kangaskhan", "lapras", "aerodactyl", "dragonite", "mewtwo", "ampharos", "sudowoodo", "quagsire", "scizor", "heracross", "octillery", "mantine", "skarmory", "houndoom", "kingdra", "raikou", "entei", "suicune", "sceptile", "blaziken", "swampert", "slaking", "exploud", "hariyama", "camerupt", "torkoal", "flygon", "cacturne", "altaria", "claydol", "cradily", "armaldo", "walrein", "salamence", "metagross", "regirock", "registeel", "regice", "latias", "latios", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "torterra", "empoleon", "infernape", "staraptor", "bibarel", "luxray", "bastiodon", "floatzel", "west_gastrodon", "east_gastrodon", "drifblim", "honchkrow", "purugly", "skuntank", "bronzong", "gabite", "lucario", "hippowdon", "drapion", "toxicroak", "carnivine", "magnezone", "yanmega", "gliscor", "gallade", "probopass", "dusknoir", "heatran", "cresselia", "darkrai", "emboar", "samurott", "excadrill", "darmanitan", "galarian_darmanitan", "zen_darmanitan", "galarian_zen_darmanitan", "sigilyph", "cofagrigus", "carracosta", "archeops", "zoroark", "gothitelle", "reuniclus", "f_jellicent", "m_jellicent", "alomomola", "galvantula", "galvantula", "ferrothorn", "klinklang", "beheeyem", "chandelure", "cryogonal", "druddigon", "braviary", "mandibuzz", "heatmor", "cobalion", "terrakion", "virizion", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "genesect", "chesnaught", "delphox", "greninja", "diggersby", "pyroar", "pangoro", "malamar", "barbaracle", "dragalge", "heliolisk", "trevenant", "avalugg", "volcanion", "decidueye", "inceneroar", "primarina", "school_wishiwashi", "mudsdale", "araquanid", "bewear", "type_null", "silvally", "turtonator", "dhelmise", "nihilego", "buzzwole", "pheromosa", "blacephalon", "zeraora"],
 	adj: ["large"]
 })
 bodySizes.set("huge", {
-	species: ["arbok", "alolan_exeggutor", "gyarados", "snorlax", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "aggron", "tyranitar", "wailmer", "milotic", "tropius", "garchomp", "abomasnow", "lickilicky", "rhyperior", "tangrowth", "electivire", "magmortar", "serperior", "conkeldurr", "seismitoad", "scolipede", "krookodile", "garbodor", "eelektross", "haxorus", "beartic", "golurk", "hydreigon", "volcarona", "reshiram", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "tyrantrum", "aurorus", "goodra", "noivern", "xerneas", "yveltal", "zygarde_50", "hoopa_unbound"],
+	species: ["arbok", "alolan_exeggutor", "gyarados", "snorlax", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "aggron", "tyranitar", "wailmer", "milotic", "tropius", "garchomp", "abomasnow", "lickilicky", "rhyperior", "tangrowth", "electivire", "magmortar", "serperior", "conkeldurr", "seismitoad", "scolipede", "krookodile", "garbodor", "eelektross", "haxorus", "beartic", "golurk", "hydreigon", "volcarona", "reshiram", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "tyrantrum", "aurorus", "goodra", "noivern", "xerneas", "yveltal", "zygarde_50", "hoopa_unbound", "golisopod", "kommoo", "drampa", "solgaleo", "xurkitree", "naganadel", "stakataka", "melmetal"],
 	adj: ["huge"]
 })
 bodySizes.set("gigantic", {
-	species: ["onix", "steelix", "ho-oh", "lugia", "shadow_lugia", "wailord", "kyogre", "groudon", "rayquaza", "mamoswine", "dialga", "palkia", "regigigas", "altered_giratina", "origin_giratina", "arceus", "zygarde_100"],
+	species: ["onix", "steelix", "ho-oh", "lugia", "shadow_lugia", "wailord", "kyogre", "groudon", "rayquaza", "mamoswine", "dialga", "palkia", "regigigas", "altered_giratina", "origin_giratina", "arceus", "zygarde_100", "celesteela", "guzzlord", "necrozma", "lunala"],
 	adj: ["gigantic"]
 })
 bodySizes.set("medium", {
@@ -1658,46 +1693,46 @@ bodyColors.set("nondescript", {
 	species: []
 })
 bodyColors.set("red", {
-	species: ["voltorb", "magmar", "magikarp", "flareon", "ledyba", "ledian", "ariados", "yanma", "scizor", "slugma", "magcargo", "octillery", "delibird", "magby", "entei", "ho-oh", "blaziken", "wurmple", "corphish", "crawdaunt", "latias", "groudon", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "kricketot", "kricketune", "dex_rotom", "phone_rotom", "heatran", "pansear", "simisear", "throh", "venipede", "scolipede", "krookodile", "darumaka", "darmanitan", "pawniard", "bisharp", "braviary", "tyrantrum", "hawlucha", "yveltal", "volcanion", "inceneroar", "baile_oricorio", "midnight_lycanroc", "bounsweet"]
+	species: ["voltorb", "magmar", "magikarp", "flareon", "ledyba", "ledian", "ariados", "yanma", "scizor", "slugma", "magcargo", "octillery", "delibird", "magby", "entei", "ho-oh", "blaziken", "wurmple", "corphish", "crawdaunt", "latias", "groudon", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "kricketot", "kricketune", "dex_rotom", "phone_rotom", "heatran", "pansear", "simisear", "throh", "venipede", "scolipede", "krookodile", "darumaka", "darmanitan", "pawniard", "bisharp", "braviary", "tyrantrum", "hawlucha", "yveltal", "volcanion", "inceneroar", "baile_oricorio", "midnight_lycanroc", "bounsweet", "turtonator", "tapu_bulu", "buzzwole"]
 })
 bodyColors.set("purple", {
-	species: ["butterfree", "rattata", "ekans", "arbok", "nidoran_m", "nidorino", "nidoking", "venonat", "venomoth", "grimer", "muk", "shellder", "cloyster", "gastly", "haunter", "gengar", "koffing", "weezing", "starmie", "jynx", "ditto", "aerodactyl", "galarian_articuno", "mewtwo", "crobat", "aipom", "espeon", "galarian_slowking", "misdreavus", "forretress", "gligar", "granbull", "tyrogue", "shadow_lugia", "cascoon", "dustox", "loudred", "exploud", "delcatty", "sableye", "volbeat", "illumise", "swalot", "grumpig", "lileep", "snowy_castform", "overcast_cherrim", "ambipom", "drifloon", "drifblim", "mismagius", "stunky", "skuntank", "spiritomb", "drapion", "gliscor", "purrloin", "liepard", "roggenrola", "boldore", "gigalith", "whirlipede", "accelgor", "mienshao", "genesect", "espurr", "m_meowstic", "inkay", "malamar", "goomy", "sliggoo", "goodra", "noibat", "hoopa_confined", "hoopa_unbound", "crabrawler", "sensu_oricorio"]
+	species: ["butterfree", "rattata", "ekans", "arbok", "nidoran_m", "nidorino", "nidoking", "venonat", "venomoth", "grimer", "muk", "shellder", "cloyster", "gastly", "haunter", "gengar", "koffing", "weezing", "starmie", "jynx", "ditto", "aerodactyl", "galarian_articuno", "mewtwo", "crobat", "aipom", "espeon", "galarian_slowking", "misdreavus", "forretress", "gligar", "granbull", "tyrogue", "shadow_lugia", "cascoon", "dustox", "loudred", "exploud", "delcatty", "sableye", "volbeat", "illumise", "swalot", "grumpig", "lileep", "snowy_castform", "overcast_cherrim", "ambipom", "drifloon", "drifblim", "mismagius", "stunky", "skuntank", "spiritomb", "drapion", "gliscor", "purrloin", "liepard", "roggenrola", "boldore", "gigalith", "whirlipede", "accelgor", "mienshao", "genesect", "espurr", "m_meowstic", "inkay", "malamar", "goomy", "sliggoo", "goodra", "noibat", "hoopa_confined", "hoopa_unbound", "crabrawler", "sensu_oricorio", "tapu_fini", "cosmog", "cosmoem", "lunala", "poipole", "naganadel"]
 })
 bodyColors.set("blue", {
-	species: ["squirtle", "wartortle", "blastoise", "nidoran_f", "zubat", "golbat", "oddish", "gloom", "vileplume", "golduck", "poliwag", "poliwhirl", "poliwrath", "machop", "machoke", "machamp", "tentacool", "tentacruel", "tangela", "horsea", "seadra", "gyarados", "lapras", "vaporeon", "omanyte", "omastar", "articuno", "dratini", "dragonair", "totodile", "croconaw", "feraligatr", "chinchou", "lanturn", "marill", "azumarill", "skiploom", "wooper", "quagsire", "wobbuffet", "mantine", "kingdra", "phanpy", "suicune", "mudkip", "marshtomp", "swampert", "lotad", "taillow", "swellow", "surskit", "azurill", "nosepass", "manectric", "carvanha", "sharpedo", "wailmer", "wailord", "swablu", "altaria", "whiscash", "armaldo", "rainy_castform", "wynaut", "spheal", "sealeo", "walrein", "clamperl", "huntail", "bagon", "salamence", "beldum", "metang", "metagross", "regice", "latios", "kyogre", "piplup", "prinplup", "empoleon", "shinx", "chatot", "gible", "gabite", "garchomp", "riolu", "lucario", "skorupi", "croagunk", "toxicroak", "finneon", "lumineon", "mantyke", "probopass", "dialga", "phione", "manaphy", "oshawott", "dewott", "samurott", "panpour", "simipour", "tympole", "palpitoad", "seismitoad", "sawk", "tirtouga", "carracosta", "karrablast", "eelektrik", "eelektross", "cryogonal", "druddigon", "therian_thundurus", "incarnate_thundurus", "keldeo", "froakie", "frogadier", "greninja", "clauncher", "clawitzer", "aurorus", "xerneas", "popplio", "brionne", "vikavolt", "school_wishiwashi"]
+	species: ["squirtle", "wartortle", "blastoise", "nidoran_f", "zubat", "golbat", "oddish", "gloom", "vileplume", "golduck", "poliwag", "poliwhirl", "poliwrath", "machop", "machoke", "machamp", "tentacool", "tentacruel", "tangela", "horsea", "seadra", "gyarados", "lapras", "vaporeon", "omanyte", "omastar", "articuno", "dratini", "dragonair", "totodile", "croconaw", "feraligatr", "chinchou", "lanturn", "marill", "azumarill", "skiploom", "wooper", "quagsire", "wobbuffet", "mantine", "kingdra", "phanpy", "suicune", "mudkip", "marshtomp", "swampert", "lotad", "taillow", "swellow", "surskit", "azurill", "nosepass", "manectric", "carvanha", "sharpedo", "wailmer", "wailord", "swablu", "altaria", "whiscash", "armaldo", "rainy_castform", "wynaut", "spheal", "sealeo", "walrein", "clamperl", "huntail", "bagon", "salamence", "beldum", "metang", "metagross", "regice", "latios", "kyogre", "piplup", "prinplup", "empoleon", "shinx", "chatot", "gible", "gabite", "garchomp", "riolu", "lucario", "skorupi", "croagunk", "toxicroak", "finneon", "lumineon", "mantyke", "probopass", "dialga", "phione", "manaphy", "oshawott", "dewott", "samurott", "panpour", "simipour", "tympole", "palpitoad", "seismitoad", "sawk", "tirtouga", "carracosta", "karrablast", "eelektrik", "eelektross", "cryogonal", "druddigon", "therian_thundurus", "incarnate_thundurus", "keldeo", "froakie", "frogadier", "greninja", "clauncher", "clawitzer", "aurorus", "xerneas", "popplio", "brionne", "vikavolt", "school_wishiwashi", "dhelmise"]
 })
 bodyColors.set("bluegreen", {
 	species: ["nidorina", "nidoqueen", "snorlax", "pineco", "qwilfish", "heracross", "pupitar", "east_gastrodon", "bronzor", "bronzong", "munchlax", "tangrowth", "woobat", "swoobat", "zen_darmanitan", "elgyem", "golett", "golurk", "cobalion"]
 })
 bodyColors.set("green", {
-	species: ["bulbasaur", "ivysaur", "venusaur", "caterpie", "metapod", "alolan_grimer", "alolan_muk", "scyther", "chikorita", "bayleef", "meganium", "spinarak", "natu", "xatu", "bellossom", "politoed", "jumpluff", "sunflora", "larvitar", "tyranitar", "celebi", "treecko", "grovyle", "sceptile", "lombre", "ludicolo", "breloom", "electrike", "roselia", "gulpin", "flygon", "cacnea", "cacturne", "cradily", "keckleon", "tropius", "rayquaza", "turtwig", "grotle", "torterra", "budew", "roserade", "grass_burmy", "grass_wormadam", "carnivine", "yanmega", "snivy", "servine", "serperior", "pansage", "simisage", "sewaddle", "swadloon", "leavanny", "petilil", "lilligant", "basculin", "maractus", "trubbish", "solosis", "duosion", "reuniclus", "summer_deerling", "axew", "virizion", "therian_tornadus", "incarnate_tornadus", "chespin", "quilladin", "chesnaught", "decidueye", "charjabug", "steenee", "tsareena"]
+	species: ["bulbasaur", "ivysaur", "venusaur", "caterpie", "metapod", "alolan_grimer", "alolan_muk", "scyther", "chikorita", "bayleef", "meganium", "spinarak", "natu", "xatu", "bellossom", "politoed", "jumpluff", "sunflora", "larvitar", "tyranitar", "celebi", "treecko", "grovyle", "sceptile", "lombre", "ludicolo", "breloom", "electrike", "roselia", "gulpin", "flygon", "cacnea", "cacturne", "cradily", "keckleon", "tropius", "rayquaza", "turtwig", "grotle", "torterra", "budew", "roserade", "grass_burmy", "grass_wormadam", "carnivine", "yanmega", "snivy", "servine", "serperior", "pansage", "simisage", "sewaddle", "swadloon", "leavanny", "petilil", "lilligant", "basculin", "maractus", "trubbish", "solosis", "duosion", "reuniclus", "summer_deerling", "axew", "virizion", "therian_tornadus", "incarnate_tornadus", "chespin", "quilladin", "chesnaught", "decidueye", "charjabug", "steenee", "tsareena", "comfey", "celesteela"]
 })
 bodyColors.set("yellow", {
-	species: ["weedle", "kakuna", "beedrill", "pikachu", "sandshrew", "sandslash", "ninetales'", "psyduck", "abra", "kadabra", "alakazam", "bellsprout", "weepinbell", "victreebel", "drowzee", "hypno", "electabuzz", "jolteon", "zapdos", "pichu", "mareep", "ampharos", "sunkern", "girafarig", "dunsparce", "shuckle", "elekid", "raikou", "numel", "combee", "vespiqueen", "sunny_cherrim", "chingling", "electivire", "scraggy", "cofagrigus", "joltik", "galvantula", "helioptile", "heliolisk", "pompom_oricorio", "cutiefly", "ribombee"]
+	species: ["weedle", "kakuna", "beedrill", "pikachu", "sandshrew", "sandslash", "ninetales'", "psyduck", "abra", "kadabra", "alakazam", "bellsprout", "weepinbell", "victreebel", "drowzee", "hypno", "electabuzz", "jolteon", "zapdos", "pichu", "mareep", "ampharos", "sunkern", "girafarig", "dunsparce", "shuckle", "elekid", "raikou", "numel", "combee", "vespiqueen", "sunny_cherrim", "chingling", "electivire", "scraggy", "cofagrigus", "joltik", "galvantula", "helioptile", "heliolisk", "pompom_oricorio", "cutiefly", "ribombee", "tapu_koko", "zeraora"]
 })
 bodyColors.set("orange", {
-	species: ["charmander", "charmeleon", "charizard", "paras", "parasect", "raichu", "alolan_raichu", "vulpix", "growlithe", "arcanine", "krabby", "kingler", "goldeen", "seaking", "galarian_zapdos", "moltres", "dragonite", "torchic", "combusken", "camerupt", "trapinch", "solrock", "sunny_castform", "regirock", "chimchar", "monferno", "infernape", "buizel", "floatzel", "magmortar", "rotom", "heat_rotom", "wash_rotom", "frost_rotom", "fan_rotom", "mow_rotom", "tepig", "pignite", "emboar", "dwebble", "crustle", "scrafty", "archen", "archeops", "autumn_deerling", "stunfisk", "heatmor", "volcarona", "therian_landorus", "incarnate_landorus", "fennekin", "braixen", "delphox", "fletchling", "fletchinder", "talonflame", "dedenne", "dusk_lycanroc"]
+	species: ["charmander", "charmeleon", "charizard", "paras", "parasect", "raichu", "alolan_raichu", "vulpix", "growlithe", "arcanine", "krabby", "kingler", "goldeen", "seaking", "galarian_zapdos", "moltres", "dragonite", "torchic", "combusken", "camerupt", "trapinch", "solrock", "sunny_castform", "regirock", "chimchar", "monferno", "infernape", "buizel", "floatzel", "magmortar", "rotom", "heat_rotom", "wash_rotom", "frost_rotom", "fan_rotom", "mow_rotom", "tepig", "pignite", "emboar", "dwebble", "crustle", "scrafty", "archen", "archeops", "autumn_deerling", "stunfisk", "heatmor", "volcarona", "therian_landorus", "incarnate_landorus", "fennekin", "braixen", "delphox", "fletchling", "fletchinder", "talonflame", "dedenne", "dusk_lycanroc", "palossand"]
 })
 bodyColors.set("tan", {
-	species: ["pidgey", "pidgeotto", "pidgeot", "raticate", "meowth", "galarian_meowth", "persian", "mankey", "primeape", "geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "ponyta", "rapidash", "doduo", "dodrio", "staryu", "taurus", "eevee", "cyndaquil", "quilava", "typhlosion", "togepi", "stantler", "smeargle", "zigzagoon", "linoone", "shroomish", "slakoth", "shedinja", "makuhita", "hariyama", "mawile", "plusle", "minun", "spinda", "vibrava", "lunatone", "baltoy", "feebas", "milotic", "shieldon", "bastiodon", "sand_burmy", "sand_wormadam", "hippopotas", "hippowdon", "leafeon", "victini", "timburr", "gurdurr", "conkeldurr", "sandile", "krokorok", "mienfoo"]
+	species: ["pidgey", "pidgeotto", "pidgeot", "raticate", "meowth", "galarian_meowth", "persian", "mankey", "primeape", "geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "ponyta", "rapidash", "doduo", "dodrio", "staryu", "taurus", "eevee", "cyndaquil", "quilava", "typhlosion", "togepi", "stantler", "smeargle", "zigzagoon", "linoone", "shroomish", "slakoth", "shedinja", "makuhita", "hariyama", "mawile", "plusle", "minun", "spinda", "vibrava", "lunatone", "baltoy", "feebas", "milotic", "shieldon", "bastiodon", "sand_burmy", "sand_wormadam", "hippopotas", "hippowdon", "leafeon", "victini", "timburr", "gurdurr", "conkeldurr", "sandile", "krokorok", "mienfoo", "sandygast", "mimikyu"]
 })
 bodyColors.set("brown", {
-	species: ["spearow", "fearow", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "farfetch'd", "galarian_farfetch'd", "exeggutor", "alolan_exeggutor", "cubone", "marowak", "alolan_marowak", "hitmonlee", "hitmonchan", "kangaskhan", "pinsir", "kabuto", "kabutops", "sentret", "furret", "hoothoot", "noctowl", "sudowoodo", "teddiursa", "ursaring", "swinub", "piloswine", "hitmontop", "seedot", "nuzleaf", "shiftry", "slaking", "relicanth", "bidoof", "bibarel", "buneary", "lopunny", "bonsly", "rhyperior", "mamoswine", "patrat", "watchog", "lillipup", "herdier", "stoutland", "drillbur", "excadrill", "whimsicott", "garbodor", "winter_deerling", "sawsbuck", "beheeyem", "bouffalant", "vullaby", "mandibuzz", "terrakion", "litleo", "pyroar", "skiddo", "gogoat", "skrelp", "dragalge", "tyrunt", "phantump", "trevenant", "pumpkaboo", "gourgeist", "rowlet", "dartrix", "yungoos", "gumshoos", "rockruff", "midday_lycanroc", "mudbray", "mudsdale"]
+	species: ["spearow", "fearow", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "farfetch'd", "galarian_farfetch'd", "exeggutor", "alolan_exeggutor", "cubone", "marowak", "alolan_marowak", "hitmonlee", "hitmonchan", "kangaskhan", "pinsir", "kabuto", "kabutops", "sentret", "furret", "hoothoot", "noctowl", "sudowoodo", "teddiursa", "ursaring", "swinub", "piloswine", "hitmontop", "seedot", "nuzleaf", "shiftry", "slaking", "relicanth", "bidoof", "bibarel", "buneary", "lopunny", "bonsly", "rhyperior", "mamoswine", "patrat", "watchog", "lillipup", "herdier", "stoutland", "drillbur", "excadrill", "whimsicott", "garbodor", "winter_deerling", "sawsbuck", "beheeyem", "bouffalant", "vullaby", "mandibuzz", "terrakion", "litleo", "pyroar", "skiddo", "gogoat", "skrelp", "dragalge", "tyrunt", "phantump", "trevenant", "pumpkaboo", "gourgeist", "rowlet", "dartrix", "yungoos", "gumshoos", "rockruff", "midday_lycanroc", "mudbray", "mudsdale", "minior"]
 })
 bodyColors.set("black", {
-	species: ["alolan_rattata", "alolan_raticate", "alolan_meowth", "alolan_persian", "galarian_weezing", "galarian_moltres", "umbreon", "murkrow", "unown", "sneasel", "houndour", "houndoom", "galarian_zigzagoon", "galarian_linoone", "ninjask", "seviper", "claydol", "shuppet", "banette", "duskull", "dusclops", "snorunt", "starly", "staravia", "staraptor", "luxio", "luxray", "mothim", "honchkrow", "weavile", "dusknoir", "darkrai", "blitzle", "zebstrika", "sigilyph", "yamask", "galarian_yamask", "zorua", "zoroark", "gothita", "gothorita", "gothitelle", "lampent", "chandelure", "galarian_stunfisk", "deino", "zweilous", "hydreigon", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "meloetta", "scatterbug", "spewpa", "vivillon", "pancham", "pangoro", "noivern", "zygarde_10", "zygarde_50", "zygarde_100", "litten", "torracat", "pikipek", "trumbeak", "toucannon", "salandit", "salazzle"]
+	species: ["alolan_rattata", "alolan_raticate", "alolan_meowth", "alolan_persian", "galarian_weezing", "galarian_moltres", "umbreon", "murkrow", "unown", "sneasel", "houndour", "houndoom", "galarian_zigzagoon", "galarian_linoone", "ninjask", "seviper", "claydol", "shuppet", "banette", "duskull", "dusclops", "snorunt", "starly", "staravia", "staraptor", "luxio", "luxray", "mothim", "honchkrow", "weavile", "dusknoir", "darkrai", "blitzle", "zebstrika", "sigilyph", "yamask", "galarian_yamask", "zorua", "zoroark", "gothita", "gothorita", "gothitelle", "lampent", "chandelure", "galarian_stunfisk", "deino", "zweilous", "hydreigon", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "meloetta", "scatterbug", "spewpa", "vivillon", "pancham", "pangoro", "noivern", "zygarde_10", "zygarde_50", "zygarde_100", "litten", "torracat", "pikipek", "trumbeak", "toucannon", "salandit", "salazzle", "pyukumuku", "type_null", "xurkitree", "guzzlord", "necrozma", "marshadow"]
 })
 bodyColors.set("grey", {
-	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon", "steelix", "skarmory", "donphan", "poochyena", "mightyena", "aron", "lairon", "aggron", "meditite", "spoink", "barboach", "anorith", "registeel", "cranidos", "rampardos", "glameow", "purugly", "magnezone", "altered_giratina", "origin_giratina", "missingno", "pidove", "tranquill", "unfezant", "minccino", "cinccino", "escavalier", "ferroseed", "ferrothorn", "klink", "klang", "klinklang", "fraxure", "haxorus", "shelmet", "durant", "bunnelby", "diggersby", "honedge", "duoblade", "aegislash", "binacle", "barbaracle", "carbink", "klefki", "grubbin", "dewpider", "araquanid"]
+	species: ["alolan_geodude", "magnemite", "magneton", "onix", "rhyhorn", "rhydon", "steelix", "skarmory", "donphan", "poochyena", "mightyena", "aron", "lairon", "aggron", "meditite", "spoink", "barboach", "anorith", "registeel", "cranidos", "rampardos", "glameow", "purugly", "magnezone", "altered_giratina", "origin_giratina", "missingno", "pidove", "tranquill", "unfezant", "minccino", "cinccino", "escavalier", "ferroseed", "ferrothorn", "klink", "klang", "klinklang", "fraxure", "haxorus", "shelmet", "durant", "bunnelby", "diggersby", "honedge", "duoblade", "aegislash", "binacle", "barbaracle", "carbink", "klefki", "grubbin", "dewpider", "araquanid", "silvally", "jangmoo", "hakamoo", "kommoo", "stakataka", "magearna", "meltan", "melmetal"]
 })
 bodyColors.set("white", {
-	species: ["galarian_ponyta", "galarian_rapidash", "seel", "dewgong", "electrode", "togetic", "galarian_corsola", "lugia", "silcoon", "beautifly", "wingull", "pelipper", "ralts", "kirlia", "gardevoir", "masquerain", "vigoroth", "nincada", "zangoose", "castform", "absol", "glalie", "shellgon", "jirachi", "pachirisu", "snover", "abomasnow", "togekiss", "gallade", "froslass", "regigigas", "land_shaymin", "sky_shaymin", "arceus", "cottonee", "galarian_darumaka", "galarian_darmanitan", "galarian_zen_darmanitan", "swanna", "vanillite", "vanillish", "vanilluxe", "emolga", "foongus", "amoongus", "tynamo", "litwick", "beartic", "rufflet", "larvesta", "reshiram", "flabebe", "floette", "florges", "furfrou", "f_meowstic", "primarina", "crabominable", "solo_wishiwashi", "morelull", "shiinotic"]
+	species: ["galarian_ponyta", "galarian_rapidash", "seel", "dewgong", "electrode", "togetic", "galarian_corsola", "lugia", "silcoon", "beautifly", "wingull", "pelipper", "ralts", "kirlia", "gardevoir", "masquerain", "vigoroth", "nincada", "zangoose", "castform", "absol", "glalie", "shellgon", "jirachi", "pachirisu", "snover", "abomasnow", "togekiss", "gallade", "froslass", "regigigas", "land_shaymin", "sky_shaymin", "arceus", "cottonee", "galarian_darumaka", "galarian_darmanitan", "galarian_zen_darmanitan", "swanna", "vanillite", "vanillish", "vanilluxe", "emolga", "foongus", "amoongus", "tynamo", "litwick", "beartic", "rufflet", "larvesta", "reshiram", "flabebe", "floette", "florges", "furfrou", "f_meowstic", "primarina", "crabominable", "solo_wishiwashi", "morelull", "shiinotic", "oranguru", "passimian", "togedemaru", "solgaleo", "pheromosa", "kartana", "blacephalon"]
 })
 bodyColors.set("pink", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "exeggcute", "lickitung", "chansey", "mr._mime", "galarian_mr._mime", "porygon", "mew", "cleffa", "igglybuff", "flaaffy", "hoppip", "slowking", "snubbull", "corsola", "porygon2", "smoochum", "miltank", "blissey", "whismur", "skitty", "medicham", "gorebyss", "luvdisc", "trash_burmy", "trash_wormadam", "cherubi", "west_shellos", "west_gastrodon", "mime_jr.", "happiny", "lickilicky", "porygon_z", "palkia", "munna", "musharna", "audino", "spring_deerling", "f_frillish", "f_jellicent", "alomomola", "spritzee", "aromatisse", "swirlix", "slurpuff", "sylveon", "diancie", "pa'u_oricorio", "fomantis", "lurantis", "stufful", "bewear"]
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "slowpoke", "galarian_slowpoke", "slowbro", "galarian_slowbro", "exeggcute", "lickitung", "chansey", "mr._mime", "galarian_mr._mime", "porygon", "mew", "cleffa", "igglybuff", "flaaffy", "hoppip", "slowking", "snubbull", "corsola", "porygon2", "smoochum", "miltank", "blissey", "whismur", "skitty", "medicham", "gorebyss", "luvdisc", "trash_burmy", "trash_wormadam", "cherubi", "west_shellos", "west_gastrodon", "mime_jr.", "happiny", "lickilicky", "porygon_z", "palkia", "munna", "musharna", "audino", "spring_deerling", "f_frillish", "f_jellicent", "alomomola", "spritzee", "aromatisse", "swirlix", "slurpuff", "sylveon", "diancie", "pa'u_oricorio", "fomantis", "lurantis", "stufful", "bewear", "bruxish", "tapu_lele"]
 })
 bodyColors.set("lightblue", {
-	species: ["alolan_sandshrew", "alolan_sandslash", "nidoran_f", "alolan_vulpix", "alolan_ninetales", "remoraid", "chimecho", "east_shellos", "glaceon", "uxie", "mesprit", "azelf", "cresselia", "ducklett", "m_frillish", "m_jellicent", "cubchoo", "amaura", "bergmite", "avalugg", "mareanie", "toxapex"]
+	species: ["alolan_sandshrew", "alolan_sandslash", "nidoran_f", "alolan_vulpix", "alolan_ninetales", "remoraid", "chimecho", "east_shellos", "glaceon", "uxie", "mesprit", "azelf", "cresselia", "ducklett", "m_frillish", "m_jellicent", "cubchoo", "amaura", "bergmite", "avalugg", "mareanie", "toxapex", "wimpod", "golisopod", "komala", "drampa", "nihilego"]
 })
 
 bodyColors.forEach(function(value, name) {
@@ -1722,11 +1757,11 @@ skinTypes.set("skin", {
 	adj: ["skin"]
 })
 skinTypes.set("scales", {
-	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise", "ekans", "arbok", "horsea", "seadra", "goldeen", "seaking", "magikarp", "gyarados", "dratini", "dragonair", "dragonite", "totodile", "croconaw", "feraligatr", "remoraid", "treecko", "grovyle", "sceptile", "mudkip", "marshtomp", "swampert", "carvanha", "sharpedo", "seviper", "whiscash", "barboach", "feebas", "milotic", "kecleon", "bagon", "shellgon", "salamence", "gible", "gabite", "garchomp", "finneon", "lumineon", "snivy", "servine", "serperior", "basculin", "sandile", "krokorok", "krookodile", "alomomola", "tynamo", "eelektrik", "eelektross", "axew", "fraxure", "haxorus", "deino", "zweilous", "hydreigon", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "helioptile", "heliolisk", "tyrunt", "tyrantrum", "amaura", "aurorus", "zygarde_10", "zygarde_50", "zygarde_100", "solo_wishiwashi", "school_wishiwashi", "salandit", "salazzle"],
+	species: ["bulbasaur", "ivysaur", "venusaur", "charmander", "charmeleon", "charizard", "squirtle", "wartortle", "blastoise", "ekans", "arbok", "horsea", "seadra", "goldeen", "seaking", "magikarp", "gyarados", "dratini", "dragonair", "dragonite", "totodile", "croconaw", "feraligatr", "remoraid", "treecko", "grovyle", "sceptile", "mudkip", "marshtomp", "swampert", "carvanha", "sharpedo", "seviper", "whiscash", "barboach", "feebas", "milotic", "kecleon", "bagon", "shellgon", "salamence", "gible", "gabite", "garchomp", "finneon", "lumineon", "snivy", "servine", "serperior", "basculin", "sandile", "krokorok", "krookodile", "alomomola", "tynamo", "eelektrik", "eelektross", "axew", "fraxure", "haxorus", "deino", "zweilous", "hydreigon", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "helioptile", "heliolisk", "tyrunt", "tyrantrum", "amaura", "aurorus", "zygarde_10", "zygarde_50", "zygarde_100", "solo_wishiwashi", "school_wishiwashi", "salandit", "salazzle", "turtonator", "bruxish", "drampa", "jangmoo", "kommoo", "hakamoo"],
 	adj: ["scales"]
 })
 skinTypes.set("chitin", {
-	species: ["metapod", "kakuna", "beedrill", "paras", "parasect", "scyther", "pinsir", "ledyba", "ledian", "spinarak", "ariados", "yanma", "scizor", "heracross", "nincada", "shedinja", "ninjask", "trapinch", "vibrava", "flygon", "anorith", "armaldo", "rayquaza", "kricketot", "kricketune", "combee", "vespiqueen", "skorupi", "drapion", "yanmega", "gliscor", "venipede", "whirlipede", "scolipede", "dwebble", "crustle", "karrablast", "vikavolt", "dewpider", "araquanid"],
+	species: ["metapod", "kakuna", "beedrill", "paras", "parasect", "scyther", "pinsir", "ledyba", "ledian", "spinarak", "ariados", "yanma", "scizor", "heracross", "nincada", "shedinja", "ninjask", "trapinch", "vibrava", "flygon", "anorith", "armaldo", "rayquaza", "kricketot", "kricketune", "combee", "vespiqueen", "skorupi", "drapion", "yanmega", "gliscor", "venipede", "whirlipede", "scolipede", "dwebble", "crustle", "karrablast", "vikavolt", "dewpider", "araquanid", "wimpod", "golisopod", "buzzwole"],
 	adj: ["chitin", "chitinous armor"]
 })
 skinTypes.set("feathers", {
@@ -1734,7 +1769,7 @@ skinTypes.set("feathers", {
 	adj: ["feathers"]
 })
 skinTypes.set("fur", {
-	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "venonat", "venomoth", "meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mankey", "primeape", "growlithe", "arcanine", "abra", "kadabra", "alakazam", "ponyta", "galarian_ponyta", "rapidash", "galarian_rapidash", "cubone", "marowak", "alolan_marowak", "electabuzz", "tauros", "eevee", "vaporeon", "jolteon", "flareon", "snorlax", "mewtwo", "mew", "cyndaquil", "quilava", "typhlosion", "sentret", "furret", "pichu", "aipom", "espeon", "umbreon", "girafarig", "snubbull", "granbull", "sneasel", "teddiursa", "ursaring", "swinub", "piloswine", "houndour", "houndoom", "stantler", "smeargle", "elekid", "magby", "miltank", "raikou", "entei", "suicune", "poochyena", "mightyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "slakoth", "vigoroth", "slaking", "azurill", "skitty", "delcatty", "mawile", "electrike", "manectric", "plusle", "minun", "numel", "camerupt", "spoink", "grumpig", "spinda", "zangoose", "absol", "spheal", "sealeo", "walrein", "bidoof", "bibarel", "shinx", "luxio", "luxray", "pachirisu", "buizel", "floatzel", "ambipom", "buneary", "lopunny", "glameow", "purugly", "stunky", "skuntank", "munchlax", "riolu", "lucario", "weavile", "electivire", "magmortar", "leafeon", "glaceon", "mamoswine", "land_shaymin", "sky_shaymin", "victini", "tepig", "pignite", "emboar", "oshawott", "dewott", "samurott", "patrat", "watchog", "lillipup", "herdier", "stoutland", "purrloin", "liepard", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "blitzle", "zebstrika", "woobat", "swoobat", "drillbur", "excadrill", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan", "zorua", "zoroark", "minccino", "cinccino", "spring_deerling", "summer_deerling", "autumn_deerling", "winter_deerling", "sawsbuck", "emolga", "joltik", "galvantula", "cubchoo", "beartic", "mienfoo", "mienshao", "bouffalant", "larvesta", "volcarona", "cobalion", "virizion", "fennekin", "braixen", "delphox", "bunnelby", "diggersby", "litleo", "pyroar", "pancham", "pangoro", "furfrou", "espurr", "m_meowstic", "f_meowstic", "sylveon", "dedenne", "noibat", "noivern", "xerneas", "litten", "torracat", "inceneroar", "yungoos", "gumshoos", "crabominable", "cutiefly", "ribombee", "rockruff", "midday_lycanroc", "midnight_lycanroc", "dusk_lycanroc", "mudbray", "mudsdale", "stufful", "bewear"],
+	species: ["rattata", "alolan_rattata", "raticate", "alolan_raticate", "pikachu", "raichu", "alolan_raichu", "vulpix", "alolan_vulpix", "ninetales", "alolan_ninetales", "venonat", "venomoth", "meowth", "alolan_meowth", "galarian_meowth", "persian", "alolan_persian", "mankey", "primeape", "growlithe", "arcanine", "abra", "kadabra", "alakazam", "ponyta", "galarian_ponyta", "rapidash", "galarian_rapidash", "cubone", "marowak", "alolan_marowak", "electabuzz", "tauros", "eevee", "vaporeon", "jolteon", "flareon", "snorlax", "mewtwo", "mew", "cyndaquil", "quilava", "typhlosion", "sentret", "furret", "pichu", "aipom", "espeon", "umbreon", "girafarig", "snubbull", "granbull", "sneasel", "teddiursa", "ursaring", "swinub", "piloswine", "houndour", "houndoom", "stantler", "smeargle", "elekid", "magby", "miltank", "raikou", "entei", "suicune", "poochyena", "mightyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "slakoth", "vigoroth", "slaking", "azurill", "skitty", "delcatty", "mawile", "electrike", "manectric", "plusle", "minun", "numel", "camerupt", "spoink", "grumpig", "spinda", "zangoose", "absol", "spheal", "sealeo", "walrein", "bidoof", "bibarel", "shinx", "luxio", "luxray", "pachirisu", "buizel", "floatzel", "ambipom", "buneary", "lopunny", "glameow", "purugly", "stunky", "skuntank", "munchlax", "riolu", "lucario", "weavile", "electivire", "magmortar", "leafeon", "glaceon", "mamoswine", "land_shaymin", "sky_shaymin", "victini", "tepig", "pignite", "emboar", "oshawott", "dewott", "samurott", "patrat", "watchog", "lillipup", "herdier", "stoutland", "purrloin", "liepard", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "blitzle", "zebstrika", "woobat", "swoobat", "drillbur", "excadrill", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan", "zorua", "zoroark", "minccino", "cinccino", "spring_deerling", "summer_deerling", "autumn_deerling", "winter_deerling", "sawsbuck", "emolga", "joltik", "galvantula", "cubchoo", "beartic", "mienfoo", "mienshao", "bouffalant", "larvesta", "volcarona", "cobalion", "virizion", "fennekin", "braixen", "delphox", "bunnelby", "diggersby", "litleo", "pyroar", "pancham", "pangoro", "furfrou", "espurr", "m_meowstic", "f_meowstic", "sylveon", "dedenne", "noibat", "noivern", "xerneas", "litten", "torracat", "inceneroar", "yungoos", "gumshoos", "crabominable", "cutiefly", "ribombee", "rockruff", "midday_lycanroc", "midnight_lycanroc", "dusk_lycanroc", "mudbray", "mudsdale", "stufful", "bewear", "oranguru", "passimian", "type_null", "silvally", "komala", "togedemaru", "zeraora"],
 	adj: ["fur", "fluff", "fuzz"]
 })
 skinTypes.set("wool", {
@@ -1742,15 +1777,15 @@ skinTypes.set("wool", {
 	adj: ["wool"]
 })
 skinTypes.set("leathery", {
-	species: ["sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "nidoran_f", "nidorina", "nidoqueen", "nidoran_m", "nidorino", "nidoking", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "rhyhorn", "rhydon", "koffing", "weezing", "galarian_weezing", "kangaskhan", "staryu", "starmie", "aerodactyl", "phanpy", "donphan", "larvitar", "pupitar", "tyranitar", "seedot", "nuzleaf", "shiftry", "wailmer", "wailord", "torkoal", "groudon", "turtwig", "grotle", "torterra", "cranidos", "rampardos", "shieldon", "bastiodon", "hippopotas", "hippowdon", "timburr", "gurdurr", "conkeldurr", "heatmor", "terrakion", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "volcanion"],
+	species: ["sandshrew", "sandslash", "alolan_sandshrew", "alolan_sandslash", "nidoran_f", "nidorina", "nidoqueen", "nidoran_m", "nidorino", "nidoking", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "rhyhorn", "rhydon", "koffing", "weezing", "galarian_weezing", "kangaskhan", "staryu", "starmie", "aerodactyl", "phanpy", "donphan", "larvitar", "pupitar", "tyranitar", "seedot", "nuzleaf", "shiftry", "wailmer", "wailord", "torkoal", "groudon", "turtwig", "grotle", "torterra", "cranidos", "rampardos", "shieldon", "bastiodon", "hippopotas", "hippowdon", "timburr", "gurdurr", "conkeldurr", "heatmor", "terrakion", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "volcanion", "xurkitree", "guzzlord"],
 	adj: ["leathery skin"]
 })
 skinTypes.set("moist", {
-	species: ["poliwag", "poliwhirl", "poliwrath", "tentacruel", "tentacool", "lapras", "omanyte", "omastar", "chinchou", "lanturn", "marill", "azumarill", "politoed", "wooper", "quagsire", "qwilfish", "shuckle", "octillery", "mantine", "kingdra", "lotad", "ludicolo", "lombre", "huntail", "gorebyss", "relicanth", "luvdisc", "kyogre", "deoxys", "speed_deoxys", "attack_deoxys", "defense_deoxys", "piplup", "prinplup", "empoleon", "west_shellos", "east_shellos", "west_gastrodon", "east_gastrodon", "croagunk", "toxicroak", "mantyke", "phione", "manaphy", "tympole", "palpitoad", "seismitoad", "tirtouga", "carracosta", "m_frillish", "f_frillish", "m_jellicent", "f_jellicent", "froakie", "frogadier", "greninja", "inkay", "malamar", "skrelp", "dragalge", "popplio", "brionne", "primarina"],
+	species: ["poliwag", "poliwhirl", "poliwrath", "tentacruel", "tentacool", "lapras", "omanyte", "omastar", "chinchou", "lanturn", "marill", "azumarill", "politoed", "wooper", "quagsire", "qwilfish", "shuckle", "octillery", "mantine", "kingdra", "lotad", "ludicolo", "lombre", "huntail", "gorebyss", "relicanth", "luvdisc", "kyogre", "deoxys", "speed_deoxys", "attack_deoxys", "defense_deoxys", "piplup", "prinplup", "empoleon", "west_shellos", "east_shellos", "west_gastrodon", "east_gastrodon", "croagunk", "toxicroak", "mantyke", "phione", "manaphy", "tympole", "palpitoad", "seismitoad", "tirtouga", "carracosta", "m_frillish", "f_frillish", "m_jellicent", "f_jellicent", "froakie", "frogadier", "greninja", "inkay", "malamar", "skrelp", "dragalge", "popplio", "brionne", "primarina", "pyukumuku", "nihilego"],
 	adj: ["moist skin"]
 })
 skinTypes.set("plant", {
-	species: ["bellsprout", "victreebel", "weepinbell", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "celebi", "roselia", "cacnea", "cacturne", "lileep", "cradily", "tropius", "budew", "roserade", "grass_burmy", "grass_wormadam", "cherubi", "sunny_cherrim", "overcast_cherrim", "carnivine", "snover", "abomasnow", "tangrowth", "sewaddle", "swadloon", "leavanny", "petilil", "lilligant", "maractus", "foongus", "amoongus", "flabebe", "floette", "florges", "pumpkaboo", "gourgeist", "morelull", "shiinotic", "bounsweet", "steenee", "tsareena"],
+	species: ["bellsprout", "victreebel", "weepinbell", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "celebi", "roselia", "cacnea", "cacturne", "lileep", "cradily", "tropius", "budew", "roserade", "grass_burmy", "grass_wormadam", "cherubi", "sunny_cherrim", "overcast_cherrim", "carnivine", "snover", "abomasnow", "tangrowth", "sewaddle", "swadloon", "leavanny", "petilil", "lilligant", "maractus", "foongus", "amoongus", "flabebe", "floette", "florges", "pumpkaboo", "gourgeist", "morelull", "shiinotic", "bounsweet", "steenee", "tsareena", "comfey"],
 	adj: ["plant-like skin"]
 })
 skinTypes.set("bark", {
@@ -1758,11 +1793,11 @@ skinTypes.set("bark", {
 	adj: ["bark"]
 })
 skinTypes.set("rock", {
-	species: ["geodude", "alolan_geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "onix", "forretress", "corsola", "galarian_corsola", "nosepass", "lunatone", "solrock", "baltoy", "claydol", "regirock", "sand_burmy", "sand_wormadam", "rhyperior", "roggenrola", "boldore", "gigalith", "zen_darmanitan", "sigilyph", "elgyem", "beheeyem", "druddigon", "binacle", "barbaracle", "honedge", "duoblade", "aegislash", "carbink", "diancie"],
+	species: ["geodude", "alolan_geodude", "graveler", "alolan_graveler", "golem", "alolan_golem", "onix", "forretress", "corsola", "galarian_corsola", "nosepass", "lunatone", "solrock", "baltoy", "claydol", "regirock", "sand_burmy", "sand_wormadam", "rhyperior", "roggenrola", "boldore", "gigalith", "zen_darmanitan", "sigilyph", "elgyem", "beheeyem", "druddigon", "binacle", "barbaracle", "honedge", "duoblade", "aegislash", "carbink", "diancie", "minior", "stakataka"],
 	adj: ["rocks", "stone"]
 })
 skinTypes.set("metal", {
-	species: ["magnemite", "magneton", "steelix", "skarmory", "aron", "lairon", "aggron", "beldum", "metang", "metagross", "registeel", "trash_wormadam", "trash_burmy", "chingling", "bronzor", "bronzong", "magnezone", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom", "escavalier", "ferroseed", "ferrothorn", "klink", "klang", "klinklang", "lampent", "chandelure", "shelmet", "golett", "golurk", "pawniard", "bisharp", "durant", "genesect", "klefki"],
+	species: ["magnemite", "magneton", "steelix", "skarmory", "aron", "lairon", "aggron", "beldum", "metang", "metagross", "registeel", "trash_wormadam", "trash_burmy", "chingling", "bronzor", "bronzong", "magnezone", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom", "escavalier", "ferroseed", "ferrothorn", "klink", "klang", "klinklang", "lampent", "chandelure", "shelmet", "golett", "golurk", "pawniard", "bisharp", "durant", "genesect", "klefki", "dhelmise", "cosmoem", "solgaleo", "celesteela", "kartana", "magearna", "meltan", "melmetal"],
 })
 skinTypes.set("slime", {
 	species: ["grimer", "alolan_grimer", "muk", "alolan_muk", "ditto", "slugma", "magcargo", "solosis", "duosion", "reuniclus", "goomy", "sliggoo", "goodra"],
@@ -1777,7 +1812,7 @@ skinTypes.set("ghost", {
 	adj: ["ghostly essence"]
 })
 skinTypes.set("plastic", {
-	species: ["porygon", "voltorb", "electrode", "porygon2", "porygon_z", "missingno"],
+	species: ["porygon", "voltorb", "electrode", "porygon2", "porygon_z", "missingno", "necrozma"],
 	adj: ["plastic"]
 })
 skinTypes.set("silk", {
@@ -1785,11 +1820,11 @@ skinTypes.set("silk", {
 	adj: ["silk"]
 })
 skinTypes.set("cloud", {
-	species: ["castform", "sunny_castform", "rainy_castform", "snowy_castform"],
+	species: ["castform", "sunny_castform", "rainy_castform", "snowy_castform", "cosmog"],
 	adj: ["cloud"]
 })
 skinTypes.set("fabric", {
-	species: ["shuppet", "banette", "drifloon", "drifblim", "dusknoir", "accelgor"],
+	species: ["shuppet", "banette", "drifloon", "drifblim", "dusknoir", "accelgor", "mimikyu", "blacephalon"],
 	adj: ["fabric"]
 })
 skinTypes.set("ice", {
@@ -1807,6 +1842,10 @@ skinTypes.set("garbage", {
 skinTypes.set("wax", {
 	species: ["litwick"],
 	adj: ["wax"]
+})
+skinTypes.set("sand", {
+	species: ["sandygast", "palossand"],
+	adj: ["sand", "sandy"]
 })
 
 skinTypes.forEach(function(value, name) {
@@ -1830,23 +1869,23 @@ skinTypes.forEach(function(value, name) {
 var cockSizes = new Map()
 
 cockSizes.set("tiny", {
-	species: ["pidgey", "rattata", "alolan_rattata", "oddish", "paras", "exeggcute", "horsea", "kabuto", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "hoppip", "sunkern", "yanma", "smoochum", "elekid", "magby", "wurmple", "silcoon", "cascoon", "surskit", "masquerain", "azurill", "nincada", "trapinch", "feebas", "wynaut", "snorunt", "clamperl", "grass_burmy", "grass_wormadam", "sand_burmy", "sand_wormadam", "trash_burmy", "trash_wormadam", "budew", "kricketot", "combee", "cherubi", "chingling", "bonsly", "mime_jr.", "happiny", "mantyke", "tepig", "oshawott", "patrat", "lillipup", "pidove", "woobat", "tympole", "sewaddle", "cottonee", "petilil", "dwebble", "solosis", "emolga", "karrablast", "joltik", "ferroseed", "klink", "tynamo", "litwick", "cubchoo", "larvesta", "fletchling", "scatterbug", "spewpa", "flabebe", "klefki". "grubbin", "pikipek", "cutiefly", "school_wishiwashi", "solo_wishiwashi", "dewpider", "fomantis", "morelull", "salandit", "bounsweet"],
+	species: ["pidgey", "rattata", "alolan_rattata", "oddish", "paras", "exeggcute", "horsea", "kabuto", "ledyba", "spinarak", "pichu", "cleffa", "igglybuff", "togepi", "hoppip", "sunkern", "yanma", "smoochum", "elekid", "magby", "wurmple", "silcoon", "cascoon", "surskit", "masquerain", "azurill", "nincada", "trapinch", "feebas", "wynaut", "snorunt", "clamperl", "grass_burmy", "grass_wormadam", "sand_burmy", "sand_wormadam", "trash_burmy", "trash_wormadam", "budew", "kricketot", "combee", "cherubi", "chingling", "bonsly", "mime_jr.", "happiny", "mantyke", "tepig", "oshawott", "patrat", "lillipup", "pidove", "woobat", "tympole", "sewaddle", "cottonee", "petilil", "dwebble", "solosis", "emolga", "karrablast", "joltik", "ferroseed", "klink", "tynamo", "litwick", "cubchoo", "larvesta", "fletchling", "scatterbug", "spewpa", "flabebe", "klefki", "grubbin", "pikipek", "cutiefly", "school_wishiwashi", "solo_wishiwashi", "dewpider", "fomantis", "morelull", "salandit", "bounsweet", "comfey", "wimpod", "pyukumuku", "komala", "cosmog", "cosmoem", "kartana", "meltan"],
 	slang: "dick_slang_tiny",
 })
 cockSizes.set("small", {
-	species: ["bulbasaur", "charmander", "raticate", "alolan_raticate", "spearow", "ekans", "pikachu", "nidoran_f", "nidoran_m", "clefairy", "clefable", "vulpix", "alolan_vulpix", "jigglypuff", "wigglytuff", "zubat", "gloom", "parasect", "venonat", "psyduck", "abra", "machop", "bellsprout", "magnemite", "farfetch'd", "galarian_farfetch'd", "gastly", "krabby", "cubone", "chansey", "goldeen", "staryu", "magikarp", "eevee", "omanyte", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "furret", "hoothoot", "ledian", "ariados", "togetic", "natu", "skiploom", "aipom", "wooper", "unown", "pineco", "forretress", "dunsparce", "gligar", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "galarian_corsola", "remoraid", "tyrogue", "larvitar", "celebi", "treecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "beautifly", "lotad", "seedot", "taillow", "wingull", "ralts", "shroomish", "shedinja", "ninjask", "whismur", "nosepass", "makuhita", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "roselia", "gulpin", "carvanha", "spoink", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "duskull", "chimecho", "spheal", "luvdisc", "bagon", "jirachi", "piplup", "chimchar", "starly", "bidoof", "shinx", "mothim", "kricketune", "pachirisu", "drifloon", "buneary", "glameow", "chatot", "munchlax", "riolu", "skorupi", "finneon", "snover", "phione", "land_shaymin", "sky_shaymin", "victini", "snivy", "watchog", "purrloin", "pansage", "pansear", "panpour", "munna", "tranquill", "roggenrola", "drillbur", "swadloon", "venipede", "whimsicott", "basculin", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "trubbish", "zorua", "minccino", "gothita", "ducklett", "vanillite", "spring_deerling", "summer_deerling", "autumn_deerling", "winter_deerling", "foongus", "elgyem", "shelmet", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "chespin", "fennekin", "froakie", "bunnelby", "fletchinder", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "carbink", "dedenne", "skrelp", "clauncher", "helioptile", "phantump", "pumpkaboo", "bergmite", "noibat", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "mareanie", "steenee", "stufful"],
+	species: ["bulbasaur", "charmander", "raticate", "alolan_raticate", "spearow", "ekans", "pikachu", "nidoran_f", "nidoran_m", "clefairy", "clefable", "vulpix", "alolan_vulpix", "jigglypuff", "wigglytuff", "zubat", "gloom", "parasect", "venonat", "psyduck", "abra", "machop", "bellsprout", "magnemite", "farfetch'd", "galarian_farfetch'd", "gastly", "krabby", "cubone", "chansey", "goldeen", "staryu", "magikarp", "eevee", "omanyte", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "furret", "hoothoot", "ledian", "ariados", "togetic", "natu", "skiploom", "aipom", "wooper", "unown", "pineco", "forretress", "dunsparce", "gligar", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "galarian_corsola", "remoraid", "tyrogue", "larvitar", "celebi", "treecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "beautifly", "lotad", "seedot", "taillow", "wingull", "ralts", "shroomish", "shedinja", "ninjask", "whismur", "nosepass", "makuhita", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "roselia", "gulpin", "carvanha", "spoink", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "duskull", "chimecho", "spheal", "luvdisc", "bagon", "jirachi", "piplup", "chimchar", "starly", "bidoof", "shinx", "mothim", "kricketune", "pachirisu", "drifloon", "buneary", "glameow", "chatot", "munchlax", "riolu", "skorupi", "finneon", "snover", "phione", "land_shaymin", "sky_shaymin", "victini", "snivy", "watchog", "purrloin", "pansage", "pansear", "panpour", "munna", "tranquill", "roggenrola", "drillbur", "swadloon", "venipede", "whimsicott", "basculin", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "trubbish", "zorua", "minccino", "gothita", "ducklett", "vanillite", "spring_deerling", "summer_deerling", "autumn_deerling", "winter_deerling", "foongus", "elgyem", "shelmet", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "chespin", "fennekin", "froakie", "bunnelby", "fletchinder", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "carbink", "dedenne", "skrelp", "clauncher", "helioptile", "phantump", "pumpkaboo", "bergmite", "noibat", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "mareanie", "steenee", "stufful", "sandygast", "minior", "togedemaru", "mimikyu", "jangmoo"],
 	slang: "dick_slang_small",
 })
 cockSizes.set("large", {
-	species: ["venusaur", "charizard", "wartortle", "pidgeot", "arbok", "ninetales", "alolan_ninetales", "vileplume", "venomoth", "persian", "alolan_persian", "poliwrath", "mankey", "tentacruel", "ponyta", "galarian_ponyta", "slowpoke", "galarian_slowpoke", "dodrio", "dewgong", "muk", "alolan_muk", "shellder", "gengar", "drowzee", "hypno", "exeggutor", "alolan_exeggutor", "alolan_marowak", "hitmonlee", "hitmonchan", "weezing", "galarian_weezing", "rhyhorn", "rhydon", "scyther", "tauros", "vaporeon", "jolteon", "flareon", "aerodactyl", "snorlax", "mewtwo", "meganium", "typhlosion", "feraligatr", "crobat", "lanturn", "flaaffy", "azumarill", "sudowoodo", "politoed", "espeon", "umbreon", "slowking", "galarian_slowking", "wobbuffet", "granbull", "scizor", "heracross", "shuckle", "ursaring", "piloswine", "mantine", "skarmory", "houndoom", "kingdra", "donphan", "blissey", "raikou", "suicune", "entei", "sceptile", "blaziken", "swampert", "ludicolo", "shiftry", "pelipper", "vigoroth", "exploud", "hariyama", "sharpedo", "camerupt", "torkoal", "grumpig", "flygon", "cacturne", "whiscash", "claydol", "cradily", "armaldo", "milotic", "banette", "dusclops", "absol", "huntail", "metang", "regirock", "regice", "registeel", "latios", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "grotle", "empoleon", "infernape", "staraptor", "luxray", "roserade", "floatzel", "east_shellos", "west_shellos", "ambipom", "drifblim", "mismagius", "honchkrow", "skuntank", "bronzong", "gible", "lucario", "toxicroak", "carnivine", "weavile", "togekiss", "yanmega", "leafeon", "glaceon", "gliscor", "porygon_z", "gallade", "probopass", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom", "serperior", "emboar", "samurott", "stoutland", "liepard", "simisage", "simipour", "simisear", "unfezant", "boldore", "gurdurr", "palpitoad", "throh", "sawk", "krokorok", "darmanitan", "galarian_darmanitan", "zen_darmanitan", "galarian_zen_darmanitan", "scrafty", "sigilyph", "cofagrigus", "tirtouga", "archeops", "zoroark", "gothitelle", "reuniclus", "swanna", "vanilluxe", "sawsbuck", "escavalier", "amoongus", "f_jellicent", "m_jellicent", "alomomola", "galvantula", "ferrothorn", "klinklang", "eelektrik", "beheeyem", "chandelure", "fraxure", "mienshao", "heatmor", "bisharp", "zweilous", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "keldeo", "genesect", "chesnaught", "delphox", "greninja", "diggersby", "talonflame", "pyroar", "gogoat", "pangoro", "m_meowstic", "aegislash", "malamar", "barbaracle", "dragalge", "sylveon", "heliolisk", "sliggoo", "gourgeist", "zygarde_10", "volcanion", "decidueye", "inceneroar", "primarina", "midday_lycanroc", "dusk_lycanroc", "mudbray", "araquanid", "lurantis", "salazzle", "bewear"],
+	species: ["venusaur", "charizard", "wartortle", "pidgeot", "arbok", "ninetales", "alolan_ninetales", "vileplume", "venomoth", "persian", "alolan_persian", "poliwrath", "mankey", "tentacruel", "ponyta", "galarian_ponyta", "slowpoke", "galarian_slowpoke", "dodrio", "dewgong", "muk", "alolan_muk", "shellder", "gengar", "drowzee", "hypno", "exeggutor", "alolan_exeggutor", "alolan_marowak", "hitmonlee", "hitmonchan", "weezing", "galarian_weezing", "rhyhorn", "rhydon", "scyther", "tauros", "vaporeon", "jolteon", "flareon", "aerodactyl", "snorlax", "mewtwo", "meganium", "typhlosion", "feraligatr", "crobat", "lanturn", "flaaffy", "azumarill", "sudowoodo", "politoed", "espeon", "umbreon", "slowking", "galarian_slowking", "wobbuffet", "granbull", "scizor", "heracross", "shuckle", "ursaring", "piloswine", "mantine", "skarmory", "houndoom", "kingdra", "donphan", "blissey", "raikou", "suicune", "entei", "sceptile", "blaziken", "swampert", "ludicolo", "shiftry", "pelipper", "vigoroth", "exploud", "hariyama", "sharpedo", "camerupt", "torkoal", "grumpig", "flygon", "cacturne", "whiscash", "claydol", "cradily", "armaldo", "milotic", "banette", "dusclops", "absol", "huntail", "metang", "regirock", "regice", "registeel", "latios", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "grotle", "empoleon", "infernape", "staraptor", "luxray", "roserade", "floatzel", "east_shellos", "west_shellos", "ambipom", "drifblim", "mismagius", "honchkrow", "skuntank", "bronzong", "gible", "lucario", "toxicroak", "carnivine", "weavile", "togekiss", "yanmega", "leafeon", "glaceon", "gliscor", "porygon_z", "gallade", "probopass", "heat_rotom", "wash_rotom", "freeze_rotom", "fan_rotom", "mow_rotom", "serperior", "emboar", "samurott", "stoutland", "liepard", "simisage", "simipour", "simisear", "unfezant", "boldore", "gurdurr", "palpitoad", "throh", "sawk", "krokorok", "darmanitan", "galarian_darmanitan", "zen_darmanitan", "galarian_zen_darmanitan", "scrafty", "sigilyph", "cofagrigus", "tirtouga", "archeops", "zoroark", "gothitelle", "reuniclus", "swanna", "vanilluxe", "sawsbuck", "escavalier", "amoongus", "f_jellicent", "m_jellicent", "alomomola", "galvantula", "ferrothorn", "klinklang", "eelektrik", "beheeyem", "chandelure", "fraxure", "mienshao", "heatmor", "bisharp", "zweilous", "therian_thundurus", "therian_tornadus", "therian_landorus", "incarnate_thundurus", "incarnate_tornadus", "incarnate_landorus", "keldeo", "genesect", "chesnaught", "delphox", "greninja", "diggersby", "talonflame", "pyroar", "gogoat", "pangoro", "m_meowstic", "aegislash", "malamar", "barbaracle", "dragalge", "sylveon", "heliolisk", "sliggoo", "gourgeist", "zygarde_10", "volcanion", "decidueye", "inceneroar", "primarina", "midday_lycanroc", "dusk_lycanroc", "mudbray", "araquanid", "lurantis", "salazzle", "bewear", "oranguru", "passimian", "type_null", "drampa", "blacephalon", "zeraora"],
 	slang: "dick_slang_big",
 })
 cockSizes.set("huge", {
-	species: ["blastoise", "nidoking", "nidoqueen", "arcanine", "primeape", "rapidash", "galarian_rapidash", "slowbro", "galarian_slowbro", "cloyster", "lickitung", "kangaskhan", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "dragonite", "ampharos", "quagsire", "girafarig", "slaking", "walrein", "salamence", "metagross", "torterra", "rampardos", "bastiodon", "east_gastrodon", "west_gastrodon", "spiritomb", "gabite", "hippowdon", "drapion", "abomasnow", "magnezone", "rhyperior", "tangrowth", "electivire", "magmortar", "dusknoir", "heatran", "cresselia", "darkrai", "blitzle", "zebstrika", "gigalith", "excadrill", "seismitoad", "scolipede", "krookodile", "carracosta", "garbodor", "eelektross", "haxorus", "beartic", "druddigon", "golurk", "bouffalant", "braviary", "mandibuzz", "hydreigon", "volcarona", "cobalion", "terrakion", "virizion", "kyurem", "trevenant", "avalugg", "noivern", "xerneas", "zygarde_50", "hoopa_unbound", "midnight_lycanroc", "mudsdale"],
+	species: ["blastoise", "nidoking", "nidoqueen", "arcanine", "primeape", "rapidash", "galarian_rapidash", "slowbro", "galarian_slowbro", "cloyster", "lickitung", "kangaskhan", "articuno", "galarian_articuno", "zapdos", "galarian_zapdos", "moltres", "galarian_moltres", "dragonite", "ampharos", "quagsire", "girafarig", "slaking", "walrein", "salamence", "metagross", "torterra", "rampardos", "bastiodon", "east_gastrodon", "west_gastrodon", "spiritomb", "gabite", "hippowdon", "drapion", "abomasnow", "magnezone", "rhyperior", "tangrowth", "electivire", "magmortar", "dusknoir", "heatran", "cresselia", "darkrai", "blitzle", "zebstrika", "gigalith", "excadrill", "seismitoad", "scolipede", "krookodile", "carracosta", "garbodor", "eelektross", "haxorus", "beartic", "druddigon", "golurk", "bouffalant", "braviary", "mandibuzz", "hydreigon", "volcarona", "cobalion", "terrakion", "virizion", "kyurem", "trevenant", "avalugg", "noivern", "xerneas", "zygarde_50", "hoopa_unbound", "midnight_lycanroc", "mudsdale", "silvally", "golisopod", "turtonator", "kommoo", "solgaleo", "nihilego", "buzzwole", "pheromosa", "xurkitree", "naganadel", "stakataka", "melmetal"],
 	slang: "dick_slang_huge",
 })
 cockSizes.set("colossal", {
-	species: ["onix", "gyarados", "lapras", "steelix", "tyranitar", "ho-oh", "lugia", "shadow_lugia", "aggron", "wailmer", "wailord", "tropius", "kyogre", "groudon", "rayquaza", "garchomp", "lickilicky", "mamoswine", "dialga", "palkia", "regigigas", "altered_giratina", "origin_giratina", "arceus", "zekrom", "reshiram", "white_kyurem", "black_kyurem", "tyrantrum", "aurorus", "goodra", "yveltal", "zygarde_100"],
+	species: ["onix", "gyarados", "lapras", "steelix", "tyranitar", "ho-oh", "lugia", "shadow_lugia", "aggron", "wailmer", "wailord", "tropius", "kyogre", "groudon", "rayquaza", "garchomp", "lickilicky", "mamoswine", "dialga", "palkia", "regigigas", "altered_giratina", "origin_giratina", "arceus", "zekrom", "reshiram", "white_kyurem", "black_kyurem", "tyrantrum", "aurorus", "goodra", "yveltal", "zygarde_100", "lunala", "celesteela", "guzzlord", "necrozma"],
 	slang: "dick_slang_colossal",
 })
 cockSizes.set("medium", {
@@ -1900,13 +1939,13 @@ bodies.set("reptilian_sextuped", {
 	plural: "six-legged reptiles"
 })
 bodies.set("draconic_biped", {
-	species: ["charizard", "dragonite", "flygon", "palkia", "druddigon", "reshiram", "zekrom", "white_kyurem", "black_kyurem", "kyurem", "goodra", "noivern"],
+	species: ["charizard", "dragonite", "flygon", "palkia", "druddigon", "reshiram", "zekrom", "white_kyurem", "black_kyurem", "kyurem", "goodra", "noivern", "hakamoo", "kommoo"],
 	adj: ["two-legged dragon", "bipedal dragon"],
 	plural: "bipdel dragons",
 	arms: 2
 })
 bodies.set("draconic_quad", {
-	species: ["salamence", "deino"],
+	species: ["salamence", "deino", "drampa", "jangmoo"],
 	adj: ["four-legged dragon", "quadrupedal dragon"],
 	plural: "quadrupedal dragons"
 })
@@ -1937,7 +1976,7 @@ bodies.set("sea_turtle", {
 	plural: "sea turtles"
 })
 bodies.set("tortoise", {
-	species: ["shuckle", "torkoal", "turtwig", "grovyle", "torterra"],
+	species: ["shuckle", "torkoal", "turtwig", "grovyle", "torterra", "turtonator"],
 	plural: "tortoises"
 })
 bodies.set("snake", {
@@ -2019,7 +2058,7 @@ bodies.set("squid", {
 	plural: "squids",
 })
 bodies.set("jellyfish", {
-	species: ["m_frillish", "f_frillish", "m_jellicent", "f_jellicent"],
+	species: ["m_frillish", "f_frillish", "m_jellicent", "f_jellicent", "nihilego"],
 	plural: "jellyfish"
 })
 bodies.set("seal", {
@@ -2045,7 +2084,7 @@ bodies.set("sea_dragon", {
 	plural: "sea dragons"
 })
 bodies.set("fish", {
-	species: ["goldeen", "seaking", "magikarp", "remoraid", "barboach", "whiscash", "feebas", "relicanth", "luvdisc", "finneon", "lumineon", "alomomola", "tynamo", "stunfisk", "solo_wishiwashi", "school_wishiwashi"],
+	species: ["goldeen", "seaking", "magikarp", "remoraid", "barboach", "whiscash", "feebas", "relicanth", "luvdisc", "finneon", "lumineon", "alomomola", "tynamo", "stunfisk", "solo_wishiwashi", "school_wishiwashi", "bruxish"],
 	plural: "fish"
 })
 bodies.set("starfish", {
@@ -2066,7 +2105,7 @@ bodies.set("nautilus", {
 	plural: "nautiluses"
 })
 bodies.set("trilobite", {
-	species: ["kabuto", "anorith"],
+	species: ["kabuto", "anorith", "golisopod"],
 	plural: "trilobites"
 })
 bodies.set("trilobite_biped", {
@@ -2133,6 +2172,11 @@ bodies.set("anemone", {
 	species: ["mareanie", "toxapex"],
 	plural: "anemones"
 })
+bodies.set("sea_cucumber", {
+	species: ["pyukumuku"],
+	adj: ["sea cucumber"],
+	plural: "sea cucumbers"
+})
 
 // insect
 bodies.set("caterpillar", {
@@ -2170,6 +2214,11 @@ bodies.set("bug_generic", {
 	species: ["paras", "parasect", "venipede", "karrablast", "escavalier", "charjabug"],
 	adj: ["insect"],
 	plural: "bugs"
+})
+bodies.set("humanoid_bug", {
+	species: ["buzzwole", "pheromosa"],
+	adj: ["humanoid bug", "human-like bug"],
+	plural: "humanoid bugs"
 })
 bodies.set("gnat", {
 	species: ["venonat"],
@@ -2403,6 +2452,10 @@ bodies.set("panda", {
 	plural: "pandas",
 	arms: 2
 })
+bodies.set("koala", {
+	species: ["komala"],
+	plural: "koalas"
+})
 bodies.set("otter", {
 	species: ["buizel", "floatzel", "oshawott", "dewott", "samurott"],
 	plural: "otters",
@@ -2420,7 +2473,7 @@ bodies.set("sugar_glider", {
 	arms: 2
 })
 bodies.set("bat", {
-	species: ["zubat", "golbat", "crobat", "woobat", "swoobat", "noibat"],
+	species: ["zubat", "golbat", "crobat", "woobat", "swoobat", "noibat", "lunala", "naganadel"],
 	plural: "bats"
 })
 bodies.set("cat_biped", {
@@ -2435,7 +2488,7 @@ bodies.set("cat_quad", {
 	plural: "cats"
 })
 bodies.set("lion", {
-	species: ["shinx", "luxio", "luxray", "therian_landorus", "litleo", "pyroar"],
+	species: ["shinx", "luxio", "luxray", "therian_landorus", "litleo", "pyroar", "solgaleo"],
 	plural: "lions"
 })
 bodies.set("tiger", {
@@ -2443,7 +2496,7 @@ bodies.set("tiger", {
 	plural: "tigers"
 })
 bodies.set("tiger_humanoid", {
-	species: ["inceneroar"],
+	species: ["inceneroar", "zeraora"],
 	adj: ["humanoid tiger", "human-like tiger"],
 	plural: "humanoid tigers",
 	arms: 2
@@ -2453,8 +2506,12 @@ bodies.set("saber_tooth_cat", {
 	adj: ["saber-toothed cat"],
 	plural: "saber-toothed cats"
 })
+bodies.set("griffin", {
+	species: ["type_null", "silvally"],
+	plural: "griffins"
+})
 bodies.set("monkey", {
-	species: ["mankey", "primeape", "vigoroth", "chimchar", "monferno", "infernape", "ambipom", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan"],
+	species: ["mankey", "primeape", "vigoroth", "chimchar", "monferno", "infernape", "ambipom", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan", "oranguru", "passimian"],
 	plural: "monkeys",
 	arms: 2
 })
@@ -2488,7 +2545,7 @@ bodies.set("poodle", {
 	plural: "poodles"
 })
 bodies.set("humanoid", {
-	species: ["machop", "machoke", "machamp", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "electabuzz", "magmar", "tyrogue", "hitmontop", "smoochum", "elekid", "magby", "ralts", "kirlia", "gardevoir", "makuhita", "hariyama", "meditite", "medicham", "snorunt", "jirachi", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "mime_jr.", "electivire", "magmortar", "gallade", "regigigas", "timburr", "gurdurr", "conkeldurr", "throh", "sawk", "scraggy", "scrafty", "gothita", "gothorita", "gothitelle", "mienfoo", "mienshao", "pawniard", "bisharp", "meloetta", "zygarde_100"],
+	species: ["machop", "machoke", "machamp", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "electabuzz", "magmar", "tyrogue", "hitmontop", "smoochum", "elekid", "magby", "ralts", "kirlia", "gardevoir", "makuhita", "hariyama", "meditite", "medicham", "snorunt", "jirachi", "deoxys", "attack_deoxys", "defense_deoxys", "speed_deoxys", "mime_jr.", "electivire", "magmortar", "gallade", "regigigas", "timburr", "gurdurr", "conkeldurr", "throh", "sawk", "scraggy", "scrafty", "gothita", "gothorita", "gothitelle", "mienfoo", "mienshao", "pawniard", "bisharp", "meloetta", "zygarde_100", "marshadow", "blacephalon"],
 	adj: ["humanoid", "human-like"],
 	plural: "humanoids",
 	arms: 2
@@ -2544,7 +2601,7 @@ bodies.set("echidna", {
 	plural: "echidnas"
 })
 bodies.set("hedgehog", {
-	species: ["land_shaymin", "chespin", "quilladin", "chesnaught"],
+	species: ["land_shaymin", "chespin", "quilladin", "chesnaught", "togedemaru"],
 	plural: "hedgehogs"
 })
 bodies.set("ferret", {
@@ -2649,7 +2706,7 @@ bodies.set("snail", {
 
 // magical
 bodies.set("fairy", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "chansey", "cleffa", "igglybuff", "togepi", "togetic", "wobbuffet", "blissey", "celebi", "whismur", "loudred", "exploud", "mawile", "happiny", "togekiss", "uxie", "mesprit", "azelf", "audino", "accelgor", "incarnate_landorus", "incarnate_tornadus", "incarnate_thundurus", "therian_thundurus", "aromatisse", "slurpuff", "hoopa_unbound", "hoopa_confined"],
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "chansey", "cleffa", "igglybuff", "togepi", "togetic", "wobbuffet", "blissey", "celebi", "whismur", "loudred", "exploud", "mawile", "happiny", "togekiss", "uxie", "mesprit", "azelf", "audino", "accelgor", "incarnate_landorus", "incarnate_tornadus", "incarnate_thundurus", "therian_thundurus", "aromatisse", "slurpuff", "hoopa_unbound", "hoopa_confined", "tapu_koko", "tapu_lele", "tapu_bulu", "tapu_fini", "poipole"],
 	plural: "fairies",
 	arms: 2
 })
@@ -2677,13 +2734,13 @@ bodies.set("floating_rock", {
 	arms: 2
 })
 bodies.set("rock_golem", {
-	species: ["graveler", "alolan_graveler", "golem", "alolan_golem", "nosepass", "baltoy", "claydol", "regirock", "probopass", "boldore", "gigalith", "elgyem", "beheeyem", "golett", "golurk"],
+	species: ["graveler", "alolan_graveler", "golem", "alolan_golem", "nosepass", "baltoy", "claydol", "regirock", "probopass", "boldore", "gigalith", "elgyem", "beheeyem", "golett", "golurk", "stakataka"],
 	adj: ["rock golem"],
 	plural: "rock golems",
 	arms: 2
 })
 bodies.set("rock_armless", {
-	species: ["roggenrola", "zen_darmanitan", "carbink"],
+	species: ["roggenrola", "zen_darmanitan", "carbink", "minior", "cosmoem"],
 	adj: ["rock golem"],
 	plural: "rock golems"
 })
@@ -2724,13 +2781,13 @@ bodies.set("lightning_spirit", {
 
 // robots
 bodies.set("robot", {
-	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon", "porygon2", "beldum", "magnezone", "porygon_z", "klink", "klang", "klinklang"],
+	species: ["magnemite", "magneton", "voltorb", "electrode", "porygon", "porygon2", "beldum", "magnezone", "porygon_z", "klink", "klang", "klinklang", "celesteela"],
 	plural: "robots"
 })
 bodies.set("robot_2arms", {
-	species: ["metang", "registeel", "genesect"],
-	adj: ["two-armed floating robot"],
-	plural: "two-armed floating robots"
+	species: ["metang", "registeel", "genesect", "magearna", "melmetal"],
+	adj: ["two-armed robot"],
+	plural: "two-armed robots"
 })
 bodies.set("robot_4arms", {
 	species: ["metagross"],
@@ -2773,7 +2830,7 @@ bodies.set("vine_golem", {
 	plural: "cluters of vines"
 })
 bodies.set("plant_fairy", {
-	species: ["hoppip", "skiploom", "jumpluff", "whimsicott", "steenee", "tsareena"],
+	species: ["hoppip", "skiploom", "jumpluff", "whimsicott", "steenee", "tsareena", "comfey"],
 	adj: ["plant fairy"],
 	plural: "plant faries"
 })
@@ -2827,7 +2884,7 @@ bodies.set("symbol", {
 	plural: "magical floating symbols"
 })
 bodies.set("cloud", {
-	species: ["castform", "rainy_castform", "snowy_castform", "sunny_castform"],
+	species: ["castform", "rainy_castform", "snowy_castform", "sunny_castform", "cosmog"],
 	plural: "clouds"
 })
 bodies.set("windchime", {
@@ -2924,6 +2981,25 @@ bodies.set("keyring", {
 	adj: ["key ring"],
 	plural: "key rings"
 })
+bodies.set("sand_castle", {
+	species: ["sandygast", "palossand"],
+	adj: ["sand castle"],
+	plural: "sand castles"
+})
+bodies.set("anchor", {
+	species: ["dhelmise"],
+	plural: "anchors"
+})
+bodies.set("cable_monster", {
+	species: ["xurkitree"],
+	adj: ["cable monster"],
+	plural: "cable monsters"
+})
+bodies.set("origami_figure", {
+	species: ["kartana"],
+	adj: ["origami figure"],
+	plural: "origami figures"
+})
 
 // slime
 bodies.set("ooze", {
@@ -2937,7 +3013,7 @@ bodies.set("slimeball", {
 	plural: "slime balls"
 })
 bodies.set("slime_creature", {
-	species: ["reuniclus"],
+	species: ["reuniclus", "meltan"],
 	adj: ["slime creature"],
 	plural: "slime creatures",
 	arms: 2
@@ -2967,6 +3043,23 @@ bodies.set("possessed_coffin", {
 	species: ["cofagrigus"],
 	adj: ["possessed coffin", "haunted coffin"],
 	plural: "possessed coffins"
+})
+bodies.set("disguised_creature", {
+	species: ["mimikyu"],
+	adj: ["disguised creature"],
+	plural: "disguised creatures"
+})
+
+// specific
+bodies.set("guzzlord", {
+	species: ["guzzlord"],
+	adj: ["huge-mouthed monster", "monster", "four-armed monster"],
+	plural: "huge-mouthed four-armed monsters"
+})
+bodies.set("necrozma", {
+	species: ["necrozma"],
+	adj: ["crystalline monster"],
+	plural: "crystalline monsters"
 })
 
 /*
@@ -3025,7 +3118,7 @@ dicks.set("reptilian_double", {
 	plural: true
 })
 dicks.set("draconic", {
-	species: ["charizard", "gyarados", "alolan_exeggutor", "flygon", "altaria", "heatran", "axew", "fraxure", "haxorus", "druddigon", "deino", "reshiram", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "noibat", "noivern", "yveltal", "zygarde_100"],
+	species: ["charizard", "gyarados", "alolan_exeggutor", "flygon", "altaria", "heatran", "axew", "fraxure", "haxorus", "druddigon", "deino", "reshiram", "zekrom", "kyurem", "white_kyurem", "black_kyurem", "noibat", "noivern", "yveltal", "zygarde_100", "drampa", "jangmoo", "kommoo", "hakamoo"],
 	adj: ["knotted dragon /a <ds>", "knotted draconic /a <ds>"],
 	pussy_adj: ["draconic /a <ps>", "dragon /a <ps>", "scaley /a <ps>"],
 	dex_m: "Male <lp> have a draconic cock with pleasurable ridges and a hard knot at the base. Their testicles are external. When not aroused, a male <ln>'s penis is hidden in a fleshy protective sheath. The male <ln>'s dragon cock has a fleshy knot at the base which flares up and locks him into his partner when he reaches orgasm. Male <lp> also have large testicles.",
@@ -3050,13 +3143,13 @@ dicks.set("draconic_triple", {
 	pussy_plural: true
 })
 dicks.set("turtle", {
-	species: ["squirtle", "wartortle", "blastoise", "shuckle", "torkoal", "turtwig", "grotle", "torterra", "tirtouga", "carracosta"],
+	species: ["squirtle", "wartortle", "blastoise", "shuckle", "torkoal", "turtwig", "grotle", "torterra", "tirtouga", "carracosta", "turtonator"],
 	adj: ["turtle /a <ds>", "prehensile /a <ds>", "muscular /a <ds>"],
 	pussy: "reptilian",
 	dex_m: "Male <lp> have a long, pink, slick cock that hides inside their body when not in use. Their penises are prehensile and they can move them freely. <p> have internal testicles."
 })
 dicks.set("insect", {
-	species: ["caterpie", "metapod", "butterfree", "weedle", "metapod", "paras", "parasect", "venonat", "venomoth", "pinsir", "kabuto", "kabutops", "ledyba", "ledian", "yanma", "wurmple", "silcoon", "beautifly", "cascoon", "dustox", "surskit", "masquerain", "volbeat", "illumise", "trapinch", "vibrava", "anorith", "armaldo", "kricketot", "kricketune", "grass_burmy", "sand_burmy", "trash_burmy", "grass_wormadam", "trash_wormadam", "sand_wormadam", "mothim", "combee", "vespiqueen", "skorupi", "drapion", "yanmega", "sewaddle", "swadloon", "leavanny", "venipede", "whirlipede", "scolipede", "karrablast", "escavalier", "joltik", "galvantula", "durant", "larvesta", "volcarona", "genesect", "scatterbug", "spewpa", "vivillon", "grubbin", "charjabug", "vikavolt", "cutiefly", "ribombee"],
+	species: ["caterpie", "metapod", "butterfree", "weedle", "metapod", "paras", "parasect", "venonat", "venomoth", "pinsir", "kabuto", "kabutops", "ledyba", "ledian", "yanma", "wurmple", "silcoon", "beautifly", "cascoon", "dustox", "surskit", "masquerain", "volbeat", "illumise", "trapinch", "vibrava", "anorith", "armaldo", "kricketot", "kricketune", "grass_burmy", "sand_burmy", "trash_burmy", "grass_wormadam", "trash_wormadam", "sand_wormadam", "mothim", "combee", "vespiqueen", "skorupi", "drapion", "yanmega", "sewaddle", "swadloon", "leavanny", "venipede", "whirlipede", "scolipede", "karrablast", "escavalier", "joltik", "galvantula", "durant", "larvesta", "volcarona", "genesect", "scatterbug", "spewpa", "vivillon", "grubbin", "charjabug", "vikavolt", "cutiefly", "ribombee", "wimpod", "golisopod"],
 	adj: ["/a <ds>"],
 	pussy_adj: ["/a <ps>"],
 	dex_m: "Male <lp> have a cock that comes out of their chitinous exoskeleton when aroused. Their testicles are internal. When a male <ln> is aroused his penis leaks a sticky, sweet-smelling precum."
@@ -3098,19 +3191,19 @@ dicks.set("rhino", {
 	dex_m: "Male <lp> have a long pink penis with a dramatically flared tip. When they're about to cum, the tip of their penis flares up and expands. A <ln>'s penis is also prehensile and can be fully controlled. When not in use, the penis is hidden inside a protective fleshy sheath."
 })
 dicks.set("generic_sheath", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey", "whismur", "loudred", "exploud", "pachirisu", "buizel", "floatzel", "stunky", "skuntank", "happiny", "snover", "abomasnow", "weavile", "electivire", "magmortar", "gliscor", "land_shaymin", "oshawott", "dewott", "samurott", "patrat", "watchog", "munna", "musharna", "swoobat", "woobat", "audino", "cottonee", "whimsicott", "minccino", "cinccino", "emolga", "shelmet", "accelgor", "mienfoo", "mienshao", "heatmor", "chespin", "quilladin", "chesnaught", "swirlix", "slurpuff", "yungoos", "gumshoos"],
+	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey", "whismur", "loudred", "exploud", "pachirisu", "buizel", "floatzel", "stunky", "skuntank", "happiny", "snover", "abomasnow", "weavile", "electivire", "magmortar", "gliscor", "land_shaymin", "oshawott", "dewott", "samurott", "patrat", "watchog", "munna", "musharna", "swoobat", "woobat", "audino", "cottonee", "whimsicott", "minccino", "cinccino", "emolga", "shelmet", "accelgor", "mienfoo", "mienshao", "heatmor", "chespin", "quilladin", "chesnaught", "swirlix", "slurpuff", "yungoos", "gumshoos", "togedemaru", "mimikyu", "tapu_koko", "tapu_lele", "tapu_bulu"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy_adj: ["animal /a <ps>", "animalistic /a <ps>", "beast /a <ps>", "beastial /a <ps>"],
 	dex_m: "Male <lp> have a pink penis that lies inside a protective fleshy sheath. When aroused, the penis comes out of its sheath. Once a male <ln> is aroused he will want to orgasm.",
 })
 dicks.set("generic_slit", {
-	species: ["poliwag", "poliwhirl", "poliwrath", "politoed", "wooper", "quagsire", "togepi", "lotad", "lombre", "ludicolo", "gulpin", "swalot", "croagunk", "toxicroak", "tympole", "palpitoad", "seismitoad", "pawniard", "bisharp", "froakie", "frogadier", "greninja", "binacle", "barbaracle"],
+	species: ["poliwag", "poliwhirl", "poliwrath", "politoed", "wooper", "quagsire", "togepi", "lotad", "lombre", "ludicolo", "gulpin", "swalot", "croagunk", "toxicroak", "tympole", "palpitoad", "seismitoad", "pawniard", "bisharp", "froakie", "frogadier", "greninja", "binacle", "barbaracle", "pyukumuku", "tapu_fini"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>", "muscular /a <ds>", "twitching /a <ds>"],
 	pussy: "generic_sheath",
 	dex_m: "Male <lp> have a slick, pink penis that hides inside their body when not aroused. They also have internal testicles. A male <ln>'s penis is highly muscular."
 })
 dicks.set("rabbit", {
-	species: ["buneary", "lopunny", "bunnelby", "diggersby"],
+	species: ["buneary", "lopunny", "bunnelby", "diggersby", "sylveon"],
 	adj: ["bunny /a <ds>", "rabbit /a <ds>"],
 	pussy_adj: ["bunny /a <ps>", "rabbit /a <ps>"],
 	dex_m: dicks.get("generic_sheath").dex_m + " <n>'s cock is extremely soft.",
@@ -3143,7 +3236,7 @@ dicks.set("fox", {
 	dex_m: dicks.get("generic_sheath").dex_m + " At the base of a <ln>'s penis is a thick fleshy knot, which expands when he's getting close to orgasm."
 })
 dicks.set("vine", {
-	species: ["oddish", "gloom", "vileplume", "bellsprout", "weepinbell", "victreebel", "exeggutor", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "pineco", "forretress", "celebi", "shroomish", "breloom", "roselia", "cacnea", "cacturne", "lileep", "cradily", "roselia", "roserade", "cherubi", "sunny_cherrim", "overcast_cherrim", "bonsly", "carnivine", "tangrowth", "petilil", "lilligant", "maractus", "foongus", "amoongus", "ferroseed", "ferrothorn", "flabebe", "floette", "florges", "phantump", "trevenant", "pumpkaboo", "gourgeist", "morelull", "shiinotic", "bounsweet", "steenee", "tsareena"],
+	species: ["oddish", "gloom", "vileplume", "bellsprout", "weepinbell", "victreebel", "exeggutor", "tangela", "bellossom", "hoppip", "skiploom", "jumpluff", "sunkern", "sunflora", "pineco", "forretress", "celebi", "shroomish", "breloom", "roselia", "cacnea", "cacturne", "lileep", "cradily", "roselia", "roserade", "cherubi", "sunny_cherrim", "overcast_cherrim", "bonsly", "carnivine", "tangrowth", "petilil", "lilligant", "maractus", "foongus", "amoongus", "ferroseed", "ferrothorn", "flabebe", "floette", "florges", "phantump", "trevenant", "pumpkaboo", "gourgeist", "morelull", "shiinotic", "bounsweet", "steenee", "tsareena", "comfey"],
 	adj: ["several slimey vine /a <ds>", "many slimey vine /a <ds>", "several slimey tentacle /a <ds>", "many slimey tentacle /a <ds>", "slimey vine /a <ds>", "slimey tentacle /a <ds>"],
 	pussy_adj: ["several slimey vine /a <ps>", "many slimey vine /a <ps>", "several slimey tentacle /a <ps>", "many slimey tentacle /a <ps>", "slimey vine /a <ps>", "slimey tentacle /a <ps>"],
 	dex_m: `Male <lp> have several vines which function as penises. These penis vines are long and fully prehensile. Vine cocks have a head like a human's penis, and a retractable foreskin. Vine penises are very slick and slimy, and male <lp> love to use multiple at a time to fuck their partners. Cock vines can cum just like any other penis.`,
@@ -3164,7 +3257,7 @@ dicks.set("feline", {
 	dex_m: "Male <lp> have a pink penis with soft barbs on the end. The barbs don't hurt, they feel pleasant. When not aroused, a <ln>'s penis is hidden in a protective fleshy sheath."
 })
 dicks.set("human", {
-	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom", "tyrogue", "hitmontop", "smoochum", "ralts", "kirlia", "gardevoir", "slakoth", "vigoroth", "slaking", "makuhita", "hariyama", "meditite", "medicham", "jirachi", "chimchar", "monferno", "infernape", "mime_jr.", "gallade", "regigigas", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "timburr", "gurdurr", "conkeldurr", "throh", "sawk", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan", "scraggy", "scrafty", "gothita", "gothorita", "gothitelle", "meloetta"],
+	species: ["mankey", "primeape", "machop", "machoke", "hitmonlee", "hitmonchan", "mr._mime", "galarian_mr._mime", "jynx", "aipom", "tyrogue", "hitmontop", "smoochum", "ralts", "kirlia", "gardevoir", "slakoth", "vigoroth", "slaking", "makuhita", "hariyama", "meditite", "medicham", "jirachi", "chimchar", "monferno", "infernape", "mime_jr.", "gallade", "regigigas", "pansage", "simisage", "panpour", "simipour", "pansear", "simisear", "timburr", "gurdurr", "conkeldurr", "throh", "sawk", "darumaka", "galarian_darumaka", "darmanitan", "galarian_darmanitan", "scraggy", "scrafty", "gothita", "gothorita", "gothitelle", "meloetta", "oranguru", "passimian", "marshadow", "blacephalon"],
 	adj: ["human-like /a <ds>", "humanoid /a <ds>", "/a <ds>"],
 	pussy_adj: ["human-like /a <ps>", "humanoid /a <ps>", "/a <ps>"],
 	dex_m: "Male <lp> have a human-like penis complete with a foreskin and a scrotum with two testicles."
@@ -3177,14 +3270,26 @@ dicks.set("human_double", {
 	plural: true,
 	pussy_plural: true
 })
+dicks.set("generic_knotted", {
+	species: ["necrozma"],
+	adj: ["knotted /a <ds>", "knotted animal /a <ds>", "knotted beast /a <ds>", "knotted beastial /a <ds>", "knotted animalistic /a <ds>"],
+	pussy: "generic_sheath",
+	dex_m: "A male <p>'s penis has a thick fleshy knot at the base, which expands and lodges him inside his partner when he orgasms. Once a male <ln> has knotted his partner, they'll be stuck together until his penis goes soft again. When his penis isn't in use, it's hidden in a protective fleshy sheath."
+})
 dicks.set("canine", {
-	species: ["growlithe", "arcanine", "snubbull", "granbull", "houndour", "houndoom", "suicune", "entei", "poochyena", "mightyena", "electrike", "manectric", "absol", "lillipup", "herdier", "stoutland", "furfrou", "sylveon", "zygarde_10", "rockruff", "midday_lycanroc", "midnight_lycanroc", "dusk_lycanroc"],
+	species: ["growlithe", "arcanine", "snubbull", "granbull", "houndour", "houndoom", "suicune", "entei", "poochyena", "mightyena", "electrike", "manectric", "absol", "lillipup", "herdier", "stoutland", "furfrou", "zygarde_10", "rockruff", "midday_lycanroc", "midnight_lycanroc", "dusk_lycanroc"],
 	adj: ["knotted dog /a <ds>", "knotted canine /a <ds>", "knotted doggy /a <ds>", "knotted puppy /a <ds>", "knotted /a <ds>"],
 	pussy_adj: ["dog /a <ps>", "canine /a <ps>", "puppy /a <ps>"],
-	dex_m: "Male <lp> have a pink dog penis. A male <p>'s penis has a thick fleshy knot at the base, which expands and lodges him inside his partner when he orgasms. Once a male <ln> has knotted his partner, they'll be stuck together until his penis goes soft again. When his penis isn't in use, it's hidden in a protective fleshy sheath."
+	dex_m: "Male <lp> have a pink dog penis." + dicks.get("generic_knotted").dex_m
+})
+dicks.set("feline_knotted", {
+	species: ["solgaleo", "zeraora"],
+	adj: ["knotted feline /a <ds>", "knotted barbed /a <ds>", "knotted cat /a <ds>"],
+	pussy: "feline",
+	dex_m: dicks.get("feline").dex_m + dicks.get("generic_knotted").dex_m
 })
 dicks.set("tentacle", {
-	species: ["tentacool", "tentacruel", "omanyte", "omastar", "octillery", "clamperl", "deoxys", "speed_deoxys", "attack_deoxys", "defense_deoxys", "west_shellos", "east_shellos", "west_gastrodon", "east_gastrodon", "darkrai", "m_frillish", "f_frillish", "m_jellicent", "f_jellicent", "inkay", "malamar", "mareanie", "toxapex"],
+	species: ["tentacool", "tentacruel", "omanyte", "omastar", "octillery", "clamperl", "deoxys", "speed_deoxys", "attack_deoxys", "defense_deoxys", "west_shellos", "east_shellos", "west_gastrodon", "east_gastrodon", "darkrai", "m_frillish", "f_frillish", "m_jellicent", "f_jellicent", "inkay", "malamar", "mareanie", "toxapex", "nihilego", "xurkitree"],
 	adj: ["several slimey tentacle /a <ds>", "several writhing tentacle /a <ds>", "many slimey tentacle /a <ds>", "many writhing tentacle /a <ds>", "slimey tentacle /a <ds>", "writhing tentacle /a <ds>", "tentacle /a <ds>"],
 	pussy_adj: ["several slimey tentacle /a <ps>", "several writhing tentacle /a <ps>", "many slimey tentacle /a <ps>", "many writhing tentacle /a <ps>", "slimey tentacle /a <ps>", "writhing tentacle /a <ps>", "tentacle /a <ps>"],
 	dex_m: `Male <lp> have several tentacles. One of their tentacles is actually their penis. A male <ln>'s penis tentacle looks like any other tentacle, but it releases cum when he orgasms. When a male <ln> has sex, he uses all his tentacles to pleasure his partner.`,
@@ -3193,14 +3298,14 @@ dicks.set("tentacle", {
 	pussy_plural: true
 })
 dicks.set("rock", {
-	species: ["geodude", "graveler", "golem", "alolan_geodude", "alolan_graveler", "alolan_golem", "sudowoodo", "nosepass", "regirock", "probopass", "roggenrola", "boldore", "gigalith", "zen_darmanitan", "diancie"],
+	species: ["geodude", "graveler", "golem", "alolan_geodude", "alolan_graveler", "alolan_golem", "sudowoodo", "nosepass", "regirock", "probopass", "roggenrola", "boldore", "gigalith", "zen_darmanitan", "diancie", "sandygast", "palossand", "stakataka"],
 	adj: ["stone /a <ds>", "rock /a <ds>"],
 	pussy_adj: ["stone /a <ps>", "rock /a <ps>"],
 	dex_m: `Male <lp> have a penis made entirely out of rock. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of rock, male <lp> are always erect and ready to fuck.`,
 	dex_f: `Female <lp> have a pussy made entirely out of rock. Despite the hardness of the pussy, it's very warm and comfortable. Since their pussies are made of rock, female <lp> are always ready to fuck.`
 })
 dicks.set("metal", {
-	species: ["registeel"],
+	species: ["registeel", "dhelmise", "celesteela", "kartana", "magearna", "meltan", "melmetal"],
 	adj: ["metal /a <ds>", "steel /a <ds>"],
 	pussy_adj: ["metal /a <ps>", "steel /a <ps>"],
 	dex_m: "Male <lp> have a penis made entirely out of metal. Despite the hardness of the penis, it's very warm and comfortable. Since their penises are made of metal, male <lp> are always erect and ready to fuck.",
@@ -3221,7 +3326,7 @@ dicks.set("equine", {
 	dex_f: "When female <lp> are aroused, their clitoris will wink in and out to signal that they're ready to fuck."
 })
 dicks.set("equine_knotted", {
-	species: ["dialga"],
+	species: ["dialga", "type_null", "silvally"],
 	adj: ["knotted horse /a <ds>", "knotted equine /a <ds>", "knotted horsecock"],
 	pussy: "equine",
 	dex_m: "Male <lp> have a long knotted horse cock. Their knotted equine penises are normally stored within a fleshy sheath, but when aroused they increase in size rapidly. A male <ln>'s knotted horsecock has a muscular band around the middle, and a large flat head at the tip. The head and knot of the penis will both flare up with the pokemon reaches orgasm. When a <ln>'s knot flares up it will lock him into his partner until his penis is flaccid again.",
@@ -3287,7 +3392,7 @@ dicks.set("camel", {
 	dex_m: "Male <lp> have a long camel penis. A male <ln>'s camel penis normally hides within a protective fleshy sheath when not aroused."
 })
 dicks.set("ursine", {
-	species: ["teddiursa", "ursaring", "spinda", "cubchoo", "beartic", "pancham", "pangoro", "stufful", "bewear"],
+	species: ["teddiursa", "ursaring", "spinda", "cubchoo", "beartic", "pancham", "pangoro", "stufful", "bewear", "minior"],
 	adj: ["bear /a <ds>", "ursine /a <ds>"],
 	pussy_adj: ["bear /a <ps>", "ursine /a <ps>"],
 	dex_m: "Male <lp> have a long, thin, pink, bear penis. A male <ln>'s bear penis normally hides within a protective fleshy sheath when not aroused."
@@ -3311,7 +3416,7 @@ dicks.set("electric_disembodied", {
 	dex_m: "Male <lp> reproduce using a penis made of magical electric energy. The penis is used like a dildo, and it's voltage is low enough that it's extremely pleasurable and doesn't shock the user. Since male <lp> have magical disembodied penises, they can create more whenever they want. They love creating several electric penises during sex."
 })
 dicks.set("cetacean", {
-	species: ["seel", "dewgong", "lapras", "vaporeon", "lanturn", "togetic", "mantine", "lugia", "latias", "latios", "mantyke", "togekiss", "cresselia", "popplio", "brionne", "primarina"],
+	species: ["seel", "dewgong", "lapras", "vaporeon", "lanturn", "togetic", "mantine", "lugia", "latias", "latios", "mantyke", "togekiss", "cresselia", "popplio", "brionne", "primarina", "poipole", "naganadel", "lunala"],
 	adj: ["prehensile /a <ds>", "muscular /a <ds>", "cetacean /a <ds>"],
 	pussy_adj: ["slick /a <ps>", "smooth /a <ps>", "cetacean /a <ps>", "muscular /a <ps>"],
 	dex_m: "Male <lp> have a long, slick, pink penis. A male <ln>'s penis is prehensile and can be controlled freely. When not aroused, a male <lp>'s penis retracts into a slit in its body. Male <lp> have internal testicles. A male <ln>'s penis is extremely strong and muscular. When they cum, male <lp> can shoot semen over 30 feet!"
@@ -3351,13 +3456,13 @@ dicks.set("slime", {
 	dex_m: "Male <lp> reproduce by forming their slime into the shape of a penis and using it to fuck their partner. A <ln>'s slime penis can be reshaped and resized to do any kinky thing he wants. Male <lp> love to create multiple slime cocks at once and use them fuck a single partner."
 })
 dicks.set("tongue", {
-	species: ["shellder", "cloyster", "lickitung", "lickilicky"],
+	species: ["shellder", "cloyster", "lickitung", "lickilicky", "guzzlord"],
 	adj: ["tongue-/a <ds>", "tongue /a <ds>"],
 	pussy_adj: ["tongue /a <ps>", "tongue-/a <ps>"],
 	dex_m: "A male <ln>'s tongue is actually his penis. He has a long prehensile tongue that he uses to fuck his partner. When he reaches orgasm, the male <ln> cums from the tip of his tongue. Male <lp> love to use their tongue-cocks to perform all sorts of sex acts. <p> have very long tongues which can be finely controlled. Male <lp> love to use their tongue dicks to fuck, suck, and jerk off their partners!"
 })
 dicks.set("psychic_disembodied", {
-	species: ["gastly", "haunter", "koffing", "weezing", "galarian_weezing", "staryu", "starmie", "misdreavus", "unown", "wobbuffet", "lunatone", "solrock", "baltoy", "claydol", "shupper", "duskull", "chimecho", "wynaut", "beldum", "metang", "metagross", "drifloon", "drifblim", "mismagius", "spiritomb", "chingling", "bronzor", "bronzong", "sigilyph", "yamask", "galarian_yamask", "cofagrigus", "solosis", "duosion", "reuniclus", "elgyem", "beheeyem", "litwick", "lampent", "chandelure", "golett", "golurk", "honedge", "duoblade", "aegislash", "klefki", "hoopa_confined", "hoopa_unbound"],
+	species: ["gastly", "haunter", "koffing", "weezing", "galarian_weezing", "staryu", "starmie", "misdreavus", "unown", "wobbuffet", "lunatone", "solrock", "baltoy", "claydol", "shupper", "duskull", "chimecho", "wynaut", "beldum", "metang", "metagross", "drifloon", "drifblim", "mismagius", "spiritomb", "chingling", "bronzor", "bronzong", "sigilyph", "yamask", "galarian_yamask", "cofagrigus", "solosis", "duosion", "reuniclus", "elgyem", "beheeyem", "litwick", "lampent", "chandelure", "golett", "golurk", "honedge", "duoblade", "aegislash", "klefki", "hoopa_confined", "hoopa_unbound", "minior"],
 	adj: ["ethereal floating /a <ds>", "psychically floating /a <ds>"],
 	pussy_adj: ["ethereal floating /a <ps>", "psychically floating /a <ps>"],
 	dex_m: "Male <lp>'s lack a physical penis, but they can manifest a magical penis using psychic energy. A partner can use the male <ln>'s psychic penis like a dildo, and it can orgasm like a normal penis. Since male <lp> use disembodied psychic penises, they can create more than one. Male <lp> love to create multiple penises and fuck the same person with them."
@@ -3375,7 +3480,7 @@ dicks.set("crustacean", {
 	dex_m: "Male <lp> have an internal penis that comes out of their body when aroused."
 })
 dicks.set("fish", {
-	species: ["horsea", "seadra", "goldeen", "seaking", "magikarp", "chinchou", "qwilfish", "remoraid", "kingdra", "mudkip", "marshtomp", "swampert", "carvanha", "barboach", "whiscash", "feebas", "huntail", "gorebyss", "relicanth", "luvdisc", "finneon", "lumineon", "phione", "manaphy", "basculin", "alomomola", "tynamo", "eelektrik", "eelektross", "stunfisk", "galarian_stunfisk", "skrelp", "dragalge", "solo_wishiwashi", "school_wishiwashi"],
+	species: ["horsea", "seadra", "goldeen", "seaking", "magikarp", "chinchou", "qwilfish", "remoraid", "kingdra", "mudkip", "marshtomp", "swampert", "carvanha", "barboach", "whiscash", "feebas", "huntail", "gorebyss", "relicanth", "luvdisc", "finneon", "lumineon", "phione", "manaphy", "basculin", "alomomola", "tynamo", "eelektrik", "eelektross", "stunfisk", "galarian_stunfisk", "skrelp", "dragalge", "solo_wishiwashi", "school_wishiwashi", "bruxish"],
 	adj: ["slick /a <ds>", "tapered /a <ds>", "fish /a <ds>"],
 	pussy: "cetacean",
 	dex_m: "Male <lp> have an internal penis that comes out of their body when aroused."
@@ -3406,7 +3511,7 @@ dicks.set("ditto", {
 	dex_m: "<p> can transform any part of their body into anything imaginable. They frequently transform during sex to keep things exciting and interesting. <p> really love to transform into the person or pokemon they're currently having sex with."
 })
 dicks.set("ovipositor", {
-	species: ["beedrill", "spinarak", "ariados", "scyther", "scizor", "heracross", "araquanid", "dewpider", "fomantis", "lurantis"],
+	species: ["beedrill", "spinarak", "ariados", "scyther", "scizor", "heracross", "araquanid", "dewpider", "fomantis", "lurantis", "buzzwole", "pheromosa"],
 	adj: ["/a <ds>-like ovipositor", "ovipositor", "sexual appendage"],
 	pussy: "insect",
 	dex_m: "Male <lp> use a specialized ovipositor as a penis. His ovipositor functions just like a penis. When a male <p> cums, he pumps eggs through his ovipositor into his partner. He doesn't ejaculate semen, he only releases large eggs when he cums. This makes his partner feel really good."
@@ -3418,7 +3523,7 @@ dicks.set("crocodile", {
 	dex_m: "Male <lp> have a crocodile penis. The male <ln>'s crocodilian cock is extremely muscular and powerful. Male <ln> are known to fence with their crocodile dicks to display their power. Female <lp> will always choose the male with the biggest cock, so male <lp> have evolved to have big crocodile dicks."
 })
 dicks.set("cloud", {
-	species: ["castform", "rainy_castform", "sunny_castform", "snowy_castform"],
+	species: ["castform", "rainy_castform", "sunny_castform", "snowy_castform", "cosmog"],
 	adj: ["cloud /a <ds>", "cloudy /a <ds>"],
 	pussy_adj: ["cloud /a <ps>", "cloudy /a <ps>"],
 	dex_m: "Male <lp> have a penis made entirely of clouds. The male <ln>'s cloud penis can't penetrate anything, but it can still feel pleasure."
@@ -3429,6 +3534,12 @@ dicks.set("glitchy", {
 	pussy_adj: ["glitchy /a <ps>", "glitch /a <ps>"],
 	dex_m: "Male <lp> have a penis made out of glitchy cyber material.",
 	dex_f: "Female <lp> have a pussy made out of glitchy cyber material."
+})
+dicks.set("none", {
+	species: ["cosmoem"],
+	adj: ["nothing"],
+	pussy_adj: ["nothing"],
+	dex: "<p> have no genitals at all. <p> are completely sexless. A <ln> can't become sexually aroused. <p> have absolutely no genitals."
 })
 /*
 dicks.set("", {
@@ -3666,7 +3777,10 @@ var simpleName = {
 	solo_wishiwashi: "wishiwashi",
 	midday_lycanroc: "lycanroc",
 	midnight_lycanroc: "lycanroc",
-	dusk_lycanroc: "lycanroc"
+	dusk_lycanroc: "lycanroc",
+	jangmoo: "jangmo-o",
+	hakamoo: "hakamo-o",
+	kommoo: "kommo-o"
 }
 
 function load_species(name, gender, contextCategory) {
