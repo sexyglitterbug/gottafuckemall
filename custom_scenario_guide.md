@@ -34,7 +34,7 @@ Example:
 * And the game will know that pokemon can talk.
 
 # Complete Example
-Here is a complete example of a simple custom scenario. You can paste this directly into the game to run it and try it out.
+Here is a complete example of a simple custom scenario that uses mystery dungeon rules and explicit species loading. You can paste this directly into the game to run it and try it out.
 
 > :{"md":true,"pokemon":["riolu:m","ampharos:f"]} male riolu. You're watching tv when your friend Ampharos walks in. She looks distressed.
 > 
