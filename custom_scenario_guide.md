@@ -29,8 +29,8 @@ Note that supplying a `pokemon` parameter will stop the game from scanning your 
 Mystery dungeon scenarios allow all pokemon to talk. To make your scenario a mystery dungeon scenario, simply add `"md":true` to your scenario options.
 
 Example:
-* You say: `:{"md":true} pokemon trainer.`
-* Game says: `You're a pokemon trainer.`
+* You say: `:{"md":true} pokemon.`
+* Game says: `You're a pokemon.`
 * And the game will know that pokemon can talk.
 
 # Complete Example
