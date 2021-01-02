@@ -892,3 +892,39 @@ impidimp
 morgrem
 grimmsnarl
 obstagoon
+perrserker
+cursola
+sirfetch'd
+mr._rime
+runerigus
+milcery
+alcremie
+falinks | impossible to make this work well
+pincurchin
+snom
+frosmoth
+stonjourner
+eiscue
+indeedee
+morpeko
+cufant
+copperajah
+dracozolt
+arctozolt
+dracovish
+arctovish
+duraldon
+dreepy | double dick
+drakloak | double dick
+dragapult | double dick
+zacian
+zamazenta
+eternatus | tentacles
+kubfu
+urshifu
+zarude
+regieleki | disembodied electric gens
+regidrago
+glastrier
+spectrier
+calyrex
