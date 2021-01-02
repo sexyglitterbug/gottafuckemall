@@ -377,6 +377,7 @@ tagFunctions.set("dbw", { // debug dump world info for a specific key
 var scenes = new Map()
 
 scenes.set("we", {
+	// outputs a world entry
 	hidden: true,
 	last: true,
 	actors: [
@@ -392,6 +393,7 @@ scenes.set("we", {
 })
 
 scenes.set("test", {
+	// outputs a pokemon object
 	hidden: true,
 	last: true,
 	actors: [
@@ -407,7 +409,9 @@ scenes.set("test", {
 })
 
 scenes.set("rand", {
+	// outputs the random options from a random input
 	hidden: true,
+	last: true,
 	actors: [
 		{
 			type: "pokemon",
@@ -421,6 +425,7 @@ scenes.set("rand", {
 })
 
 scenes.set("gangrape", {
+	// player gets kidnapped and raped by a pokemon gang
 	actors: [
 		{
 			type: "person",
@@ -438,16 +443,17 @@ scenes.set("gangrape", {
 		var a = v.a
 
 		// context
-		add_context(`You've always secretly wanted to be gang raped by a group of ${a.g("male","female","sexy")} ${a.name_lower_p}. You're a bit of a slut and you love being taken advantage of. You love ${a.g("male","female","sexy")} ${a.name_lower_p} in particular because you'd love to ${p.g("be fucked by their", "fuck their")} ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}`)
+		//add_context(`You've always wanted to fuck a ${a.g("male","female","sexy")} ${a.name_lower}. You're a slut and you love it when ${a.name_lower_p} take advantage of you. You love a ${a.g("male","female","sexy")} ${a.name_lower}'s ${a.g(a.dCock(),a.dPussy(),"body")}.`)
+		add_context(`This is a story about being gang raped by a group of ${a.g("male","female","sexy")} ${a.name_lower_p}. The ${a.name_lower_p} will force you to have sex with them. The ${a.name_lower_p} haven't had sex in a long time, so they'll be very rough with you.`)
 
 		// string
 		var str = ` great-looking ${p.gender_word}.
 
 You were out and about adventuring when suddenly you lost consciousness!
 
-You awaken to see an entire herd of ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a heard of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.g("male","female","looking at you")}, and clearly aroused. Each one of them has ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} on full display, and they look like these ${a.gender_word} ${a.name_word_p} are about to take what they want by force.
+You awaken to see several ${a.dBody()} pokemon with ${a.dSkin()} looking at you. It's a group of ${a.name_lower_p}! You've heard stories about this group knocking trainers out and gang raping them, but you didn't think they were true! They're all ${a.g("male","female","looking at you")}, and clearly aroused. Each one of them has ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} on full display, and they look like these ${a.gender_word} ${a.name_word_p} are about to take what they want by force.
 
-A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}. They rip your clothes off and `
+A couple ${a.name_lower_p} walk over to you. You can't take your eyes off their ${a.g(a.dCock(true),a.dPussy(true),"sexy bodies")}. They rip your clothes off and`
 		
 		return str
 	}
@@ -471,10 +477,13 @@ scenes.set("milking", {
 		var a = v.a
 
 		// context
-		add_context(`Your job is to milk ${a.name_lower_plural}' ${a.g(a.dCock(true), "breasts", "bodies")} and collect the resulting ${a.g("semen", "milk", "fluids")} in buckets. If you drink or waste the ${a.name_lower} ${a.g("cum", "milk", "fluid")} instead of collecting it in a bucket, your supervisor will get mad at you. You've always loved milking ${a.name_lower_p}' ${a.g(a.dCock(), "soft breasts", "sexy bodies")}. Your preferred style of ${a.g("penis milking", "milking", "milking")} is slow and sensual. You focus on the sensations and make the ${a.name_lower} feel really good. The ${a.name_lower}'s happiness is your reward. You love watching the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} shoot into the bucket. You're a professional, so you always collect the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} in the bucket.`)
+		//add_context(`Your job is to milk ${a.name_lower_plural}' ${a.g(a.dCock(true), "breasts", "bodies")} and collect the resulting ${a.g("semen", "milk", "fluids")} in buckets. If you drink or waste the ${a.name_lower} ${a.g("cum", "milk", "fluid")} instead of collecting it in a bucket, your supervisor will get mad at you. You've always loved milking ${a.name_lower_p}' ${a.g(a.dCock(), "soft breasts", "sexy bodies")}. Your preferred style of ${a.g("penis milking", "milking", "milking")} is slow and sensual. You focus on the sensations and make the ${a.name_lower} feel really good. The ${a.name_lower}'s happiness is your reward. You love watching the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} shoot into the bucket. You're a professional, so you always collect the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} in the bucket.`)
+		add_context(`This is a story about milking a ${a.name_lower}'s ${a.g(a.dCock(), "breasts", "body")}. The main character's job is to collect the ${a.name_lower}'s ${a.g("cum", "milk", "fluids")} in a bucket. To collect the ${a.name_lower}'s ${a.g("cum", "milk", "fluid")} you have to ${a.g("masturbate his "+a.dCock(), "massage her breasts", "bring it to orgasm")}.`)
 
 		if (a.m) {
-			add_context(`"Milking" refers to penis milking. ${a.name} penises are milked to retrieve their semen so it can be packaged and sold.`)
+			add_context(`"Milking" refers to penis milking. ${a.name}'s ${a.pg?"penises are":"penis is"} milked to retrieve his semen so it can be packaged and sold. You will milk ${a.name} by masturbating his ${a.dCock()}. You don't have sex with ${a.name}, you only jerk him off. When he cums, make sure he cums into the bucket.`)
+		} else if (a.f) {
+			add_context(`${a.name} will orgasm when you milk her. She will moan loudly as you massage the milk out of her breasts.`)
 		}
 
 		// string
@@ -1675,7 +1684,7 @@ bodySizes.set("tiny", {
 	adj: ["tiny"]
 })
 bodySizes.set("small", {
-	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown", "pineco", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "corsola", "galarian_corsola", "remoraid", "donphan", "porygon2", "smeargle", "tyrogue", "celebi", "teecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "masquerain", "shroomish", "shedinja", "ninjask", "whismur", "azurill", "nosepass", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "volbeat", "illumise", "roselia", "gulpin", "carvanha", "spoink", "spinda", "trapinch", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "feebas", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "dusclops", "chimecho", "wynaut", "snorunt", "spheal", "clamperl", "luvdisc", "bagon", "beldum", "jirachi", "turtwig", "chimchar", "piplup", "starly", "bidoof", "kricketune", "shinx", "cranidos", "shieldon", "grass_wormadam", "sand_wormadam", "trash_wormadam", "mothim", "pachirisu", "buizel", "sunny_cherrim", "overcast_cherrim", "west_shellos", "east_shellos", "drifloon", "buneary", "chatot", "munchlax", "riolu", "scorupi", "finneon", "rotom", "fan_rotom", "mow_rotom", "uxie", "mesprit", "azelf", "phone_rotom", "dex_rotom", "phione", "manaphy", "land_shaymin", "sky_shaymin", "victini", "snivy", "pignite", "dewott", "watchog", "herdier", "purrloin", "swoobat", "drillbur", "gurdurr", "swadloon", "venipede", "whimsicott", "basculin", "sandile", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "tirtouga", "archen", "trubbish", "zorua", "minccino", "gothita", "duosion", "ducklett", "vanillite", "summer_deerling", "winter_deerling", "spring_deerling", "autumn_deerling", "f_frillish", "m_frillish", "klang", "elgyem", "lampent", "axew", "cubchoo", "stunfisk", "galarian_stunfisk", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "larvesta", "meloetta", "chespin", "fennekin", "froakie", "bunnelby", "fletchling", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "skrelp", "clauncher", "helioptile", "tyrunt", "amaura", "dedenne", "carbink", "goomy", "phantump", "pumpkaboo", "bergmite", "noibat", "hoopa_confined", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "steenee", "stufful", "salandit", "sandygast", "minior", "komala", "togedemaru", "mimikyu", "jangmoo", "marshadow", "poipole", "grookey", "scorbunny", "sobble", "skwovet", "rookidee", "dottler", "nickit", "gossifleur", "chewtle", "yamper", "rolycoly", "flapple", "silicobra", "arrokuda", "toxel", "centiskorch", "clobbopus", "polteageist", "hatenna", "impidimp", "morgrem", "alcremie", "falinks", "morpeko", "cufant", "dreepy", "kubfu", "regieleki"],
+	species: ["bulbasaur", "charmander", "squirtle", "butterfree", "beedrill", "raticate", "alolan_raticate", "spearow", "pikachu", "sandshrew", "alolan_sandshrew", "clefairy", "vulpix", "alolan_vulpix", "jigglypuff", "zubat", "gloom", "diglett", "alolan_diglett", "dugtrio", "alolan_dugtrio", "meowth", "alolan_meowth", "galarian_meowth", "psyduck", "mankey", "growlithe", "poliwag", "abra", "machop", "bellsprout", "weepinbell", "tentacool", "geodude", "alolan_geodude", "ponyta", "galarian_ponyta", "magnemite", "farfetch'd", "galarian_farfetch'd", "shellder", "krabby", "gastly", "voltorb", "exeggcute", "cubone", "koffing", "tangela", "horsea", "goldeen", "staryu", "ditto", "eevee", "porygon", "omanyte", "kabuto", "dratini", "mew", "chikorita", "cyndaquil", "totodile", "sentret", "hoothoot", "ledian", "ariados", "chinchou", "togetic", "natu", "hoppip", "aipom", "sunflora", "wooper", "murkrow", "misdreavus", "unown", "pineco", "qwilfish", "sneasel", "teddiursa", "slugma", "swinub", "corsola", "galarian_corsola", "remoraid", "donphan", "porygon2", "smeargle", "tyrogue", "celebi", "treecko", "torchic", "mudkip", "poochyena", "zigzagoon", "galarian_zigzagoon", "linoone", "galarian_linoone", "masquerain", "shroomish", "shedinja", "ninjask", "whismur", "azurill", "nosepass", "skitty", "aron", "meditite", "electrike", "plusle", "minun", "volbeat", "illumise", "roselia", "gulpin", "carvanha", "spoink", "spinda", "trapinch", "vibrava", "cacnea", "swablu", "barboach", "corphish", "baltoy", "anorith", "feebas", "castform", "sunny_castform", "rainy_castform", "snowy_castform", "shuppet", "dusclops", "chimecho", "wynaut", "snorunt", "spheal", "clamperl", "luvdisc", "bagon", "beldum", "jirachi", "turtwig", "chimchar", "piplup", "starly", "bidoof", "kricketune", "shinx", "cranidos", "shieldon", "grass_wormadam", "sand_wormadam", "trash_wormadam", "mothim", "pachirisu", "buizel", "sunny_cherrim", "overcast_cherrim", "west_shellos", "east_shellos", "drifloon", "buneary", "chatot", "munchlax", "riolu", "scorupi", "finneon", "rotom", "fan_rotom", "mow_rotom", "uxie", "mesprit", "azelf", "phone_rotom", "dex_rotom", "phione", "manaphy", "land_shaymin", "sky_shaymin", "victini", "snivy", "pignite", "dewott", "watchog", "herdier", "purrloin", "swoobat", "drillbur", "gurdurr", "swadloon", "venipede", "whimsicott", "basculin", "sandile", "darumaka", "galarian_darumaka", "scraggy", "yamask", "galarian_yamask", "tirtouga", "archen", "trubbish", "zorua", "minccino", "gothita", "duosion", "ducklett", "vanillite", "summer_deerling", "winter_deerling", "spring_deerling", "autumn_deerling", "f_frillish", "m_frillish", "klang", "elgyem", "lampent", "axew", "cubchoo", "stunfisk", "galarian_stunfisk", "mienfoo", "golett", "pawniard", "rufflet", "vullaby", "durant", "deino", "larvesta", "meloetta", "chespin", "fennekin", "froakie", "bunnelby", "fletchling", "vivillon", "litleo", "floette", "skiddo", "pancham", "espurr", "spritzee", "swirlix", "inkay", "binacle", "skrelp", "clauncher", "helioptile", "tyrunt", "amaura", "dedenne", "carbink", "goomy", "phantump", "pumpkaboo", "bergmite", "noibat", "hoopa_confined", "rowlet", "litten", "popplio", "trumbeak", "yungoos", "charjabug", "crabrawler", "baile_oricorio", "pompom_oricorio", "pa'u_oricorio", "sensu_oricorio", "ribombee", "rockruff", "steenee", "stufful", "salandit", "sandygast", "minior", "komala", "togedemaru", "mimikyu", "jangmoo", "marshadow", "poipole", "grookey", "scorbunny", "sobble", "skwovet", "rookidee", "dottler", "nickit", "gossifleur", "chewtle", "yamper", "rolycoly", "flapple", "silicobra", "arrokuda", "toxel", "centiskorch", "clobbopus", "polteageist", "hatenna", "impidimp", "morgrem", "alcremie", "falinks", "morpeko", "cufant", "dreepy", "kubfu", "regieleki"],
 	adj: ["small"]
 })
 bodySizes.set("large", {
