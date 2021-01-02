@@ -835,3 +835,60 @@ blacephalon
 zeraora | knotted feline dick
 meltan
 melmetal
+
+# Galar
+Species String | Notes
+-------------- | -----
+grookey
+thwackey
+rillaboom
+scorbunny
+raboot
+cinderace
+sobble
+drizzile
+inteleon
+skwovet
+greedent
+rookidee
+corvisquire
+corviknight
+blipbug | ovipositor
+dottler | ovipositor
+orbeetle | ovipositor
+nickit
+thievul
+gossifleur | vines
+eldegoss | vines
+wooloo
+dubwool
+chewtle
+drednaw
+yamper
+boltund
+rolycoly
+carkol
+coalossal
+applin | vines
+flapple | vines
+appletun
+silicobra | double dick
+sandaconda | double dick
+cramorant
+arrokuda
+barraskewda
+toxel
+toxtricity
+sizzlipede
+centiskorch
+clobbopus | tentacles
+grapploct | tentacles
+sinistea | disembodied psychic gens
+polteageist | disembodies psychic gens
+hatenna
+hattrem
+hatterene
+impidimp
+morgrem
+grimmsnarl
+obstagoon
