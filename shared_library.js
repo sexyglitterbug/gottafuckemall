@@ -1227,6 +1227,41 @@ Your date with ${t.name} is going great! ${t.name} is clearly super into you. Yo
 	}
 })
 
+scenes.set("frisky3p", {
+	category: "humans",
+	hidden: true,
+	actors: [
+		{
+			type: "npc",
+			key: "p",
+			name: "the trainer"
+		},
+		{
+			type: "pokemon",
+			key: "a",
+			name: "the pokemon"
+		}
+	],
+	build: function(v) {
+		var p = v.p
+		var a = v.a
+
+		// context
+		add_context(`This is a story about ${p.name} having sex with ${p.his} ${a.name}. ${p.name} is ${a.name}'s trainer. ${a.name} trusts ${p.name}.`)
+
+		// string
+		var str = `${p.name} yawns. ${p.She}'s super horny right now. ${p.She} reaches into ${p.her} bag a pulls out a pokeball. "${a.Hell} do," ${p.she} thinks to ${p.herself}.
+
+${p.name} releases the pokemon within. A flash of light streaks across the room and takes the form of a ${a.g("male","female","sexy")} ${a.name}. The ${a.name} presents ${a.his} ${a.g(a.dCock(),a.dPussy(),"body")} to ${p.name}, who smirks.
+
+"Come here, ${a.g("boy","girl",a.name)}," ${p.name} commands. The ${a.name} complies, going up to ${p.name} without hesitation. ${a.His} ${a.g("flaccid " + a.dCock() + " " + (a.pg?"sway":"sways") + " back and forth", "/a pretty " + a.dPussy() + " " + (a.pg?"are":"is") + " on full display", "body begs for attention")} as ${a.he} makes ${a.his} way to ${p.name}.
+
+Once the ${a.name} is within reach, ${p.name}`
+
+		return str
+	}
+})
+
 scenes.set("md_initiation", {
 	category: "md",
 	hidden: true,
@@ -1462,6 +1497,8 @@ scenes.forEach(function(desc, name) {
 					if (first_person_index == n) {
 						add_you(`You are ${info.name_word}.`)
 					}
+
+					n++
 				}
 
 				data.his = data.g("his","her","they're")
@@ -1508,6 +1545,7 @@ scenes.forEach(function(desc, name) {
 //save("mandy", "Mandy is the gym leader of a fire-type gym in Cocksville City. Her best pokemon is a female Charizard.")
 
 // places
+save("eros", "Eros is the region you're in. It is full of rare pokemon.")
 save("bumfuck", "Bumfuck Town is your hometown. It connects to Route 1.")
 save("route 1", "Route 1 connects Bumfuck Town to Cocksville City. You can travel it in about 30 minutes. There are a few pokemon trainers and weak wild pokemon here.")
 save("cocksville", "Cocksville City is a small city. It has a fire-type pokemon gym led by Leader Mandy.")
@@ -1517,21 +1555,23 @@ save("cocksville", "Cocksville City is a small city. It has a fire-type pokemon 
 ////////////
 var people = new Map()
 
-// Lusteron
-people.set("prof_cherry", {
+// Eros
+people.set("cherry", {
+	aliases: ["prof_cherry", "professor_cherry"],
 	name: "Professor Cherry",
 	f: true,
 	signal: "cherry",
-	wi: "Professor Cherry is the resident pokemon professor in Bumfuck Town. Cherry is an expert on pokemon sexuality and she loves teaching people everything there is to know about sex with pokemon. Professor Cherry will tell you all sorts of pokemon sex trivia. Cherry is fascinated by pokemon genitalia.",
+	wi: "Professor Cherry is an expert on pokemon sexuality. Cherry loves teaching people about pokemon sexuality. Professor Cherry will tell people all sorts of pokemon sex trivia. Cherry is fascinated by pokemon genitalia. Cherry loves to fuck her pokemon. Cherry is very sexual. Cherry is muscular with dark skin and pink hair. Cherry is in her late 30s.",
 	party: ["gardevoir", "braixen", "vaporeon", "lopunny", "salazzle", "lucario", "zeraora", "zoroark"]
 })
 
 // Kanto
-people.set("prof_oak", {
+people.set("oak", {
+	aliases: ["prof_oak", "professor_oak"],
 	name: "Professor Oak",
 	m: true,
 	signal: "oak",
-	wi: "Professor Oak is the resident pokemon professor in Pallet Town of the Kanto region. He has grey hair, brown eyes, and he wears a lab coat. He is about 60 years old and he loves teach people about pokemon. Oak's grandson is the pokemon champion, Blue",
+	wi: "Professor Oak is the resident pokemon professor in Pallet Town of the Kanto region. Oak has grey hair, brown eyes, and he wears a lab coat. Oak is about 60 years old and he loves teach people about pokemon. Professor Oak is like a grandfather to everyone.",
 	party: ["tauros", "exeggutor", "arcanine", "charizard", "blastoise", "venusaur", "gyarados"]
 })
 people.set("mom", {
@@ -1960,12 +2000,18 @@ bodies.set("nondescript", {
 bodies.set("reptilian_quad", {
 	species: ["bulbasaur", "ivysaur", "venusaur", "shellgon", "shieldon", "bastiodon", "dialga", "heatran", "helioptile", "volcanion", "salandit", "sobble"],
 	adj: ["four-legged reptile", "quadrupedal reptile"],
-	plural: "quadrupedal reptiles that walk on all fours"
+	plural: "quadrupedal reptiles"
 })
 bodies.set("reptilian_biped", {
-	species: ["charmander", "charmeleon", "kangaskhan", "larvitar", "tyranitar", "treecko", "grovyle", "sceptile", "bagon", "groudon", "cranidos", "rampardos", "axew", "fraxure", "haxorus", "heliolisk", "salazzle", "drizzile", "inteleon"],
-	adj: ["two-legged reptile", "bipedal reptile"],
-	plural: "bipedal reptiles that walk on their hind legs",
+	species: ["larvitar", "tyranitar", "bagon", "groudon", "cranidos", "rampardos", "axew", "fraxure", "haxorus", "heliolisk", "drizzile"],
+	adj: ["two-legged reptile", "bipedal reptile", "upright reptile"],
+	plural: "upright reptiles",
+	arms: 2
+})
+bodies.set("reptilian_humanoid", {
+	species: ["charmander", "charmeleon", "kangaskhan", "treecko", "grovyle", "sceptile", "salazzle", "inteleon"],
+	adj: ["humanoid reptile", "human-like reptile", "upright reptile"],
+	plural: "humanoid reptiles",
 	arms: 2
 })
 bodies.set("reptilian_sextuped", {
@@ -3265,7 +3311,7 @@ dicks.set("rhino", {
 	dex_m: "Male <lp> have a long pink penis with a dramatically flared tip. When they're about to cum, the tip of their penis flares up and expands. A <ln>'s penis is also prehensile and can be fully controlled. When not in use, the penis is hidden inside a protective fleshy sheath."
 })
 dicks.set("generic_sheath", {
-	species: ["clefairy", "clefable", "jigglypuff", "wigglytuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey", "whismur", "loudred", "exploud", "pachirisu", "buizel", "floatzel", "stunky", "skuntank", "happiny", "snover", "abomasnow", "weavile", "electivire", "magmortar", "gliscor", "land_shaymin", "oshawott", "dewott", "samurott", "patrat", "watchog", "munna", "musharna", "swoobat", "woobat", "audino", "cottonee", "whimsicott", "minccino", "cinccino", "emolga", "shelmet", "accelgor", "mienfoo", "mienshao", "heatmor", "chespin", "quilladin", "chesnaught", "swirlix", "slurpuff", "yungoos", "gumshoos", "togedemaru", "mimikyu", "tapu_koko", "tapu_lele", "tapu_bulu", "skwovet", "greedent", "obstagoon", "falinks", "indeedee"],
+	species: ["clefairy", "clefable", "jigglypuff", "zubat", "golbat", "chansey", "kangaskhan", "electabuzz", "magmar", "chikorita", "quilava", "typhlosion", "sentret", "furret", "crobat", "pichu", "cleffa", "igglybuff", "marill", "azumarill", "dunsparce", "gligar", "sneasel", "smeargle", "elekid", "magby", "blissey", "whismur", "loudred", "exploud", "pachirisu", "buizel", "floatzel", "stunky", "skuntank", "happiny", "snover", "abomasnow", "weavile", "electivire", "magmortar", "gliscor", "land_shaymin", "oshawott", "dewott", "samurott", "patrat", "watchog", "munna", "musharna", "swoobat", "woobat", "audino", "cottonee", "whimsicott", "minccino", "cinccino", "emolga", "shelmet", "accelgor", "mienfoo", "mienshao", "heatmor", "chespin", "quilladin", "chesnaught", "swirlix", "slurpuff", "yungoos", "gumshoos", "togedemaru", "mimikyu", "tapu_koko", "tapu_lele", "tapu_bulu", "skwovet", "greedent", "obstagoon", "falinks", "indeedee"],
 	adj: ["animal /a <ds>", "animalistic /a <ds>", "beast /a <ds>", "beastial /a <ds>"],
 	pussy_adj: ["animal /a <ps>", "animalistic /a <ps>", "beast /a <ps>", "beastial /a <ps>"],
 	dex_m: "Male <lp> have a pink penis that lies inside a protective fleshy sheath. When aroused, the penis comes out of its sheath. Once a male <ln> is aroused he will want to orgasm.",
@@ -3277,7 +3323,7 @@ dicks.set("generic_slit", {
 	dex_m: "Male <lp> have a slick, pink penis that hides inside their body when not aroused. They also have internal testicles. A male <ln>'s penis is highly muscular."
 })
 dicks.set("rabbit", {
-	species: ["buneary", "lopunny", "bunnelby", "diggersby", "sylveon", "scorbunny", "raboot", "cinderace"],
+	species: ["wigglytuff", "buneary", "lopunny", "bunnelby", "diggersby", "sylveon", "scorbunny", "raboot", "cinderace"],
 	adj: ["bunny /a <ds>", "rabbit /a <ds>"],
 	pussy_adj: ["bunny /a <ps>", "rabbit /a <ps>"],
 	dex_m: dicks.get("generic_sheath").dex_m + " <n>'s cock is extremely soft.",
