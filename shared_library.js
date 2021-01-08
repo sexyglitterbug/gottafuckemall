@@ -860,7 +860,7 @@ scenes.set("porn_vid", {
 		}
 	],
 	build: function(v) {
-		var str = ` great-looking ${p.gender_word}. It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You turn on the tv and go to one of the hundreds of pokemon porn channels.\n\n`
+		var str = ` great-looking pokemon trainer. It's midnight and you're horny. You decide to take a break from fucking your pokemon and jerk off instead. You turn on the tv and go to one of the hundreds of pokemon porn channels.\n\n`
 
 		var a = v.a
 		var b = v.b
